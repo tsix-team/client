@@ -1,0 +1,130 @@
+<div class="main">
+    <section class="book-info">
+        <div class="row">
+            <div class="left-info">
+                <img src="/images/{{book.image}}" alt="">
+            </div>
+            <div class="right-info">
+                <h2 class="book-title">{{book.title}}</h2>
+                <div class="info">
+                    <div class="tag-info author">
+                        <span><b>Tác giả: </b>{{book.author}}</span>
+                    </div>
+                    <div class="tag-info category">
+                        <span><b>Thể loại: </b>{{book.category}}</span>
+                    </div>
+                    <div class="tag-info">
+                        <span><b>Năm phát hành: </b>{{book.publishing}}</span>
+                    </div>
+                </div>
+                <div class="feat-info">
+                    <div class="ratings">
+                        <span><b>Đánh giá: </b>{{rounding book.stars}}</span>
+                        <div class="stars">
+                            <i class="fa-solid fa-star"></i> ({{book.ratings}} Lượt đánh giá) 
+                        </div>
+                    </div>
+                    <small>
+                        Đánh giá của bạn: 
+                    </small>
+                    <div class="star-rating">
+                        <div class="rate">
+                            <input type="radio" id="star5" class="star" value="5" />
+                            <label for="star5" title="text">5 stars</label>
+                            <input type="radio" id="star4" class="star" value="4" />
+                            <label for="star4" title="text">4 stars</label>
+                            <input type="radio" id="star3" class="star" value="3" />
+                            <label for="star3" title="text">3 stars</label>
+                            <input type="radio" id="star2" class="star" value="2" />
+                            <label for="star2" title="text">2 stars</label>
+                            <input type="radio" id="star1" class="star" value="1" />
+                            <label for="star1" title="text">1 star</label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="description">
+            <h4>Tóm tắt</h4>
+            <p class="content"> {{book.description}}</p>
+            <a href="#" class="read-more">Xem thêm <i class="fa-solid fa-caret-down"></i></a>
+        </div>
+    </section>
+    <div class="community">
+        <h1>Bình luận <small>({{book.commentCount}})</small></h1>
+        <form method="post" action="">
+            <label for="comment">Nêu cảm nhận của bạn:</label>
+            <textarea id="content" name="content" rows="3" required></textarea>
+            <button type="submit">Gửi</button>
+        </form>
+        <hr>
+        <ul class="comments">
+            {{#each comments}}
+            <li class="comment">
+                <img src="/images/icons/user.png">
+                <div>
+                    <h3>{{this.dataValues.user.dataValues.name}} </h3>
+                    <p>{{this.dataValues.content}}</p>
+                    <small>{{getTimeAgo this.dataValues.createdAt}}</small>
+                </div>
+            </li>
+            {{/each}}
+            
+        </ul>
+    </div>
+</div>
+<script>
+    const stars = document.querySelectorAll('.rate .star');
+    const yourRated = `{{rated.dataValues.rating}}`
+    let isRated = false;
+    stars.forEach(star => {
+        if (star.value == yourRated) { // Kiểm tra nếu giá trị của thuộc tính value của input bằng với biến rating
+            star.checked = true; // Thêm thuộc tính checked vào input tương ứng
+            isRated = true;
+        }
+        star.addEventListener('click', () => {
+            const rating = star.value;
+            if(!isRated){
+                if(confirm(`Đánh giá cuốn sách này ${rating} sao?`)==false) return;
+            } 
+            const bookId = `{{book.bookId}}`;
+            const userId = `{{user.userId}}`;
+            
+            console.log(`You clicked on ${rating} stars.`, bookId, userId);
+            // Gửi request lưu đánh giá lên server
+            $.ajax({
+                url: '/rating',
+                method: 'POST',
+                data: { bookId, userId, rating },
+                success: function (response) {
+                    // xử lý kết quả trả về
+                    if (response.success) {
+                        console.log(response)
+                    } else {
+                        console.log(response)
+                        alert('Bạn đã đánh giá rồi')
+                    }
+                },
+                error: function (error) {
+                    console.log("loi")
+                }
+            });
+        });
+    });
+$(document).ready(function() {
+  $(".read-more").click(function(e) {
+    e.preventDefault();
+    var content = $(this).siblings(".content");
+    if (content.hasClass("collapsed")) {
+      content.removeClass("collapsed");
+      $(this).html(`Xem thêm <i class="fa-solid fa-caret-down"></i>`);
+    } else {
+      content.addClass("collapsed");
+      $(this).html(`Thu gọn <i class="fa-solid fa-caret-up"></i>`);
+    }
+  });
+});
+
+
+</script>

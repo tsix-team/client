@@ -1,0 +1,21 @@
+<div class="container form-container">
+    <div class="title" id="tit">Đăng Nhập tài khoản</div>
+    <form id="form" class="form" method="post" action="/login">
+        <div class="info">
+            <div class="line">
+                <label for="">Email</label><br>
+                <input class="input" type="text" name="email" id="email" required>
+                <span class="error" id="error-email"></span>
+            </div>
+            <div class="line">
+              <label for="">Mật khẩu</label><br>
+              <input class="input" name="password" type="password" id="pw" required>
+              <span class="error" id="error-pw"></span>
+            </div>
+            <div class="line">
+                <button type="submit" id="btn">Login</button> <a href="/register">Tạo tài khoản</a>
+            </div>
+            
+        </div>
+    </form> 
+</div>

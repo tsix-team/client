@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Error</title>
+  {{>admin/a_head}}
+</head>
+
+<body>
+  {{{body}}}
+  <script>
+    // Lấy thẻ a bằng ID
+    const goBackLink = document.getElementById('goBackLink');
+
+    // Thêm sự kiện click vào thẻ a
+    goBackLink.addEventListener('click', function (e) {
+      e.preventDefault(); // Ngăn chặn hành động mặc định khi click vào liên kết
+
+      // Sử dụng history.back() để quay lại trang trước
+      window.history.back();
+    });
+  </script>
+</body>
+
+</html>

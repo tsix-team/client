@@ -1,0 +1,23 @@
+<div class="main">
+    <div class="search-header">
+        <h2>Tìm kiếm "{{searchQuery}}"</h2>
+        <form method="get" action="/search">
+            <input type="text" name="t" id="" required value="{{searchQuery}}">
+            <button type="submit">Tìm kiếm</button>
+        </form>
+    </div>
+    <div class="search-result">
+        {{#if books}}
+            {{#each books}}
+            <div class="item-trending">
+                <a class="item-img" href="book/{{this.dataValues.bookId}}">
+                    <img src="/images/{{this.dataValues.image}}" alt="noen">
+                </a>
+                <div class="book-name"><a href="book/{{this.dataValues.bookId}}">{{this.dataValues.title}}</a></div>
+            </div>
+            {{/each}}
+        {{else}}
+        <h3>Không tìm thấy kết quả phù hợp</h3>
+        {{/if}}
+    </div>
+</div>

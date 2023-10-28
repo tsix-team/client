@@ -1,0 +1,98 @@
+<div class="container">
+    <div class="title" id="tit">ĐĂNG KÝ TÀI KHOẢN</div>
+    <form id="form" class="form" method="post" action="/register">
+        <div class="info">
+            <div class="line">
+                <label for="">Tên hiển thị</label><br>
+                <input class="input" type="text" name="name" id="fullname" value="{{formData.name}}" required>
+                <span class="error" id="error-name"></span>
+            </div>
+            <div class="line">
+                <label for="">Email</label><br>
+                <input class="input" type="text" name="email" id="email" value="{{formData.email}}" required>
+                <span class="error" id="error-email">{{errorEmail}}</span>
+            </div>
+            <div class="line">
+              <label for="">Mật khẩu</label><br>
+              <input class="input" type="password" name="password" id="pw" value="{{formData.password}}" required>
+              <span class="error" id="error-pw"></span>
+            </div>
+            <div class="line">
+              <label for="">Nhập lại mật khẩu</label><br>
+              <input class="input" type="password" name="password2" id="pw2" value="{{formData.password2}}" required>
+              <span class="error" id="error-pw2"></span>
+            </div>
+            <div class="line">
+                <button type="submit" id="btn">ĐĂNG KÝ</button> <a href="/login">Đăng nhập</a>
+            </div>
+            <div id="alert" class="alert"></div>
+        </div>
+    </form>
+    
+</div>
+<script>
+const form = document.getElementById('form');
+const fullname = document.getElementById('fullname');
+const email = document.getElementById('email');
+const pw = document.getElementById('pw');
+const pw2 = document.getElementsByName('password2')[0];
+
+const nameRegex = /^.{4,21}$/; // Regex kiểm tra tên từ 4-21 ký tự
+const pwRegex = /^.{6,18}$/; // Regex kiểm tra mật khẩu từ 6-18 ký tự
+
+// Thêm sự kiện submit cho form
+form.addEventListener('submit', (event) => {
+  
+  // Kiểm tra tên hiển thị
+  if (!nameRegex.test(fullname.value)) {
+    document.getElementById('error-name').textContent = 'Vui lòng nhập tên hiển thị từ 4-21 ký tự';
+    fullname.style.borderColor = 'red';
+    event.preventDefault();
+  } else {
+    document.getElementById('error-name').textContent = '';
+    fullname.style.borderColor = 'green';
+  }
+  
+  // Kiểm tra email
+  if (email.value === '') {
+    document.getElementById('error-email').textContent = 'Vui lòng nhập email';
+    email.style.borderColor = 'red';
+    event.preventDefault();
+  } else if (!email.value.includes('@')) {
+    document.getElementById('error-email').textContent = 'Email không hợp lệ';
+    email.style.borderColor = 'red';
+    event.preventDefault();
+  } else {
+    document.getElementById('error-email').textContent = '';
+    email.style.borderColor = 'green';
+  }
+  
+  // Kiểm tra mật khẩu
+  if (!pwRegex.test(pw.value)) {
+    document.getElementById('error-pw').textContent = 'Vui lòng nhập mật khẩu từ 6-18 ký tự';
+    pw.style.borderColor = 'red';
+    event.preventDefault();
+  } else {
+    document.getElementById('error-pw').textContent = '';
+    pw.style.borderColor = 'green';
+  }
+  
+  // Kiểm tra nhập lại mật khẩu
+  if (pw2.value === '') {
+    document.getElementById('error-pw2').textContent = 'Vui lòng nhập lại mật khẩu';
+    pw2.style.borderColor = 'red';
+    event.preventDefault();
+  } else if (pw2.value !== pw.value) {
+    document.getElementById('error-pw2').textContent = 'Mật khẩu nhập lại không khớp';
+    pw2.style.borderColor = 'red';
+    event.preventDefault();
+  } else {
+    document.getElementById('error-pw2').textContent = '';
+    pw2.style.borderColor = 'green';
+  }
+  
+  // Nếu dữ liệu không hợp lệ thì ngăn chặn submit form
+  
+});
+
+</script>

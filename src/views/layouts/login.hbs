@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    {{>admin/a_head}}
+</head>
+
+<body>
+    {{{body}}}
+    <script>
+        // Lấy các phần tử DOM cần sử dụng
+        const passwordField = document.getElementById('passwordField');
+        const togglePasswordVisibility = document.getElementById('togglePasswordVisibility');
+
+        // Thêm sự kiện click vào biểu tượng
+        togglePasswordVisibility.addEventListener('click', function (e) {
+            e.preventDefault(); // Ngăn chặn sự kiện mặc định khi nhấn vào liên kết
+
+            // Kiểm tra nếu trường nhập đang ở kiểu "password" thì chuyển sang kiểu "text" và ngược lại
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+            } else {
+                passwordField.type = 'password';
+            }
+        });
+    </script>
+</body>
+
+</html>

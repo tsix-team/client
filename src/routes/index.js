@@ -1,16 +1,16 @@
-import authRouter from './auth'
-import categoryRouter from './category'
-import userRouter from './user'
+// import authRouter from './auth'
+import adminRouter from './admin'
+import clientRouter from './client'
+// import {requireLogin} from '../middlewares/auth' 
+
 require('dotenv').config()
 
 const initRoutes = (app) => {
-    app.use(`${process.env.API}/auth`, authRouter)
-    app.use(`${process.env.API}/cate`, categoryRouter)
-    app.use(`${process.env.API}/user`, userRouter)
-
-    return app.use('/', (req, res) => {
-        res.send('server on...')
-    })
+    app.use('/', clientRouter)
+    app.use('/admin', adminRouter)
+    app.get('*', (req, res) => {
+        res.status(404).render('admin/404',{layout:'error'});
+      });
 }
 
 export default initRoutes

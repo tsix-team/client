@@ -1,0 +1,66 @@
+<section class="dashboard">
+  <div class="top">
+    <i class="uil uil-bars sidebar-toggle"></i>
+
+    <div class="search-box">
+      <i class="uil uil-search"></i>
+      <input id="live-search" type="text" placeholder="Search...">
+    </div>
+  </div>
+  <div class="dash-content">
+    <div class="activity">
+      <div class="title">
+        <i class="uil uil-gold"></i>
+        <span class="text">Quản lí bình luận</span>
+      </div>
+
+      <table id="customers">
+        <tr>
+          <th><i class="uil uil-list-ol"></i> ID cmt</th>
+          <th><i class="uil uil-paragraph"></i> ID user</th>
+          {{!-- <th><i class="uil uil-n-a"></i> Tên</th> --}}
+          <th><i class="uil uil-key-skeleton-alt"></i> Mã sách</th>
+          <th><i class="uil uil-text-fields"></i> Nội dung</th>
+          <th><i class="uil uil-clock"></i> Thời gian bl</th>
+          <th> <i class="uil uil-file-edit-alt"></i> Action</th>
+        </tr>
+        {{#each comments}}
+        <tr>
+          <td>{{this.dataValues.commentId}}</td>
+          <td>
+            </h2>{{this.dataValues.userUserId}}
+            <h2>
+          </td>
+          {{!-- <td>
+            Tên
+          </td> --}}
+          <td>
+            <p>
+              {{this.dataValues.bookBookId}}
+            </p>
+          </td>
+          <td>
+            <p>{{this.dataValues.content}}</p>
+          </td>
+          <td>
+            <p>
+              {{formatDate this.dataValues.createdAt}}
+            </p>
+          </td>
+          <td style="font-size: 30px;">
+            <a onclick="return confirm('Bạn có chắc muốn xóa?')" href="/admin/comments/delete/{{this.dataValues.commentId}}"><i class="uil uil-trash"></i></a>
+          </td>
+        </tr>
+        {{/each}}
+      </table>
+      <div class="page" style="float: right; margin: 10px 10px 20px 10px">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="#"></a></li>
+            <li class="page-item"><a class="page-link" href="">Next</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
