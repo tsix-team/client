@@ -1,4 +1,5 @@
 import express from 'express'
+import uploadCloud from '../config/cloudinary.config';
 import * as authController from '../controllers/admin/auth'
 import * as userController from '../controllers/admin/user'
 import * as pdController from '../controllers/admin/product'
@@ -14,7 +15,11 @@ router.get('/login',(req,res)=>{
 router.post('/login',authController.login)
 
 router.get('/users',userController.indexUser)
+
+//product
 router.get('/products',pdController.indexPd)
+router.post('/products',uploadCloud.fields([{ name: 'image' }, { name: 'images' }]), pdController.createPd)
+
 
 router.get('/categories',cateController.indexCate)
 
