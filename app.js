@@ -1,6 +1,7 @@
 import express from 'express'
 import logger from 'morgan'
 import cors from 'cors'
+import cookieParser from 'cookie-parser'
 import initRoutes from './src/routes'
 import * as libs from './src/services/libs'
 require('dotenv').config()
@@ -26,6 +27,7 @@ app.use(cors({
 }))
 
 //app use
+app.use(cookieParser())
 app.use(logger('dev'));
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))

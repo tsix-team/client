@@ -11,12 +11,12 @@ export const login = (req,res) => {
             if (data.err !== 0) {
                 res.render('admin/login',{layout:'login',error:data.msg,formData})
             }  else{
-                res.cookie('tsixToken', data.token, { maxAge: 360000, httpOnly: true });
+                res.cookie('tsixToken', data.token, { maxAge: 3600000, httpOnly: true });
                 res.redirect('/admin');
             }
         })
         .catch(error => {
-            res.render('admin/login',{layout:'login',error:error.response.data.msg,formData})
+            res.render('admin/login',{layout:'login',error:error.response?.data?.msg,formData})
             console.log("errrrrr:",error);
   });
 }

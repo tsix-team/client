@@ -56,3 +56,7 @@ export const eq = (a, b) => a == b
 export const rounding = num => num.toFixed(1)
 export const ROOT_URL = process.env.CLIENT_URL
 export const ADMIN_URL = process.env.ADMIN_URL
+
+export let user = {email:"hpam"}
+export const setUser = (u) =>{user=u}
+export const getUser = () => user

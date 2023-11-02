@@ -181,12 +181,12 @@
                     </div>
                 </div>
             </div>
-            <div class="nav-item dropdown">
+            {{!-- <div class="nav-item dropdown">
                 <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown"
                     aria-label="Open user menu">
                     <span class="avatar avatar-sm" style="background-image: url(./static/avatars/000m.jpg)"></span>
                     <div class="d-none d-xl-block ps-2">
-                        <div>NgocHoang</div>
+                        <div>{{user.email}}</div>
                         <div class="mt-1 small text-muted">Administrator</div>
                     </div>
                 </a>
@@ -198,7 +198,7 @@
                     <a href="./settings.html" class="dropdown-item">Settings</a>
                     <a href="./sign-in.html" class="dropdown-item">Logout</a>
                 </div>
-            </div>
+            </div> --}}
         </div>
         <div class="collapse navbar-collapse" id="sidebar-menu">
             <ul class="navbar-nav pt-lg-3">
@@ -576,8 +576,8 @@
                     aria-label="Open user menu">
                     <span class="avatar avatar-sm" style="background-image: url(./static/avatars/000m.jpg)"></span>
                     <div class="d-none d-xl-block ps-2">
-                        <div>Ngoc Hoang</div>
-                        <div class="mt-1 small text-muted">Web Owner</div>
+                        <div>{{log user}} mee</div>
+                        <div class="mt-1 small text-muted">Administrator</div>
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">

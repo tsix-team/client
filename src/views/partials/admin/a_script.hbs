@@ -587,3 +587,10 @@
     });
     // @formatter:on
 </script>
+ <script>
+    const goBackLink = document.getElementById('goBackLink');
+    goBackLink.addEventListener('click', function (e) {
+      e.preventDefault();
+      window.history.back();
+    });
+  </script>

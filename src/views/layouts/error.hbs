@@ -10,14 +10,9 @@
 <body>
   {{{body}}}
   <script>
-    // Lấy thẻ a bằng ID
     const goBackLink = document.getElementById('goBackLink');
-
-    // Thêm sự kiện click vào thẻ a
     goBackLink.addEventListener('click', function (e) {
-      e.preventDefault(); // Ngăn chặn hành động mặc định khi click vào liên kết
-
-      // Sử dụng history.back() để quay lại trang trước
+      e.preventDefault();
       window.history.back();
     });
   </script>
