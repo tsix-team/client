@@ -77,7 +77,7 @@ export const deleteCate = (req, res) => {
         .catch(error => {
             // Xử lý lỗi nếu có
             console.error(error);
-            res.render('admin/500', { layout: 'error', title: '500' })
+            res.redirect('/admin/categories');
         });
 }
 //subcate
@@ -164,7 +164,7 @@ export const deleteSubcate = (req, res) => {
         .catch(error => {
             // Xử lý lỗi nếu có
             console.error(error);
-            res.render('admin/500', { layout: 'error', title: '500' })
+            res.redirect('/admin/subcategories');
         });
 }
 export const updateSubcate = (req,res) => {

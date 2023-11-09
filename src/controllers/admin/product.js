@@ -60,12 +60,12 @@ export const createPd = (req,res) => {
 export const updatePd = (req,res) => {
   //res.render('admin/products',{layout:'admin/index', title:'Quản lý sản phẩm'})
   console.log("post pd... ");
-  const {slug} = req.params
+  const {id} = req.params
   const uploadedImage = req.files?.image
   const uploadedImages = req.files?.images
   const formData = { ...req.body,uploadedImage,uploadedImages}
   console.log("form dataaaaa: ",formData);
-  axios.put(`/product/${slug}`, formData, {
+  axios.put(`/product/${id}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -82,8 +82,8 @@ export const updatePd = (req,res) => {
 });
 }
 export const viewUpdate = (req,res) =>{
-  const {slug} = req.params
-  axios.get(`/product/${slug}`).then(async response =>{
+  const {id} = req.params
+  axios.get(`/product/${id}`).then(async response =>{
     const product = response.data.response;
     const id_pd = product.id_pd
     const cate = await axios.get('/subcate')
@@ -94,7 +94,7 @@ export const viewUpdate = (req,res) =>{
   }).catch(error => {
     // Xử lý lỗi nếu có
     console.error(error);
-    res.render('admin/products',{layout:'admin/index', title:'Quản lý sản phẩm',error})
+    res.render('admin/500',{layout:'error', title:'500'})
     //res.render('admin/500',{layout:'error', title:'500'})
   })
 }

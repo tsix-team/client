@@ -21,8 +21,8 @@ router.post('/users',userController.createUser)
 //product
 router.get('/products',pdController.indexPd)
 router.post('/products',uploadCloud.fields([{ name: 'image' }, { name: 'images' }]), pdController.createPd)
-router.get('/products/update/:slug',pdController.viewUpdate)
-router.post('/products/update/:slug',uploadCloud.fields([{ name: 'image' }, { name: 'images' }]), pdController.updatePd)
+router.get('/products/update/:id',pdController.viewUpdate)
+router.post('/products/update/:id',uploadCloud.fields([{ name: 'image' }, { name: 'images' }]), pdController.updatePd)
 router.get('/products/d/:id',pdController.deletePd)
 
 //categories
