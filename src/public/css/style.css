@@ -1,0 +1,352 @@
+/* reset and setup */
+@import url("https://fonts.googleapis.com/css2?family=Lobster&family=Roboto+Condensed&display=swap");
+:root {
+  --orange-color: #f7941d;
+  --orange-color-2: #fa8231;
+  --text-color: #2f3542;
+  --text-color-2: #40407a;
+  font-size: 10px;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+body {
+  background-color: #ffffff;
+  color: var(--text-color);
+  font-family: "Roboto", sans-serif;
+}
+
+/* app */
+.app-furniture {
+  min-height: 100vh;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  overflow: hidden;
+}
+/* header */
+.header {
+  width: 100vw;
+  height: 90px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+}
+.header .container-header {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 50px 0 50px;
+  max-width: 1920px;
+  margin: 0 auto;
+}
+.logo-header img {
+  width: 150px;
+}
+
+.search .form-search {
+  width: 500px;
+  height: 40px;
+  position: relative;
+}
+
+.form-search input {
+  width: 90%;
+  height: 100%;
+  padding: 20px;
+  border-radius: 10px;
+  border: 2.5px solid var(--orange-color);
+  outline: none;
+}
+.form-search button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--orange-color);
+  color: #ffffff;
+  position: absolute;
+  right: 20px;
+  top: -3px;
+}
+
+.account a {
+  margin: 0 5px;
+  text-decoration: none;
+  color: var(--text-color);
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.account .hover:hover {
+  color: var(--orange-color);
+  transition: 0.3s ease;
+}
+.account .text_sign-up {
+  border-right: 1px solid #000;
+  padding-right: 6px;
+}
+
+.cart {
+  margin-left: 30px;
+}
+.cart a i {
+  font-size: 3rem;
+  transform: rotate(-25deg);
+  transition: 0.2s;
+}
+.cart a i:hover {
+  transform: none;
+}
+.cart a {
+  transition: 0.4s ease-in-out;
+  color: var(--orange-color-2);
+}
+.cart a:hover {
+  color: var(--text-color);
+}
+/* end header */
+
+/* menu */
+.menu {
+  width: 100vw;
+  height: 60px;
+}
+.menu .container-menu {
+  height: 100%;
+  padding: 0 50px 0 50px;
+  max-width: 1920px;
+  margin: 0 auto;
+}
+.menu .desk {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* dropdown category*/
+.dropbtn {
+  background-color: var(--orange-color);
+  border-radius: 10px;
+  width: 250px;
+  color: #ffffff;
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropbtn:hover,
+.dropbtn:focus {
+  background-color: var(--orange-color);
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  width: 250px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: var(--text-color);
+  padding: 12px 16px;
+  font-size: 1.3rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  display: block;
+}
+.dropdown-content a i {
+  font-size: 1rem;
+  font-weight: bolder;
+  color: var(--orange-color);
+  padding-right: 8px;
+}
+
+.dropdown-content a:hover {
+  background-color: var(--orange-color-2);
+  border-radius: 5px;
+  color: #ffffff;
+  transition: 0.5s ease;
+}
+.dropdown:hover .dropbtn {
+  background-color: var(--orange-color-2);
+  cursor: pointer;
+}
+
+.show {
+  display: block;
+}
+
+/* menu-list */
+.menu-list .main-menu {
+  display: flex;
+}
+
+.menu-list .main-menu li a,
+.menu-list .main-menu li {
+  list-style-type: none;
+  margin-right: 25px;
+  font-weight: 500;
+}
+.menu-list .main-menu li a {
+  font-size: 1.4rem;
+}
+
+.menu-list .active-menu {
+  color: var(--orange-color) !important;
+}
+
+.menu-list .main-menu li a:hover {
+  color: var(--orange-color);
+  transition: 0.2s ease;
+}
+
+.hotline span i {
+  color: var(--orange-color-2);
+  font-size: 1.5rem;
+  margin-right: 5px;
+}
+.hotline .text {
+  color: var(--text-color);
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-right: 2px;
+}
+
+.hotline .phone {
+  color: var(--text-color-2);
+  font-size: 1.6rem;
+}
+
+/* dropdown-menu */
+.dropdown-navbar {
+  position: relative;
+  display: inline-block;
+}
+.dropdown-content-navbar {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 150px;
+  width: 50px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  z-index: 1;
+}
+.dropdown-content-navbar a {
+  padding: 10px 14px;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  display: block;
+}
+.dropdown-content-navbar a i {
+  color: var(--orange-color);
+  font-weight: bolder;
+  font-size: 1rem;
+  padding-right: 8px;
+}
+.dropdown-content-navbar a:hover {
+  border-radius: 5px;
+  color: #ffffff;
+  transition: 0.5s ease;
+}
+.dropdown-navbar:hover .dropdown-content-navbar {
+  display: block;
+}
+.dropdown-navbar:hover {
+  cursor: pointer;
+}
+/* end menu */
+
+/* slideshow */
+.slideshow {
+  width: 100vw;
+}
+.slideshow-container {
+  max-width: 1920px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 50px;
+  background-position: center center;
+}
+/* end slideshow */
+
+/* ------------ */
+/* main.css */
+/* ------------- */
+
+/* --------- footer --------- */
+
+.footer {
+  width: 100vw;
+  height: 60px;
+  background-color: var(--text-color);
+}
+.container-footer {
+  width: 100%;
+  height: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-footer .text {
+  color: #ffffff;
+  font-size: 1.2rem;
+}
+
+/* back-to-top */
+#button {
+  display: inline-block;
+  background-color: var(--orange-color);
+  color: #ffffff;
+  border: none;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  border-radius: 4px;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  transition: background-color 0.3s, opacity 0.5s, visibility 0.5s;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1000;
+}
+
+#button:hover {
+  cursor: pointer;
+  background-color: #333;
+}
+#button:active {
+  background-color: #555;
+}
+#button.show {
+  opacity: 0.8;
+  visibility: visible;
+}

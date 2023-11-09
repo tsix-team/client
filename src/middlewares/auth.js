@@ -11,12 +11,11 @@ export const requireLogin = (req,res,next) => {
       } else{
         try {
           const decoded = jwt.verify(token, process.env.SECRET_KEY);
-          req.user = decoded;
-          setUser(req.user)
-          console.log("User:",req.user);
+          console.log("User:",decoded);
+          req.user = decoded; 
           next();
         } catch (err) {
-          res.status(400).send('Invalid token');
+          res.status(400).send('Invalid token',);
         }
       }
 }

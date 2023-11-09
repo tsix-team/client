@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.post('/login',authController.login)
 router.get('/login',(req,res)=>{
-    res.render('admin/login',{ layout:'login',title:'Login'})
+    res.render('admin/login',{ layout:'admin/login',title:'Login'})
 })
 router.get('/logout', (req, res) => {
     res.clearCookie('tsixToken'); // Xóa token khỏi cookie

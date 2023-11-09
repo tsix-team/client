@@ -52,7 +52,7 @@
     <div class="container-xl">
         <div class="row row-cards">
             <div class="col-12">
-                <form class="card">
+                <form class="card" method="post" enctype="multipart/form-data" action="">
                     <div class="card-body">
                         <h3 class="card-title">Edit product</h3>
                         <div class="row row-cards mt-3">
@@ -134,34 +134,12 @@
                                                         <path d="M4 14h6v6h-6z"></path>
                                                         <path d="M17 17m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
                                                         <path d="M7 7m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
-                                                    </svg> Danh mục
-                                                </label>
-                                                <select class="form-select" name="id_cate">
-                                                    {{#each dataCates}}
-                                                    <option value={{this.id_cate}}>{{this.name_cate}}</option>
-                                                    {{/each}}
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="mb-3">
-                                                <label class="form-label">
-                                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                                        class="icon icon-tabler icon-tabler-category-plus" width="24"
-                                                        height="24" viewBox="0 0 24 24" stroke-width="2"
-                                                        stroke="currentColor" fill="none" stroke-linecap="round"
-                                                        stroke-linejoin="round">
-                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                        <path
-                                                            d="M4 4h6v6h-6zm10 0h6v6h-6zm-10 10h6v6h-6zm10 3h6m-3 -3v6">
-                                                        </path>
                                                     </svg> Danh mục con
                                                 </label>
-                                                <select class="form-select" name="id_subcate">
-                                                    <option disabled selected value=0>None</option>
-                                                    <option value=2>D m c 1</option>
-                                                    <option value=3>D m c 2</option>
-                                                    <option value=3>D m c 3</option>
+                                                <select class="form-select" name="id_subcate" id="id_cate">
+                                                    {{#each dataSubcates}}
+                                                    <option value={{this.id_subcate}} >{{this.name_subcate}}</option>
+                                                    {{/each}}
                                                 </select>
                                             </div>
                                         </div>
@@ -172,7 +150,7 @@
                                         <label class="form-imagecheck mb-2">
                                             <span>
                                                 <img src="{{product.image}}"
-                                                    alt="Beautiful blonde woman relaxing with a can of coke on a tree stump by the beach"
+                                                    alt="{{product.slug}}"
                                                     class="form-imagecheck-image">
                                             </span>
                                         </label>
@@ -279,7 +257,7 @@
                                                 </path>
                                             </svg> Tồn kho
                                         </div>
-                                        <input type="number" class="form-control" value="0" name="inventory" />
+                                        <input type="number" class="form-control" value="{{product.inventory}}" name="inventory" />
                                     </div>
                                 </div>
                             </div>
@@ -306,12 +284,12 @@
                             </div>
                             <div class="row">
                                 <div class="mb-3">
-                                    <label class="form-label">Ảnh khác</label>
+                                    <label class="form-label">Ảnh khác (ảnh được chọn sẽ bị xóa)</label>
                                     <div class="row g-2">
                                         {{#each imgs}}
                                         <div class="col-6 col-sm-3">
                                             <label class="form-imagecheck mb-2">
-                                                <input name="form-imagecheck" type="checkbox" value="1"
+                                                <input name="form_imagecheck[]" type="checkbox" value="{{this.filename}}"
                                                     class="form-imagecheck-input" />
                                                 <span class="form-imagecheck-figure">
                                                     <img src="{{this.url}}" alt="{{this.alt}}"
@@ -323,6 +301,7 @@
 
                                     </div>
                                 </div>
+
                             </div>
 
 
@@ -336,3 +315,17 @@
         </div>
     </div>
 </div>
+<script>
+    const id = {{product.id_subcate}}; // Replace with the desired 'id' value
+    console.log('id cate:',id)
+    const select = document.querySelector('#id_cate');
+    const options = select.querySelectorAll('#id_cate option');
+
+    options.forEach(option => {
+        if (parseInt(option.value) === id) {
+            option.setAttribute('selected', 'selected');
+        } else {
+            option.removeAttribute('selected');
+        }
+    });
+</script>

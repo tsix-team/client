@@ -1,13 +1,23 @@
 <!DOCTYPE html>
 <html>
   <head>
+    {{>client/head}}
     <title>{{title}}</title>
-    {{>head}}
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/responsive.css">
   </head>
   <body>
-    {{>header}}
-    {{{body}}}
-    {{>footer}}
+    <div class="app-furniture">
+        {{>client/header}}
+        {{>client/slide}}
+        {{{body}}}
+        {{>client/footer}}
+    </div>
+    {{>client/chat}}
+    <script src="/js/category-show.js"></script>
+    <script src="/js/category-show_responsive.js"></script>
+    <script src="/js/slideshow.js"></script>
+    <script src="/js/back-to-top.js"></script>
   </body>
-  <script src="/javascripts/script.js"></script>
 </html>

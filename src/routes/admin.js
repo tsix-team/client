@@ -20,13 +20,21 @@ router.post('/users',userController.createUser)
 
 //product
 router.get('/products',pdController.indexPd)
-router.get('/products/update/:slug',pdController.viewUpdate)
 router.post('/products',uploadCloud.fields([{ name: 'image' }, { name: 'images' }]), pdController.createPd)
+router.get('/products/update/:slug',pdController.viewUpdate)
+router.post('/products/update/:slug',uploadCloud.fields([{ name: 'image' }, { name: 'images' }]), pdController.updatePd)
+router.get('/products/d/:id',pdController.deletePd)
 
 //categories
 router.get('/categories',cateController.indexCate)
 router.post('/categories',cateController.createCate)
 router.get('/categories/d/:id',cateController.deleteCate)
+//subcategories
+router.get('/subcategories',cateController.indexSubcate)
+router.post('/subcategories',cateController.createSubcate)
+router.get('/subcategories/d/:id',cateController.deleteSubcate)
+router.get('/subcategories/update/:id',cateController.viewUpdateSubcate)
+router.post('/subcategories/update/:id',cateController.updateSubcate)
 
 // router.get('/login',(req,res)=>{
 //     res.render('login',{title:'Login page'})

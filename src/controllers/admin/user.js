@@ -6,7 +6,7 @@ export const indexUser = (req,res) => {
         .then(response => {
             const data = response.data.response;
             console.log(data);
-            res.render('admin/users',{layout:'admin', title:'Quản lý tài khoản',data})
+            res.render('admin/users',{layout:'admin/index', title:'Quản lý tài khoản',data})
         })
         .catch(error => {
             // Xử lý lỗi nếu có

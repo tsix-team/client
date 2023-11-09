@@ -1,0 +1,256 @@
+@import url("https://fonts.googleapis.com/css2?family=Lobster&family=Roboto+Condensed&display=swap");
+:root {
+  --orange-color: #f7941d;
+  --orange-color-2: #f88131;
+  --text-color: #2f3542;
+  --text-color-2: #40407a;
+  font-size: 10px;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.wrapperAccount {
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+}
+.containerAccount {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  background-color: #ffffff;
+  display: flex;
+}
+
+.formEnter {
+  width: 40%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.containerForm {
+  width: 350px;
+  border: none;
+  border-radius: 10px;
+  padding: 40px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
+    rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
+    rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+}
+
+.containerForm h3 {
+  text-align: left;
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--orange-color-2);
+}
+.form-control {
+  width: 100%;
+  position: relative;
+  margin-top: 20px;
+}
+.form-control input {
+  width: 100%;
+  height: 40px;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid var(--text-color);
+}
+.form-control span {
+  position: absolute;
+  top: 38px;
+  left: 0;
+  width: 0%;
+  border-bottom: 2px solid var(--orange-color-2);
+  border-radius: 5px;
+  transition: 0.3s ease-in-out;
+}
+
+.form-control input:focus ~ span {
+  width: 100%;
+}
+
+.form-control .error {
+  font-size: 1.4rem;
+  margin-top: 5px;
+  display: block;
+  color: var(--orange-color);
+}
+
+.form-control i {
+  position: absolute;
+  right: 4px;
+  cursor: pointer;
+  top: 10px;
+  font-size: 1.4rem;
+  background-color: #ffffff;
+}
+
+.containerForm .btnSubmit {
+  width: 100%;
+  height: 40px;
+  border-radius: 28px;
+  border: none;
+  outline: none;
+  background-color: var(--orange-color);
+  color: #ffffff;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin: 25px 0;
+  transition: 0.4s ease;
+  cursor: pointer;
+}
+.containerForm .btnSubmit:hover {
+  background-color: #ffffff;
+  color: var(--text-color);
+  border: 1px solid var(--text-color);
+}
+
+.containerForm .link {
+  display: flex;
+  justify-content: space-between;
+}
+
+.containerForm .link .signup-link {
+  font-size: 1.4rem;
+}
+
+.containerForm .link .signup-link a {
+  color: var(--orange-color);
+  text-decoration: none;
+}
+.containerForm .link .signup-link a:hover {
+  text-decoration: underline;
+}
+
+.containerForm .link .comeHome {
+  font-size: 1.4rem;
+}
+.containerForm .link .comeHome i {
+  font-size: 1rem;
+}
+.containerForm .link .comeHome a {
+  text-decoration: none;
+}
+
+.containerForm .link .comeHome a:hover {
+  text-decoration: underline;
+}
+
+.signup-link a:hover {
+  text-decoration: underline;
+}
+
+.comeHome {
+  text-align: center;
+  font-size: 1.4rem;
+}
+
+.comeHome a {
+  color: var(--orange-color);
+  text-decoration: none;
+}
+.comHome a:hover {
+  text-decoration: underline;
+}
+
+/* image */
+.imageAccount {
+  width: 60%;
+  height: 100%;
+  position: relative;
+}
+
+.imageAccount img {
+  object-fit: cover;
+  width: 100%;
+}
+
+.imageAccount .boxOverImage {
+  width: 370px;
+  height: 205px;
+  position: absolute;
+  bottom: 0;
+  right: 120px;
+  background-color: #ffffff;
+  z-index: 2;
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+  padding: 30px 50px;
+}
+.imageAccount .boxOverImage h3 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--orange-color);
+}
+.imageAccount .boxOverImage p {
+  font-size: 2rem;
+  font-weight: 900;
+  line-height: 1.5;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  color: var(--text-color);
+}
+.imageAccount .boxOverImage button {
+  width: 100%;
+  margin-top: 15px;
+  padding: 12px;
+  background-color: var(--orange-color);
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  font-weight: 600;
+  color: #ffffff;
+  cursor: pointer;
+  transition: 0.5s ease-in-out;
+}
+.imageAccount .boxOverImage button:hover {
+  color: var(--text-color);
+  background-color: #ffffff;
+  border: 1px solid #000;
+}
+
+@media only screen and (max-width: 1023px) and (min-width: 481px) {
+  .formEnter {
+    width: 100%;
+  }
+  .containerForm {
+    height: auto;
+    padding: 40px;
+  }
+  .imageAccount {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .formEnter {
+    width: 100%;
+  }
+  .containerForm {
+    height: auto;
+    width: 320px;
+    padding: 40px;
+  }
+  .containerForm .link .signup-link,
+  .containerForm .link .comeHome {
+    font-size: 1.3rem;
+  }
+
+  .imageAccount {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 330px) {
+  .containerForm {
+    box-shadow: none;
+  }
+}
