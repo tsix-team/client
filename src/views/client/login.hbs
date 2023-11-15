@@ -5,17 +5,16 @@
                 <h3>ĐĂNG NHẬP TÀI KHOẢN</h3>
                 <form action="" method="post">
                     <div class="form-control ">
-                        <input id="email" type="email" placeholder="Email">
+                        <input id="email" name="email" type="email" placeholder="Email" value="{{formData.email}}">
                         <span></span>
-                        <small class="error"></small>
                     </div>
                     <div class="form-control">
-                        <input id="password" type="password" placeholder="Mật khẩu">
+                        <input id="password" name="password" type="password" placeholder="Mật khẩu"  value="{{formData.password}}">
                         <span></span>
                         <i id="showPassword" class="fa fa-eye" aria-hidden="true"></i>
-                        <small class="error"></small>
                     </div>
-                    <button type="submit" class="btnSubmit">Đăng nhập</button>
+                    <div style="color: red; padding-top:10px;font-size:large">{{error}}</div>
+                    <button type="submit" name="submit" class="btnSubmit">Đăng nhập</button>
                 </form>
 
                 <div class="link">
@@ -40,4 +39,3 @@
         </div>
     </div>
 </div>
-<script src="/js/validateLogin.js"></script>

@@ -237,9 +237,8 @@
                         </span>
                     </a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="{{ADMIN_URL}}/products" data-bs-toggle="dropdown" data-bs-auto-close="false"
-                        role="button" aria-expanded="false">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ADMIN_URL}}/products">
                         <span
                             class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/package -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
@@ -257,22 +256,10 @@
                             Sản phẩm
                         </span>
                     </a>
-                    <div class="dropdown-menu">
-                        <div class="dropdown-menu-columns">
-                            <a class="dropdown-item" href="{{ADMIN_URL}}/products">
-                                Tất cả sản phẩm
-                            </a>
-                            <a class="dropdown-item" href="./stars-rating.html">
-                                Stars rating
-                                <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">New</span>
-                            </a>
-                        </div>
-                    </div>
                 </li>
 
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#navbar-extra" data-bs-toggle="dropdown"
-                        data-bs-auto-close="false" role="button" aria-expanded="false">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ADMIN_URL}}/users">
                         <span
                             class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/star -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-users"
@@ -289,23 +276,6 @@
                             Tài khoản
                         </span>
                     </a>
-                    <div class="dropdown-menu">
-                        <div class="dropdown-menu-columns">
-                            <div class="dropdown-menu-column">
-                                <a class="dropdown-item" href="{{ADMIN_URL}}/users">
-                                    Tất cả tài khoản
-                                    {{!-- <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">New</span>
-                                    --}}
-                                </a>
-                                <a class="dropdown-item" href="./users.html">
-                                    Khách hàng
-                                </a>
-                                <a class="dropdown-item" href="./license.html">
-                                    Nhân viên
-                                </a>
-                            </div>
-                        </div>
-                    </div>
                 </li>
                 <li class="nav-item active dropdown">
                     <a class="nav-link dropdown-toggle" href="#navbar-layout" data-bs-toggle="dropdown"
@@ -573,19 +543,26 @@
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown"
                     aria-label="Open user menu">
-                    <span class="avatar avatar-sm" style="background-image: url(./static/avatars/000m.jpg)"></span>
+                    <span class="avatar avatar-sm"
+                    {{#if (eq user.role 1)}}
+                     style="background-image: url(https://png.pngtree.com/png-vector/20191130/ourmid/pngtree-beautiful-admin-roles-line-vector-icon-png-image_2053305.jpg)">
+                            
+                            {{else}}
+                     style="background-image: url(https://png.pngtree.com/png-vector/20191125/ourmid/pngtree-beautiful-admin-roles-line-vector-icon-png-image_2035379.jpg)">
+                        {{/if}}
+                     
+                     </span>
                     <div class="d-none d-xl-block ps-2">
-                        <div>{{log user}} mee</div>
-                        <div class="mt-1 small text-muted">Administrator</div>
+                        <div>{{user.email}}</div>
+                        <div class="mt-1 small text-muted">{{#if (eq user.role 1)}}
+                            Nhân viên
+                            {{else}}
+                            Administrator
+                        {{/if}}</div>
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <a href="#" class="dropdown-item">Status</a>
-                    <a href="./profile.html" class="dropdown-item">Profile</a>
-                    <a href="#" class="dropdown-item">Feedback</a>
-                    <div class="dropdown-divider"></div>
-                    <a href="./settings.html" class="dropdown-item">Settings</a>
-                    <a href="./sign-in.html" class="dropdown-item">Logout</a>
+                    <a href="{{ROOT_URL}}/auth/logout" class="dropdown-item">Logout</a>
                 </div>
             </div>
         </div>

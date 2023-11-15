@@ -7,9 +7,6 @@ const showPassword = document.getElementById("showPassword");
 const showConfirmPassword = document.getElementById("showConfirmPassword");
 
 form.addEventListener("submit", (e) => {
-  e.preventDefault();
-
-  //
   validateInputs();
 });
 
@@ -22,13 +19,13 @@ const setError = (element, message) => {
   inputControl.classList.remove("Success");
 };
 
-const setSuccess = (element, message) => {
+const setSuccess = (element) => {
   const inputControl = element.parentElement;
   const errorDisplay = inputControl.querySelector(".error");
 
   errorDisplay.innerText = "";
-  inputControl.classList.add("Success");
   inputControl.classList.remove("Error");
+  inputControl.classList.add("Success");
 };
 
 const validateInputs = () => {
@@ -38,7 +35,7 @@ const validateInputs = () => {
   const confirmPasswordValue = confirmPassword.value.trim();
 
   const regexMail = (email) => {
-    var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{6,}$/;
+    var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/; // Fixed email regex
     return emailRegex.test(String(email).toLowerCase());
   };
 
@@ -54,7 +51,7 @@ const validateInputs = () => {
 
   if (emailValue === "") {
     setError(email, "Email không được để trống");
-  } else if (regexMail(emailValue)) {
+  } else if (!regexMail(emailValue)) { // Fixed email validation condition
     setError(email, "Email không đúng định dạng");
   } else {
     setSuccess(email);

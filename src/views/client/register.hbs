@@ -3,19 +3,19 @@
         <div class="formEnter">
             <div class="containerForm">
                 <h3>ĐĂNG KÝ TÀI KHOẢN</h3>
-                <form action="" method="post">
+                <form action="{{ROOT_URL}}/register" method="post">
                     <div class="form-control">
-                        <input id="username" type="text" placeholder="Họ và tên">
+                        <input id="username" name="name" type="text" placeholder="Họ và tên">
                         <span></span>
                         <small class="error"></small>
                     </div>
                     <div class="form-control">
-                        <input id="email" type="email" placeholder="Email">
+                        <input id="email" name="email" type="email" placeholder="Email">
                         <span></span>
                         <small class="error"></small>
                     </div>
                     <div class="form-control">
-                        <input id="password" type="password" placeholder="Mật khẩu">
+                        <input id="password" name="password" type="password" placeholder="Mật khẩu">
                         <span></span>
                         <i id="showPassword" class="fa fa-eye" aria-hidden="true"></i>
                         <small class="error"></small>
@@ -26,7 +26,7 @@
                         <i id="showConfirmPassword" class="fa fa-eye" aria-hidden="true"></i>
                         <small class="error"></small>
                     </div>
-
+                    <div style="color: red; padding-top:10px;font-size:large">{{error}}</div>
                     <button type="submit" class="btnSubmit">Đăng ký</button>
                 </form>
 

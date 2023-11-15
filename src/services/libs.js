@@ -57,3 +57,6 @@ export const formatDate2 = (dateString) => {
 export const eq = (a, b) => a == b
 export const rounding = num => num.toFixed(1)
 
+export const formatNumber = (number) =>{
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".").replace(/^(\d{1,3})(?=(\d{3})+(?:\.\d*)?$)/g, "$1,");
+}

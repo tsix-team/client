@@ -16,6 +16,7 @@ router.get('/',indexController.home)
 
 //user
 router.get('/users',userController.indexUser)
+router.get('/users/ban/:id',userController.banUser)
 router.post('/users',userController.createUser)
 
 //product

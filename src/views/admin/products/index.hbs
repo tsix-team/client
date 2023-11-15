@@ -14,11 +14,6 @@
             <!-- Page title actions -->
             <div class="col-auto ms-auto d-print-none">
                 <div class="btn-list">
-                    <span class="d-none d-sm-inline">
-                        <a href="#" class="btn">
-                            New view
-                        </a>
-                    </span>
                     <a href="#" class="btn btn-primary d-none d-sm-inline-block" data-bs-toggle="modal"
                         data-bs-target="#modal-report">
                         <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
@@ -56,76 +51,67 @@
                     <div class="card-header">
                         <h3 class="card-title">All</h3>
                     </div>
-                    <div class="card-body border-bottom py-3">
-                        <div class="d-flex">
-                            <div class="text-muted">
-                                Show
-                                <div class="mx-2 d-inline-block">
-                                    <input type="text" class="form-control form-control-sm" value="8" size="3"
-                                        aria-label="Invoices count">
-                                </div>
-                                entries
-                            </div>
-                            <div class="ms-auto text-muted">
-                                Search:
-                                <div class="ms-2 d-inline-block">
-                                    <input type="text" class="form-control form-control-sm" aria-label="Search invoice">
+
+                    <div id="table-default" class="table-responsive">
+                        <div class="card-body border-bottom py-3">
+                            <div class="d-flex">
+                                <div class="ms-auto text-muted">
+                                    Search:
+                                    <div class="ms-2 d-inline-block">
+                                        <input type="text" class="search form-control form-control-sm"
+                                            aria-label="Search invoice">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="table-responsive">
                         <table class="table card-table table-vcenter text-nowrap datatable">
                             <thead>
                                 <tr>
                                     <th class="w-1"><input class="form-check-input m-0 align-middle" type="checkbox"
                                             aria-label="Select all invoices" disabled></th>
-                                    <th class="w-1">ID.
+                                    <th class="w-1">
+                                        <button class="table-sort" data-sort="sort-id">ID.
+                                        </button>
+
                                         <!-- Download SVG icon from http://tabler-icons.io/i/chevron-up -->
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-sm icon-thick"
-                                            width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                            stroke="currentColor" fill="none" stroke-linecap="round"
-                                            stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M6 15l6 -6l6 6" />
-                                        </svg>
+
                                     </th>
-                                    <th>Tên</th>
-                                    <th>Ảnh chính</th>
-                                    <th>Danh mục con</th>
-                                    <th>Đơn giá</th>
-                                    <th>Thương hiệu</th>
-                                    <th>Tồn kho</th>
-                                    <th>Ngày nhập</th>
+                                    <th><button class="table-sort" data-sort="sort-name">Tên</button></th>
+                                    <th><button class="table-sort" data-sort="sort-image">Ảnh chính</button></th>
+                                    <th><button class="table-sort" data-sort="sort-subcate">Danh mục con</button></th>
+                                    <th><button class="table-sort" data-sort="sort-price">Đơn giá</button></th>
+                                    <th><button class="table-sort" data-sort="sort-brand">Thương hiệu</button></th>
+                                    <th><button class="table-sort" data-sort="sort-inventory">Tồn kho</button></th>
+                                    <th><button class="table-sort" data-sort="sort-date">Ngày nhập</button></th>
                                     <th></th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="table-tbody">
                                 {{#each dataProducts}}
                                 {{this.dataValues}}
                                 <tr>
                                     <td><input class="form-check-input m-0 align-middle" type="checkbox"
                                             aria-label="Select invoice"></td>
-                                    <td><span class="text-muted">{{this.id_pd}}</span></td>
-                                    <td><a href="#" class="text-reset" tabindex="-1">{{this.name_pd}}</a>
+                                    <td class="sort-id"><span class="text-muted">{{this.id_pd}}</span></td>
+                                    <td class="sort-name"><a href="#" class="text-reset" tabindex="-1">{{this.name_pd}}</a>
                                     </td>
-                                    <td>
+                                    <td class="sort-image">
                                         <span class="avatar"
                                             style="background-image: url({{this.image}});--tblr-avatar-size: 4.5rem;"></span>
                                     </td>
-                                    <td>
+                                    <td class="sort-subcate">
                                         {{this.name_subcate}}
                                     </td>
-                                    <td>
+                                    <td class="sort-price">
                                         {{this.price}}
                                     </td>
-                                    <td>
+                                    <td class="sort-brand">
                                         {{this.brand}}
                                     </td>
-                                    <td>
+                                    <td class="sort-inventory">
                                         {{this.inventory}}
                                     </td>
-                                    <td>{{formatDate this.createdAt}}</td>
+                                    <td class="sort-date">{{formatDate this.createdAt}}</td>
                                     <td class="text-end">
                                         <span class="dropdown">
                                             <button class="btn dropdown-toggle align-text-top"
@@ -171,8 +157,6 @@
                         </table>
                     </div>
                     <div class="card-footer d-flex align-items-center">
-                        <p class="m-0 text-muted">Showing <span>1</span> to <span>8</span> of <span>16</span>
-                            entries</p>
                         <ul class="pagination m-0 ms-auto">
                             <li class="page-item disabled">
                                 <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
@@ -433,3 +417,14 @@
         </form>
     </div>
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const list = new List('table-default', {
+            sortClass: 'table-sort',
+            listClass: 'table-tbody',
+            valueNames: ['sort-id', 'sort-name', 'sort-image', 'sort-subcate', 'sort-price', 'sort-brand',
+                'sort-inventory','sort-date'
+            ]
+        });
+    })
+</script>

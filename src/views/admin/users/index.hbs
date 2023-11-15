@@ -1,62 +1,63 @@
-
-    <!-- Page header -->
-    <div class="page-header d-print-none">
-        <div class="container-xl">
-            <div class="row g-2 align-items-center">
-                <div class="col">
-                    <!-- Page pre-title -->
-                    <div class="page-pretitle">
-                        Dashboard
-                    </div>
-                    <h2 class="page-title">
-                        Accounts
-                    </h2>
+<!-- Page header -->
+<div class="page-header d-print-none">
+    <div class="container-xl">
+        <div class="row g-2 align-items-center">
+            <div class="col">
+                <!-- Page pre-title -->
+                <div class="page-pretitle">
+                    Dashboard
                 </div>
-                <!-- Page title actions -->
-                <div class="col-auto ms-auto d-print-none">
-                    <div class="btn-list">
-                        <span class="d-none d-sm-inline">
-                            <a href="#" class="btn">
-                                New view
-                            </a>
-                        </span>
-                        <a href="#" class="btn btn-primary d-none d-sm-inline-block" data-bs-toggle="modal"
-                            data-bs-target="#modal-report">
-                            <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M12 5l0 14" />
-                                <path d="M5 12l14 0" />
-                            </svg>
-                            Thêm tài khoản
+                <h2 class="page-title">
+                    Accounts
+                </h2>
+            </div>
+            <!-- Page title actions -->
+            <div class="col-auto ms-auto d-print-none">
+                <div class="btn-list">
+                    <span class="d-none d-sm-inline">
+                        <a href="#" class="btn">
+                            New view
                         </a>
-                        <a href="#" class="btn btn-primary d-sm-none btn-icon" data-bs-toggle="modal"
-                            data-bs-target="#modal-report" aria-label="Create new report">
-                            <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M12 5l0 14" />
-                                <path d="M5 12l14 0" />
-                            </svg>
-                        </a>
-                    </div>
+                    </span>
+                    <a href="#" class="btn btn-primary d-none d-sm-inline-block" data-bs-toggle="modal"
+                        data-bs-target="#modal-report">
+                        <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
+                            stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M12 5l0 14" />
+                            <path d="M5 12l14 0" />
+                        </svg>
+                        Thêm tài khoản
+                    </a>
+                    <a href="#" class="btn btn-primary d-sm-none btn-icon" data-bs-toggle="modal"
+                        data-bs-target="#modal-report" aria-label="Create new report">
+                        <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
+                            stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M12 5l0 14" />
+                            <path d="M5 12l14 0" />
+                        </svg>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Page body -->
-    <div class="page-body">
-        <div class="container-xl">
-            <div class="row row-deck row-cards">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">All</h3>
-                        </div>
+</div>
+<!-- Page body -->
+<div class="page-body">
+    <div class="container-xl">
+        <div class="row row-deck row-cards">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">All</h3>
+                    </div>
+
+                    <div id="table-default" class="table-responsive">
                         <div class="card-body border-bottom py-3">
                             <div class="d-flex">
                                 <div class="text-muted">
@@ -70,128 +71,134 @@
                                 <div class="ms-auto text-muted">
                                     Search:
                                     <div class="ms-2 d-inline-block">
-                                        <input type="text" class="form-control form-control-sm"
+                                        <input type="text" class="search form-control form-control-sm"
                                             aria-label="Search invoice">
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="table-responsive">
-                            <table class="table card-table table-vcenter text-nowrap datatable">
-                                <thead>
-                                    <tr>
-                                        <th class="w-1"><input class="form-check-input m-0 align-middle" type="checkbox"
-                                                aria-label="Select all invoices" disabled></th>
-                                        <th class="w-1">ID.
-                                            <!-- Download SVG icon from http://tabler-icons.io/i/chevron-up -->
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-sm icon-thick"
-                                                width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                                stroke="currentColor" fill="none" stroke-linecap="round"
-                                                stroke-linejoin="round">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                <path d="M6 15l6 -6l6 6" />
-                                            </svg>
-                                        </th>
-                                        <th>Họ tên</th>
-                                        <th>Email</th>
-                                        <th>Sdt</th>
-                                        <th>Vai trò</th>
-                                        <th>Trạng thái</th>
-                                        <th>Ngày tạo</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {{#each data}}
-                                    {{this.dataValues}}
-                                    <tr>
-                                        <td><input class="form-check-input m-0 align-middle" type="checkbox"
-                                                aria-label="Select invoice"></td>
-                                        <td><span class="text-muted">{{this.id_user}}</span></td>
-                                        <td><a href="invoice.html" class="text-reset" tabindex="-1">{{this.name}}</a>
-                                        </td>
-                                        <td>
-                                            <span class="flag flag-country-us"></span>
-                                            {{this.email}}
-                                        </td>
-                                        <td>
-                                            {{this.phone}}
-                                            {{#if (eq this.phone null)}} Chưa có {{/if}}
-                                        </td>
-                                        <td>
-                                            {{#if (eq this.role 1)}}
-                                            <span class="badge bg-black me-1"></span> Admin
-                                            {{else}}
-                                            <span class="badge bg-blue me-1"></span> Khách hàng
-                                            {{/if}}
-                                        </td>
-                                        <td>
-                                            {{#if (eq this.status -1)}}
-                                            <span class="badge bg-red me-1"></span> Banned
-                                            {{else}}
-                                            <span class="badge bg-success me-1"></span> Kích hoạt
-                                            {{/if}}
-                                        </td>
-                                        <td>{{formatDate this.createdAt}}</td>
-                                        <td class="text-end">
-                                            <span class="dropdown">
-                                                <button class="btn dropdown-toggle align-text-top"
-                                                    data-bs-boundary="viewport"
-                                                    data-bs-toggle="dropdown">Actions</button>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="#">
-                                                        Action
-                                                    </a>
-                                                    <a class="dropdown-item" href="#">
-                                                        Another action
-                                                    </a>
-                                                </div>
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    {{/each}}
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="card-footer d-flex align-items-center">
-                            <p class="m-0 text-muted">Showing <span>1</span> to <span>8</span> of <span>16</span>
-                                entries</p>
-                            <ul class="pagination m-0 ms-auto">
-                                <li class="page-item disabled">
-                                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
-                                        <!-- Download SVG icon from http://tabler-icons.io/i/chevron-left -->
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                            stroke-linecap="round" stroke-linejoin="round">
+                        <table class="table card-table table-vcenter text-nowrap datatable">
+                            <thead>
+                                <tr>
+                                    <th class="w-1"><input class="form-check-input m-0 align-middle" type="checkbox"
+                                            aria-label="Select all invoices" disabled></th>
+                                    <th class="w-1">ID.
+                                        <!-- Download SVG icon from http://tabler-icons.io/i/chevron-up -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-sm icon-thick"
+                                            width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                                            stroke="currentColor" fill="none" stroke-linecap="round"
+                                            stroke-linejoin="round">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M15 6l-6 6l6 6" />
+                                            <path d="M6 15l6 -6l6 6" />
                                         </svg>
-                                        prev
-                                    </a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                <li class="page-item"><a class="page-link" href="#">5</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">
-                                        next <!-- Download SVG icon from http://tabler-icons.io/i/chevron-right -->
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                            stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M9 6l6 6l-6 6" />
-                                        </svg>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+                                    </th>
+                                    <th><button class="table-sort" data-sort="sort-name">Họ tên</button></th>
+                                    <th><button class="table-sort" data-sort="sort-email">Email</button></th>
+                                    <th><button class="table-sort" data-sort="sort-phone">Sđt</button></th>
+                                    <th><button class="table-sort" data-sort="sort-role">Vai trò</button></th>
+                                    <th><button class="table-sort" data-sort="sort-status">Trạng thái</button></th>
+                                    <th><button class="table-sort" data-sort="sort-date">Ngày tạo</button></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-tbody">
+                                {{#each data}}
+                                {{this.dataValues}}
+                                <tr>
+                                    <td><input class="form-check-input m-0 align-middle" type="checkbox"
+                                            aria-label="Select invoice"></td>
+                                    <td class="sort-id"><span class="text-muted">{{this.id_user}}</span></td>
+                                    <td class="sort-name"><a href="invoice.html" class="text-reset"
+                                            tabindex="-1">{{this.name}}</a>
+                                    </td>
+                                    <td class="sort-email">
+                                        <span class="flag flag-country-us"></span>
+                                        {{this.email}}
+                                    </td>
+                                    <td class="sort-phone">
+                                        {{this.phone}}
+                                        {{#if (eq this.phone null)}} Chưa có {{/if}}
+                                    </td>
+                                    <td class="sort-role">
+                                        {{#if (eq this.role 1)}}
+                                        <span class="badge bg-yellow me-1"></span> Nhân viên({{this.role}})
+                                        {{else if (eq this.role 2)}}
+                                        <span class="badge bg-red me-1"></span> Admin({{this.role}})
+                                        {{else}}
+                                        <span class="badge bg-blue me-1"></span> Khách hàng({{this.role}})
+                                        {{/if}}
+                                    </td>
+                                    <td class="sort-status">
+                                        {{#if (eq this.status -1)}}
+                                        <span class="badge bg-black me-1"></span> Banned
+                                        {{else}}
+                                        <span class="badge bg-success me-1"></span> Kích hoạt
+                                        {{/if}}
+                                    </td>
+                                    <td class="sort-date">{{formatDate this.createdAt}}</td>
+                                    <td class="text-end">
+                                        <span class="dropdown">
+                                            <button class="btn dropdown-toggle align-text-top"
+                                                data-bs-boundary="viewport" data-bs-toggle="dropdown">Actions</button>
+                                            <div class="dropdown-menu dropdown-menu-end">
+                                                <a class="dropdown-item"
+                                                    href="{{ADMIN_URL}}/users/ban/{{this.id_user}}">
+                                                    {{#if (eq this.status 0)}}
+                                                    Vô hiệu hóa
+                                                    {{else}}
+                                                    Kích hoạt lại  
+                                                    {{/if}}
+                                                </a>
+                                                <a class="dropdown-item" href="#">
+                                                    Another action
+                                                </a>
+                                            </div>
+                                        </span>
+                                    </td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card-footer d-flex align-items-center">
+                        <p class="m-0 text-muted">Showing <span>1</span> to <span>8</span> of <span>16</span>
+                            entries</p>
+                        <ul class="pagination m-0 ms-auto">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                                    <!-- Download SVG icon from http://tabler-icons.io/i/chevron-left -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <path d="M15 6l-6 6l6 6" />
+                                    </svg>
+                                    prev
+                                </a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">4</a></li>
+                            <li class="page-item"><a class="page-link" href="#">5</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">
+                                    next <!-- Download SVG icon from http://tabler-icons.io/i/chevron-right -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <path d="M9 6l6 6l-6 6" />
+                                    </svg>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 <div class="modal modal-blur fade" id="modal-report" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <form class="modal-content" method="post" action="">
@@ -270,7 +277,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row mb-3">
                     <div class="col-lg-12">
                         <div>
                             <label class="form-label">
@@ -287,6 +294,27 @@
                         </div>
                     </div>
                 </div>
+                {{#if (eq user.role 2)}}
+                <div class="row">
+                    <div class="mb-3">
+                        <label class="form-label">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-auth0"
+                                width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M12 14.5l-5.5 3.5l2 -6l-4.5 -4h6l2 -5l2 5h6l-4.5 4l2 6z" />
+                                <path
+                                    d="M20.507 8.872l-2.01 -5.872h-12.994l-2.009 5.872c-1.242 3.593 -.135 7.094 3.249 9.407l5.257 3.721l5.257 -3.721c3.385 -2.313 4.49 -5.814 3.25 -9.407z" />
+                            </svg> Vai trò
+                        </label>
+                        <select class="form-select" name="role">
+                            <option value=0>Khách hàng</option>
+                            <option value=1>Nhân viên</option>
+                            <option value=2>Quản trị</option>
+                        </select>
+                    </div>
+                </div>
+                {{/if}}
             </div>
             <div class="modal-footer">
                 <a href="#" class="btn btn-link link-secondary" data-bs-dismiss="modal">
@@ -306,3 +334,16 @@
         </form>
     </div>
 </div>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const list = new List('table-default', {
+            sortClass: 'table-sort',
+            listClass: 'table-tbody',
+            valueNames: ['sort-id', 'sort-name', 'sort-email', 'sort-phone', 'sort-role', 'sort-status',
+                'sort-date'
+            ]
+        });
+    })
+</script>

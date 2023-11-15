@@ -14,11 +14,6 @@
             <!-- Page title actions -->
             <div class="col-auto ms-auto d-print-none">
                 <div class="btn-list">
-                    <span class="d-none d-sm-inline">
-                        <a href="#" class="btn">
-                            New view
-                        </a>
-                    </span>
                     <a href="#" class="btn btn-primary d-none d-sm-inline-block" data-bs-toggle="modal"
                         data-bs-target="#modal-report">
                         <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
@@ -223,9 +218,8 @@
                         </svg> Danh mục
                     </label>
                     <select class="form-select" name="id_cate" id="id_cate">
-                        <option value="0" selected>None</option>
                         {{#each dataCates}}
-                        <option value={{this.id_cate}}>{{this.name_cate}}</option>
+                        <option value={{this.id_cate}} {{#if (eq this.id_cate 0)}}selected{{/if}}>{{this.name_cate}}</option>
                         {{/each}}
                     </select>
                 </div>

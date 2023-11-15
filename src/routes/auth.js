@@ -8,6 +8,6 @@ router.get('/login',(req,res)=>{
 })
 router.get('/logout', (req, res) => {
     res.clearCookie('tsixToken'); // Xóa token khỏi cookie
-    res.redirect('/auth/login'); // Chuyển hướng người dùng đến trang login
+    res.redirect('/'); // Chuyển hướng người dùng đến trang login
   });
 export default router

@@ -37,10 +37,11 @@
                     <h1>🎉 TẤT CẢ SẢN PHẨM 🎇</h1>
                 </div>
                 <div class="product-new-listing">
+                    {{#each dataProducts}}
                     <div class="box">
                         <div class="image-box">
                             <div class="image">
-                                <img src="./images/product-image (1).jpg" alt="New-Product">
+                                <img src="{{this.image}}" alt="New-Product">
                             </div>
                             <div class="overlay-btn">
                                 <a href="./product-details.html">
@@ -57,19 +58,19 @@
                         </div>
                         <div class="text-box">
                             <a href="">
-                                <h2 class="item">Kệ Sách</h2>
+                                <h2 class="item">{{this.name_pd}}</h2>
                             </a>
                             <a href="">
-                                <p class="descrip">Sản phẩm được sự lựa chọn của nhiều gia đình, được sự tin
-                                    chọn của mọi người
+                                <p class="descrip">{{this.description}}
                                 </p>
                             </a>
                             <a href="">
-                                <h3 class="price-prd">500.000<span>₫</span></h3>
+                                <h3 class="price-prd">{{formatNumber this.price}}<span>₫</span></h3>
                             </a>
                         </div>
                     </div>
-                    <div class="box">
+                    {{/each}}
+                    {{!-- <div class="box">
                         <div class="image-box">
                             <div class="image">
                                 <img src="./images/product-image-3.jpg" alt>
@@ -374,7 +375,7 @@
                                 <h3 class="price-prd">2.500.000<span>₫</span></h3>
                             </a>
                         </div>
-                    </div>
+                    </div> --}}
 
                 </div>
             </div>

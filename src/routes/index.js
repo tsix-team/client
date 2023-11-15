@@ -1,12 +1,12 @@
 import authRouter from './auth'
 import adminRouter from './admin'
 import clientRouter from './client'
-import {requireLogin} from '../middlewares/auth' 
+import {requireLogin,isLogged} from '../middlewares/auth' 
 
 require('dotenv').config()
 
 const initRoutes = (app) => {
-    app.use('/', clientRouter)
+    app.use('/',isLogged, clientRouter)
     app.use('/auth', authRouter)
     app.use('/admin',requireLogin, adminRouter)
     app.get('*', (req, res) => {

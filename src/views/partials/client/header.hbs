@@ -12,12 +12,20 @@
             </form>
         </div>
         <div class="account ">
+            {{#if user}}
+            <span>{{user.email}}</span>
+            <a href="{{ROOT_URL}}/auth/logout">
+                <small>Đăng xuất</small>
+            </a>
+            {{else}}
             <a class="text_sign-up hover" href="{{ROOT_URL}}/register">
                 <span>Đăng ký</span>
             </a>
             <a class="text_sign-in hover" href="{{ROOT_URL}}/login">
                 <span>Đăng nhập</span>
             </a>
+            {{/if}}
+
             <span class="cart"><a href="{{ROOT_URL}}/cart"><i class="fa fa-cart-plus" aria-hidden="true"></i></a></span>
         </div>
     </div>

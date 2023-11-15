@@ -1,19 +1,28 @@
 import express from 'express'
-//import * as userController from '../controllers/admin/user'
+import * as indexController from '../controllers/client/index'
+import * as authController from '../controllers/client/auth'
+import * as pdController from '../controllers/client/product'
 const router = express.Router();
 
 
-router.get('/',(req,res)=>{
-    res.render('client',{title:'HOME'})
-})
+router.get('/',indexController.home)
+//auth
 router.get('/login',(req,res)=>{
+    if (req.user) {
+        return res.redirect('/')
+    }
     res.render('client/login',{layout:'client/register',title:'Login'})
 })
+router.post('/login',authController.login)
+
 router.get('/register',(req,res)=>{
     res.render('client/register',{layout:'client/register',title:'Register'})
 })
-router.get('/product',(req,res)=>{
-    res.render('client/product',{layout:'client/product',title:'Product'})
+router.post('/register',authController.register)
+//product
+router.get('/product',pdController.indexProduct)
+router.get('/product-details',(req,res)=>{
+    res.render('client/product-details',{layout:'client/product-details',title:'Product-details'})
 })
 router.get('/cart',(req,res)=>{
     res.render('client/cart',{layout:'client/cart',title:'Cart'})
