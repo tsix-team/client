@@ -40,10 +40,13 @@
                         <i class="fa fa-bar-chart" aria-hidden="true"></i>
                         DANH MỤC SẢN PHẨM</button>
                     <div id="myDropdown" class="dropdown-content">
-                        <a href="#"><i class="fa-solid fa-chevron-right"></i> Sofa</a>
+                        {{#each dataSubcates}}
+                        <a href="#"><i class="fa-solid fa-chevron-right"></i>{{this.name_subcate}}</a>
+                        {{/each}}
+                        {{!-- <a href="#"><i class="fa-solid fa-chevron-right"></i> Sofa</a>
                         <a href="#"><i class="fa-solid fa-chevron-right"></i> Ghế</a>
                         <a href="#"><i class="fa-solid fa-chevron-right"></i> Kệ sách</a>
-                        <a href="#"><i class="fa-solid fa-chevron-right"></i> Trang trí</a>
+                        <a href="#"><i class="fa-solid fa-chevron-right"></i> Trang trí</a> --}}
                     </div>
                 </div>
             </div>
@@ -60,12 +63,9 @@
                                 SẢN PHẨM <i class="fas fa-chevron-down responesiveNone"></i></a>
 
                             <div class="dropdown-content-navbar ">
-                                <a href="#"><i class="fa-solid fa-chevron-right"></i> Sofa</a>
-                                <a href="#"><i class="fa-solid fa-chevron-right"></i> Ghế</a>
-                                <a href="#"><i class="fa-solid fa-chevron-right"></i> Kệ
-                                    sách</a>
-                                <a href="#"><i class="fa-solid fa-chevron-right"></i> Trang
-                                    trí</a>
+                                {{#each dataSubcates}}
+                                <a href="#"><i class="fa-solid fa-chevron-right"></i>{{this.name_subcate}}</a>
+                                {{/each}}
                             </div>
                         </div>
                     </li>

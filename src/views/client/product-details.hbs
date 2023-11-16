@@ -5,45 +5,30 @@
                 <div class="product_details-left">
                     <div class="image-main">
                         <div class="image">
-                            <img src="./images/category-image-2.jpg" alt="product">
+                            <img src="{{dataProduct.image}}" alt="{{dataProduct.name_pd}}">
                         </div>
                     </div>
 
                     <div class="image-small">
+                        {{#each imgs}}
                         <div class="image">
-                            <img src="./images/product-image (3).jpg" alt="">
+                            <img src="{{this.url}}" alt="{{this.alt}}">
                         </div>
-                        <div class="image">
-                            <img src="./images/product-image (3).jpg" alt="">
-                        </div>
-                        <div class="image">
-                            <img src="./images/product-image (3).jpg" alt="">
-                        </div>
-                        <div class="image">
-                            <img src="./images/product-image (3).jpg" alt="">
-                        </div>
+                        {{/each}}
+
                     </div>
                 </div>
 
                 <div class="product_details-right">
-                    <h1 class="title-details">Ghế Luxury</h1>
-                    <span class="supplier">Nhà cung cấp: <span class="supplier-weight">(danh mục của sản phẩm ở
-                            đây)</span></span>
+                    <h1 class="title-details">{{dataProduct.name_pd}}</h1>
+                    <span class="supplier">Nhà cung cấp: <span
+                            class="supplier-weight">{{dataProduct.brand}}</span></span>
                     <div class="price-details">
-                        <span class="price">2.800.000<span>đ</span></span>
+                        <span class="price">{{formatNumber dataProduct.price}}<span>đ</span></span>
                     </div>
 
                     <div class="description-compact">
-                        <p>Với những biến tấu đa dạng độc đáo, có thể nói Luxury là một trong những mẫu ghế hiện
-                            đại được ưa chuộng nhất hiện nay. Luxury có kiểu dáng DAW - một biểu tượng của thiết
-                            kế hiện đại ngày nay.
-
-                            Phần tựa lưng ghế bằng nhựa với độ cao và độ ngả hợp lí giúp hỗ trợ xương sống. Chân
-                            ghế gỗ tự nhiên và cấu trúc cân bằng trọng lượng và tạo ra nét khác biệt.
-
-                            Sự kết hợp độc đáo và sáng tạo giữa các chất liệu gỗ, nhựa, đệm… tạo nên một chiếc
-                            ghế đẹp và thanh lịch cho ngôi nhà của bạn.</p> <span class="seeMore"><a
-                                href="#linkin-description">Xem
+                        <p>{{dataProduct.description}}</p> <span class="seeMore"><a href="#linkin-description">Xem
                                 thêm nội dung</a></span>
                     </div>
 
@@ -77,9 +62,7 @@
             <div class="content-product_details">
                 <div class="description">
                     <h3 id="linkin-description">Mô tả sản phẩm</h3>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Pariatur numquam iusto
-                        exercitationem! Itaque placeat, in odit ducimus quidem culpa fuga, neque architecto
-                        voluptate corrupti aliquid, ipsa voluptas vero quas aut.</p>
+                    <p>{{dataProduct.description}}</p>
                 </div>
                 <div class="warrantyPolicy">
                     <h3>Chính sách bảo hành</h3>

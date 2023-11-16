@@ -21,9 +21,7 @@ router.get('/register',(req,res)=>{
 router.post('/register',authController.register)
 //product
 router.get('/product',pdController.indexProduct)
-router.get('/product-details',(req,res)=>{
-    res.render('client/product-details',{layout:'client/product-details',title:'Product-details'})
-})
+router.get('/product-details/:slug',pdController.productDetail)
 router.get('/cart',(req,res)=>{
     res.render('client/cart',{layout:'client/cart',title:'Cart'})
 })

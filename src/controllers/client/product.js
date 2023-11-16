@@ -27,10 +27,14 @@ export const indexProduct = (req, res) => {
 }
 export const productDetail = (req, res) => {
     const user = req.user
+    const {slug} = req.params
     axios.get(`/product/${slug}`)
         .then(async response => {
             const dataProduct = response.data.response;
-            res.render('client/product-details', {layout:'client/product-details', title: 'Sản phẩm', user, dataProduct })
+            const getImgs = await axios.get(`/product/imgs/${dataProduct.id_pd}`)
+            const imgs = getImgs.data.response
+            console.log('Data pdd:',dataProduct);
+            res.render('client/product-details', {layout:'client/product-details', title: 'Sản phẩm', user, dataProduct,imgs })
         })
         .catch(error => {
             // Xử lý lỗi nếu có
