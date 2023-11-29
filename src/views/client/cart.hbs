@@ -7,15 +7,17 @@
             <div class="form-cart">
                 <form action="">
                     <div class="cart-thead">
+                        <div class="a-center id" style="width: 5%">STT</div>
                         <div class="a-center image" style="width: 17%">Ảnh sản phẩm</div>
                         <div class="a-center name" style="width: 33%">Tên sản phẩm</div>
                         <div class="a-center price" style="width: 15%">Đơn giá</div>
-                        <div class="a-center quantity" style="width: 14%">Số lượng</div>
+                        <div class="a-center quantity" style="width: 9%">Số lượng</div>
                         <div class="a-center price" style="width: 15%">Thành tiền</div>
-                        <div class="a-center del" style="width: 6%;">Xóa</div>
+                        <div class="a-center del" style="width: 6%;"><a id="remove" style="cursor: pointer;">Xóa tất
+                                cả</a></div>
                     </div>
                     <div class="cart-body">
-                        <div class="a-center image" style="width: 17%">
+                        {{!-- <div class="a-center image" style="width: 17%">
                             <a href="">
                                 <img src="./images/product-image (5).jpg" alt="product-cart">
                             </a>
@@ -30,48 +32,12 @@
                         </div>
                         <div class="a-center del" style="width: 6%;">
                             <button>Xóa</button>
-                        </div>
-                    </div>
-                    <div class="cart-body">
-                        <div class="a-center image" style="width: 17%">
-                            <a href="">
-                                <img src="./images/product-image (4).jpg" alt="product-cart">
-                            </a>
-                        </div>
-                        <div class="a-center name" style="width: 33%">Ghế Luxury</div>
-                        <div class="a-center price" style="width: 15%">650.000 <span>đ</span>
-                        </div>
-                        <div class="a-center quantity" style="width: 14%">
-                            <input type="text" value="1" maxlength="20" minlength="0" class="ipt">
-                        </div>
-                        <div class="a-center price none" style="width: 15%">650.000 <span>đ</span>
-                        </div>
-                        <div class="a-center del" style="width: 6%;">
-                            <button>Xóa</button>
-                        </div>
-                    </div>
-                    <div class="cart-body">
-                        <div class="a-center image" style="width: 17%">
-                            <a href="">
-                                <img src="./images/product-image-4.jpg" alt=" product-cart">
-                            </a>
-                        </div>
-                        <div class="a-center name" style="width: 33%">Ghế Luxury</div>
-                        <div class="a-center price" style="width: 15%">650.000 <span>đ</span>
-                        </div>
-                        <div class="a-center quantity" style="width: 14%">
-                            <input type="text" value="1" maxlength="20" minlength="0" class="ipt">
-                        </div>
-                        <div class="a-center price none" style="width: 15%">650.000 <span>đ</span>
-                        </div>
-                        <div class="a-center del" style="width: 6%;">
-                            <button>Xóa</button>
-                        </div>
+                        </div> --}}
                     </div>
                 </form>
 
                 <div class="cart-collaterals">
-                    <p>Tổng tiền thanh toán: <span class="price">650.000</span><span class="price">đ</span></p>
+                    <p>Tổng tiền thanh toán: <span class="price">650.000</span></p>
                 </div>
 
                 <div class="cart-submit">
@@ -82,3 +48,63 @@
         </div>
     </div>
 </div>
+<script>
+    let cartItems = [];
+    const getCart = function() {
+        cartItems = JSON.parse(localStorage.getItem('cart'))
+    }
+    $(document).ready(function () {
+        const cartBody = $('.form-cart .cart-body');
+        const totalPriceElement = $('.cart-collaterals .price');
+
+        function renderCart() {
+            console.log('rendering')
+            cartBody.empty()
+            getCart()
+            let totalPrice = 0;
+
+            $.each(cartItems, function (index, item) {
+                const newCartItem = `
+                <div class="cart-body">
+                    <div class="a-center id" style="width: 5%">${index + 1}</div>
+                    <div class="a-center image" style="width: 17%">
+                        <a href="">
+                            <img src="${item.image}" alt="product-cart">
+                        </a>
+                    </div>
+                    <div class="a-center name" style="width: 33%">${item.name_pd}</div>
+                    <div class="a-center price" style="width: 15%">${item.price} <span>đ</span></div>
+                    <div class="a-center quantity" style="width: 9%">
+                        <input type="number" value="1" maxlength="20" minlength="0" class="ipt">
+                    </div>
+                    <div class="a-center price none" style="width: 15%">${item.price} <span>đ</span></div>
+                    <div class="a-center del" style="width: 6%;">
+                        <button class="delete-btn" data-id="${index}">Xóa</button>
+                    </div>
+                </div>
+            `;
+                cartBody.append(newCartItem);
+
+                totalPrice += item.price;
+            });
+
+            totalPriceElement.text(totalPrice.toLocaleString() + ' đ');
+        }
+
+        renderCart();
+        $(document).on('click', '.delete-btn', function (e) {
+            e.preventDefault()
+            const index = $(this).data('id');
+            cartItems.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cartItems));
+            renderCart()
+        });
+        $(document).on('click', '#remove', function (e) {
+            e.preventDefault()
+            cartItems = []
+            localStorage.clear();
+            renderCart()
+        });
+    });
+
+</script>

@@ -6,7 +6,7 @@
                     <div class="category-title">
                         <h3>Danh mục sản phẩm</h3>
                     </div>
-                    <div class="category-list">
+                    {{!-- <div class="category-list">
                         <ul class="category">
                             <li><a href="">Luxury</a></li>
                             <li><a href="">French Heritage</a></li>
@@ -14,10 +14,36 @@
                             <li><a href="">Steelcase</a></li>
                             <li><a href="">Ashley</a></li>
                         </ul>
+                    </div> --}}
+                    <div class="categories">
+                        <ul class="main-categories">
+                            {{#each bigCate as |cate|}}
+                            <li class="main-category">
+                                {{#if cate.subCate}}
+                                {{cate.name_cate}} 
+                                <i class="fas fa-chevron-down responesiveNone"></i>
+                                {{else}}
+                                <a href="{{ROOT_URL}}/danh-muc/{{cate.slug}}">{{this.name_cate}}</a>
+                                {{/if}} 
+                                <ul class="sub-categories">
+                                {{#each cate.subCate}}
+                                    <li class="sub-category"><a href="{{ROOT_URL}}/danh-muc/{{cate.slug}}/{{this.slug}}">{{this.name_subcate}}</a></li>
+                                {{/each}}
+                                </ul>
+                            </li>
+                            {{/each}}
+                            <li class="main-category">Clothing
+                                <ul class="sub-categories">
+                                    <li class="sub-category">Men's</li>
+                                    <li class="sub-category">Women's</li>
+                                    <li class="sub-category">Kids'</li>
+                                </ul>
+                            </li>
+                        </ul>
                     </div>
                 </div>
 
-                <div class="product_page-category mt">
+                {{!-- <div class="product_page-category mt">
                     <div class="category-title">
                         <h3>Thương hiệu nội thất</h3>
                     </div>
@@ -30,7 +56,7 @@
                             <li><a href="">Ashley</a></li>
                         </ul>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <div class="product__right">
                 <div class="product-new-title">
@@ -49,7 +75,7 @@
                                         <i class="fa fa-eye" aria-hidden="true"></i>
                                     </button>
                                 </a>
-                                <a href>
+                                <a class="addToCart" data-id="{{this.slug}}">
                                     <button class="btn">
                                         <i class="fa fa-cart-plus" aria-hidden="true"></i>
                                     </button>

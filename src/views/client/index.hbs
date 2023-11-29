@@ -52,7 +52,7 @@
                                 <img src="{{this.image}}" alt="New-Product">
                             </div>
                             <div class="overlay-btn">
-                                <a href="/product-details.html">
+                                <a href="{{ROOT_URL}}/product-details/{{this.slug}}">
                                     <button class="btn">
                                         <i class="fa fa-eye" aria-hidden="true"></i>
                                     </button>
@@ -65,8 +65,8 @@
                             </div>
                         </div>
                         <div class="text-box">
-                            <a href="#">
-                                <h2 class="item">{{this.name}}</h2>
+                            <a href="{{ROOT_URL}}/product-details/{{this.slug}}">
+                                <h2 class="item">{{this.name_pd}}</h2>
                             </a>
                             <a href="#">
                                 <p class="descrip">{{this.description}}

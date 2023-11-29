@@ -2,6 +2,7 @@ import express from 'express'
 import * as indexController from '../controllers/client/index'
 import * as authController from '../controllers/client/auth'
 import * as pdController from '../controllers/client/product'
+import * as postController from '../controllers/client/post'
 const router = express.Router();
 
 
@@ -21,16 +22,25 @@ router.get('/register',(req,res)=>{
 router.post('/register',authController.register)
 //product
 router.get('/product',pdController.indexProduct)
+router.get('/danh-muc/:slug',pdController.cateProduct)
+router.get('/danh-muc/:cate/:slug',pdController.subcateProduct)
+
 router.get('/product-details/:slug',pdController.productDetail)
+
+//cart
 router.get('/cart',(req,res)=>{
     res.render('client/cart',{layout:'client/cart',title:'Cart'})
 })
+router.post('/add-to-cart/:slug',pdController.addToCart)
+
 router.get('/contact',(req,res)=>{
     res.render('client/contact',{layout:'client/contact',title:'Contact'})
 })
-router.get('/news',(req,res)=>{
-    res.render('client/news',{layout:'client/news',title:'News'})
-})
+//pôst
+router.get('/news',postController.indexPost)
+router.get('/post/:id',postController.postDetail)
+
+
 router.get('/checkout',(req,res)=>{
     res.render('client/checkout',{layout:'client/checkout',title:'Checkout'})
 })

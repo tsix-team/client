@@ -144,13 +144,42 @@
                                                 <a class="dropdown-item"
                                                     href="{{ADMIN_URL}}/users/ban/{{this.id_user}}">
                                                     {{#if (eq this.status 0)}}
-                                                    Vô hiệu hóa
+                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                        class="icon icon-tabler icon-tabler-circle-minus" width="24"
+                                                        height="24" viewBox="0 0 24 24" stroke-width="2"
+                                                        stroke="currentColor" fill="none" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                        <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+                                                        <path d="M9 12l6 0" />
+                                                    </svg> Vô hiệu hóa
                                                     {{else}}
-                                                    Kích hoạt lại  
+                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                        class="icon icon-tabler icon-tabler-shield-minus" width="24"
+                                                        height="24" viewBox="0 0 24 24" stroke-width="2"
+                                                        stroke="currentColor" fill="none" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                        <path
+                                                            d="M12.46 20.871c-.153 .046 -.306 .089 -.46 .129a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3a12 12 0 0 0 8.5 3a12 12 0 0 1 -.916 9.015" />
+                                                        <path d="M16 19h6" />
+                                                    </svg> Kích hoạt lại
                                                     {{/if}}
                                                 </a>
-                                                <a class="dropdown-item" href="#">
-                                                    Another action
+                                                <a class="dropdown-item" href="{{ADMIN_URL}}/users/update/{{this.id_user}}">
+                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                        class="icon icon-tabler icon-tabler-tools" width="24"
+                                                        height="24" viewBox="0 0 24 24" stroke-width="2"
+                                                        stroke="currentColor" fill="none" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                        <path d="M3 21h4l13 -13a1.5 1.5 0 0 0 -4 -4l-13 13v4"></path>
+                                                        <path d="M14.5 5.5l4 4"></path>
+                                                        <path d="M12 8l-5 -5l-4 4l5 5"></path>
+                                                        <path d="M7 8l-1.5 1.5"></path>
+                                                        <path d="M16 12l5 5l-4 4l-5 -5"></path>
+                                                        <path d="M16 17l-1.5 1.5"></path>
+                                                    </svg> Chỉnh sửa
                                                 </a>
                                             </div>
                                         </span>

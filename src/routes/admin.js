@@ -1,9 +1,10 @@
 import express from 'express'
 import uploadCloud from '../config/cloudinary.config';
 import * as indexController from '../controllers/admin'
-import * as authController from '../controllers/admin/auth'
+import * as postController from '../controllers/admin/post'
 import * as userController from '../controllers/admin/user'
 import * as pdController from '../controllers/admin/product'
+//import * as postController from '../controllers/admin/post'
 import * as cateController from '../controllers/admin/category'
 const router = express.Router();
 
@@ -16,6 +17,8 @@ router.get('/',indexController.home)
 
 //user
 router.get('/users',userController.indexUser)
+router.get('/users/update/:id',userController.viewUpdateUser)
+router.post('/users/update/:id',userController.updateUser)
 router.get('/users/ban/:id',userController.banUser)
 router.post('/users',userController.createUser)
 
@@ -30,12 +33,22 @@ router.get('/products/d/:id',pdController.deletePd)
 router.get('/categories',cateController.indexCate)
 router.post('/categories',cateController.createCate)
 router.get('/categories/d/:id',cateController.deleteCate)
+router.get('/categories/update/:id',cateController.viewUpdateCate)
+router.post('/categories/update/:id',cateController.updateCate)
 //subcategories
 router.get('/subcategories',cateController.indexSubcate)
 router.post('/subcategories',cateController.createSubcate)
 router.get('/subcategories/d/:id',cateController.deleteSubcate)
 router.get('/subcategories/update/:id',cateController.viewUpdateSubcate)
 router.post('/subcategories/update/:id',cateController.updateSubcate)
+
+//posts
+router.get('/posts',postController.indexPost)
+router.post('/posts',uploadCloud.single('image'), postController.createPost)
+router.get('/posts/d/:id', postController.deletePost)
+// router.get('/posts/update/:id',pdController.viewUpdate)
+// router.post('/posts/update/:id',uploadCloud.fields([{ name: 'image' }, { name: 'images' }]), pdController.updatePd)
+// router.get('/posts/d/:id',pdController.deletePd)
 
 // router.get('/login',(req,res)=>{
 //     res.render('login',{title:'Login page'})

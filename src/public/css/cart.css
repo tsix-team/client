@@ -66,20 +66,22 @@ button {
 .container-cart .cart-body img {
   object-fit: cover;
   padding: 0 10px;
-  width: 100%;
+  width: 60%;
 }
 .container-cart .cart-body .price,
 .cart-collaterals .price {
-  color: #e84118;
+  color: var(--orange-color);
   font-size: 1.6rem;
-  font-weight: 500;
+  font-weight: 600;
 }
 .container-cart .cart-body .name {
   font-size: 1.8rem;
+  color: black;
 }
 .cart-collaterals .price {
   font-size: 1.8rem;
 }
+
 .container-cart .cart-body input {
   padding: 5px;
   font-size: 1.6rem;
@@ -138,7 +140,6 @@ button {
 
   .container-cart .cart-body {
     border: none;
-
     border-bottom: 1px solid #ebebeb;
   }
   .container-cart .cart-body .image {
@@ -155,6 +156,9 @@ button {
   }
   .container-cart .cart-body .del {
     width: 10% !important;
+  }
+  .container-cart .cart-body img {
+    width: 100%;
   }
 
   .container-cart .cart-body button {
@@ -195,9 +199,11 @@ button {
   }
   .container-cart .cart-body .name {
     width: 30% !important;
+    font-size: 1.3rem;
   }
   .container-cart .cart-body .price {
     width: 22% !important;
+    font-size: 1.3rem;
   }
   .container-cart .cart-body .quantity {
     width: 18% !important;
@@ -205,6 +211,10 @@ button {
   .container-cart .cart-body .del {
     width: 10% !important;
   }
+  .container-cart .cart-body img {
+    width: 100%;
+  }
+
   .container-cart .cart-body button {
     font-size: 1rem !important;
   }

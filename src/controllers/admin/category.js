@@ -80,7 +80,41 @@ export const deleteCate = (req, res) => {
             res.redirect('/admin/categories');
         });
 }
-//subcate
+export const updateCate = (req,res) => {
+    const {id} = req.params
+    const formData = {...req.body}
+    axios.put(`/cate/${id}`, formData)
+        .then(response => {
+            const data = response.data.response;
+            console.log('res data update:',data);
+            res.redirect('/admin/categories');
+        })
+        .catch(error => {
+            // Xử lý lỗi nếu có
+            console.error(error);
+            res.render('admin/500',{layout:'error', title:'500'})
+  });
+  }
+  export const viewUpdateCate = (req,res) => {
+    const user = req.user
+    const {id} = req.params
+    axios.get(`/cate/${id}`)
+        .then(async response => {
+            const data = response.data.response;
+            console.log('res data update:',data);
+            const cate = await axios.get('/cate')
+            res.render('admin/categories/update', { layout: 'admin/index', title: 'Sửa danh mục',user, data })
+        })
+        .catch(error => {
+            // Xử lý lỗi nếu có
+            console.error(error);
+            res.render('admin/500',{layout:'error', title:'500'})
+  });
+  }
+
+
+
+////////////////////subcate///////////////////////
 export const indexSubcate = (req, res) => {
     const user = req.user
     //res.render('admin/products',{layout:'admin/index', title:'Quản lý sản phẩm'})

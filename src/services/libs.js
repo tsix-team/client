@@ -1,6 +1,11 @@
 require('dotenv').config()
+import axios from 'axios';
+axios.defaults.baseURL = process.env.API;
+
+
 export const ROOT_URL = process.env.CLIENT_URL
 export const ADMIN_URL = process.env.ADMIN_URL
+ 
 
 export const formatDate = (dateStr) => {
     const dateObj = new Date(dateStr);
@@ -58,5 +63,5 @@ export const eq = (a, b) => a == b
 export const rounding = num => num.toFixed(1)
 
 export const formatNumber = (number) =>{
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".").replace(/^(\d{1,3})(?=(\d{3})+(?:\.\d*)?$)/g, "$1,");
+    return number?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".").replace(/^(\d{1,3})(?=(\d{3})+(?:\.\d*)?$)/g, "$1,");
 }

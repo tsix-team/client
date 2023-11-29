@@ -1,4 +1,5 @@
 require('dotenv').config()
+import { getCate } from '../../services/axios';
 import axios from 'axios';
 axios.defaults.baseURL = process.env.API;
 export const home = (req, res) => {
@@ -6,21 +7,9 @@ export const home = (req, res) => {
     axios.get('/product')
         .then(async response => {
             const dataProducts = response.data.response;
-            const subcate = await axios.get('/subcate')
-            const dataSubcates = subcate.data.response
-            dataProducts.forEach((productItem) => {
-                const correspondingCate = dataSubcates.find((subcateItem) => subcateItem.id_subcate == productItem.id_subcate);
-                if (correspondingCate) {
-                    productItem.name_subcate = correspondingCate.name_subcate;
-                } else {
-                    productItem.name_subcate = 'none'
-                }
-            });
-            // const dataCate = await axios.get('/cate')
-            // const dataSubcate = await axios.get('/subcate')
-            // const cates = dataCate.data.response
-            // const subcates = dataSubcate.data.response
-            res.render('client', { title: 'Tsix', user, dataProducts, dataSubcates })
+            const bigCate = await getCate()
+            console.log('bigCate from index',bigCate);
+            res.render('client', { title: 'Tsix', user, dataProducts, bigCate })
         })
         .catch(error => {
             // Xử lý lỗi nếu có
