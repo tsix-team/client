@@ -159,7 +159,7 @@
         function counterItem() {
             const items = JSON.parse(localStorage.getItem('cart'))
             console.log('Itemmmmmmmmmmmm', items)
-            countItems = items.length
+            countItems = items?.length
             if (countItems > 0) $('#cart-num').html(`${countItems}`)
             else $('#cart-num').hide()
         }
