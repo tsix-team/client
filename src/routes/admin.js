@@ -4,7 +4,7 @@ import * as indexController from '../controllers/admin'
 import * as postController from '../controllers/admin/post'
 import * as userController from '../controllers/admin/user'
 import * as pdController from '../controllers/admin/product'
-//import * as postController from '../controllers/admin/post'
+import * as orderController from '../controllers/admin/order'
 import * as cateController from '../controllers/admin/category'
 const router = express.Router();
 
@@ -46,6 +46,14 @@ router.post('/subcategories/update/:id',cateController.updateSubcate)
 router.get('/posts',postController.indexPost)
 router.post('/posts',uploadCloud.single('image'), postController.createPost)
 router.get('/posts/d/:id', postController.deletePost)
+
+//orders
+router.get('/orders',orderController.indexOrder)
+router.get('/orders/update/:id',orderController.viewUpdateOrder)
+router.post('/orders/update/:id',orderController.updateOrder)
+router.post('/orders',orderController.createOrder)
+//router.get('/orders/d/:id',orderController.deleteCate)
+
 // router.get('/posts/update/:id',pdController.viewUpdate)
 // router.post('/posts/update/:id',uploadCloud.fields([{ name: 'image' }, { name: 'images' }]), pdController.updatePd)
 // router.get('/posts/d/:id',pdController.deletePd)

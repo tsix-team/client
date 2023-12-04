@@ -4,14 +4,13 @@ axios.defaults.baseURL = process.env.API;
 const config = {
     params: {},
   };
-export const indexUser = (req,res) => {
+export const indexOrder = (req,res) => {
     config.params = {...req.query} || {page:1,size:20}
-    
-    axios.get('/user',config)
+    axios.get('/order',config)
         .then(response => {
             const data = response.data.response;
             console.log(data);
-            res.render('admin/users',{layout:'admin/index', title:'Quản lý tài khoản',data})
+            res.render('admin/orders',{layout:'admin/index', title:'Quản lý tài khoản',data})
         })
         .catch(error => {
             // Xử lý lỗi nếu có
@@ -19,13 +18,13 @@ export const indexUser = (req,res) => {
             res.render('admin/500',{layout:'error', title:'500'})
   });
 }
-export const createUser = (req,res) => {
+export const createOrder = (req,res) => {
     const data = {...req.body}
-    axios.post('/user',data)
+    axios.post('/order',data)
         .then(response => {
             const data = response.data.response;
             console.log(data);
-            res.redirect('/admin/users');
+            res.redirect('/admin/orders');
         })
         .catch(error => {
             // Xử lý lỗi nếu có
@@ -33,26 +32,12 @@ export const createUser = (req,res) => {
             res.render('admin/500',{layout:'error', title:'500'})
   });
 }
-export const banUser = (req,res) => {
-    const {id} = req.params
-    axios.put(`/user/ban/${id}`)
-        .then(response => {
-            const data = response.data.response;
-            console.log(data);
-            res.redirect('/admin/users');
-        })
-        .catch(error => {
-            // Xử lý lỗi nếu có
-            console.error(error);
-            res.render('admin/500',{layout:'error', title:'500'})
-  });
-}
-export const updateUser = (req,res) => {
+export const updateOrder = (req,res) => {
     const {id} = req.params
     const data = {...req.body}
-    axios.put(`/user/${id}`,data)
+    axios.put(`/order/${id}`,data)
         .then(response => {
-            res.redirect('/admin/users');
+            res.redirect('/admin/orders');
         })
         .catch(error => {
             // Xử lý lỗi nếu có
@@ -60,13 +45,13 @@ export const updateUser = (req,res) => {
             res.render('admin/500',{layout:'error', title:'500'})
   });
 }
-export const viewUpdateUser = (req,res) => {
+export const viewUpdateOrder = (req,res) => {
     const {id} = req.params
     
-    axios.get(`/user/${id}`)
+    axios.get(`/order/${id}`)
         .then(response => {
-            const dataUser = response.data.response
-            res.render('admin/users/update',{layout:'admin/index', title:'Sửa tài khoản',dataUser})
+            const dataOrder = response.data.response
+            res.render('admin/orders/update',{layout:'admin/index', title:'Sửa tài khoản',dataOrder})
         })
         .catch(error => {
             // Xử lý lỗi nếu có

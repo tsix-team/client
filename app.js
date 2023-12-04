@@ -3,6 +3,8 @@ import logger from 'morgan'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import initRoutes from './src/routes'
+const session = require('express-session')
+const flash = require('connect-flash')
 import * as libs from './src/services/libs'
 require('dotenv').config()
 
@@ -14,7 +16,7 @@ const hbs = handlebars.create({
     layoutsDir: path.join(__dirname, 'src/views/layouts'),
     partialsDir: path.join(__dirname, 'src/views/partials'),
     helpers: libs
-  })
+})
 
 //setup app
 const app = express()
@@ -27,11 +29,19 @@ app.use(cors({
 }))
 
 //app use
+app.use(session({
+    secret: 'hoang',
+    resave: false,
+    saveUninitialized: false
+}));
+
+app.use(flash());
 app.use(cookieParser())
 app.use(logger('dev'));
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname, 'src/public')));
+
 
 //router
 initRoutes(app)

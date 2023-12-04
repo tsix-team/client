@@ -7,7 +7,7 @@ const config = {
 export const indexPd = (req,res) => {
     //res.render('admin/products',{layout:'admin/index', title:'Quản lý sản phẩm'})
     config.params = {...req.query} || {page:1,size:5}
-    const user = req.user
+    
     axios.get('/product',config)
         .then( async response => {
           const dataProducts = response.data.response;
@@ -25,12 +25,12 @@ export const indexPd = (req,res) => {
             // const dataSubcate = await axios.get('/subcate')
             // const cates = dataCate.data.response
             // const subcates = dataSubcate.data.response
-            res.render('admin/products',{layout:'admin/index', title:'Quản lý sản phẩm',user,dataProducts,dataSubcates,query:config.params})
+            res.render('admin/products',{layout:'admin/index', title:'Quản lý sản phẩm',dataProducts,dataSubcates,query:config.params})
         })
         .catch(error => {
             // Xử lý lỗi nếu có
             console.error(error);
-            res.render('admin/products',{layout:'admin/index', title:'Quản lý sản phẩm',user,query:config.params,error})
+            res.render('admin/products',{layout:'admin/index', title:'Quản lý sản phẩm',query:config.params,error})
             //res.render('admin/500',{layout:'error', title:'500'})
   });
 }
@@ -83,7 +83,7 @@ export const updatePd = (req,res) => {
 });
 }
 export const viewUpdate = (req,res) =>{
-  const user = req.user
+  
   const {id} = req.params
   axios.get(`/product/${id}`).then(async response =>{
     const product = response.data.response;
@@ -92,7 +92,7 @@ export const viewUpdate = (req,res) =>{
     const dataSubcates = cate.data.response
     const getImgs = await axios.get(`/product/imgs/${id_pd}`)
     const imgs = getImgs.data.response
-    res.render('admin/products/update',{layout:'admin/index', title:'Xem & sửa',user,product,imgs,dataSubcates})
+    res.render('admin/products/update',{layout:'admin/index', title:'Xem & sửa',product,imgs,dataSubcates})
   }).catch(error => {
     // Xử lý lỗi nếu có
     console.error(error);

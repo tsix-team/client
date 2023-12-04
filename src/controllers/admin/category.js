@@ -5,14 +5,13 @@ let config = {
     params: {},
 };
 export const indexCate = (req, res) => {
-    const user = req.user
     //res.render('admin/products',{layout:'admin/index', title:'Quản lý sản phẩm'})
     config.params = { ...req.query }
     axios.get('/cate', config)
         .then(response => {
             const data = response.data.response;
             console.log(data);
-            res.render('admin/categories', { layout: 'admin/index', title: 'Quản lý danh mục',user, data, query: config.params })
+            res.render('admin/categories', { layout: 'admin/index', title: 'Quản lý danh mục', data, query: config.params })
         })
         .catch(error => {
             // Xử lý lỗi nếu có
@@ -72,10 +71,12 @@ export const deleteCate = (req, res) => {
         .then(response => {
             const data = response.data?.response;
             console.log(data);
+            req.flash('success', 'da xoa');
             res.redirect('/admin/categories');
         })
         .catch(error => {
             // Xử lý lỗi nếu có
+            req.flash('error', 'ko xoa dc');
             console.error(error);
             res.redirect('/admin/categories');
         });
@@ -96,14 +97,14 @@ export const updateCate = (req,res) => {
   });
   }
   export const viewUpdateCate = (req,res) => {
-    const user = req.user
+    
     const {id} = req.params
     axios.get(`/cate/${id}`)
         .then(async response => {
             const data = response.data.response;
             console.log('res data update:',data);
             const cate = await axios.get('/cate')
-            res.render('admin/categories/update', { layout: 'admin/index', title: 'Sửa danh mục',user, data })
+            res.render('admin/categories/update', { layout: 'admin/index', title: 'Sửa danh mục', data })
         })
         .catch(error => {
             // Xử lý lỗi nếu có
@@ -116,7 +117,7 @@ export const updateCate = (req,res) => {
 
 ////////////////////subcate///////////////////////
 export const indexSubcate = (req, res) => {
-    const user = req.user
+    
     //res.render('admin/products',{layout:'admin/index', title:'Quản lý sản phẩm'})
     config.params = { ...req.query }
     axios.get('/subcate', config)
@@ -132,7 +133,7 @@ export const indexSubcate = (req, res) => {
                     cateItem.name_cate = 'none'
                 }
               });
-            res.render('admin/subcategories', { layout: 'admin/index', title: 'Quản lý danh mục con',user, data, query: config.params, dataCates })
+            res.render('admin/subcategories', { layout: 'admin/index', title: 'Quản lý danh mục con', data, query: config.params, dataCates })
         })
         .catch(error => {
             // Xử lý lỗi nếu có
@@ -217,7 +218,7 @@ export const updateSubcate = (req,res) => {
   });
   }
   export const viewUpdateSubcate = (req,res) => {
-    const user = req.user
+    
     const {id} = req.params
     axios.get(`/subcate/${id}`)
         .then(async response => {
@@ -225,7 +226,7 @@ export const updateSubcate = (req,res) => {
             console.log('res data update:',data);
             const cate = await axios.get('/cate')
             const dataCates = cate.data.response
-            res.render('admin/subcategories/update', { layout: 'admin/index', title: 'Sửa danh mục con',user, data, dataCates })
+            res.render('admin/subcategories/update', { layout: 'admin/index', title: 'Sửa danh mục con', data, dataCates })
         })
         .catch(error => {
             // Xử lý lỗi nếu có

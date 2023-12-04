@@ -6,9 +6,16 @@
                 <!-- Page pre-title -->
                 <div class="page-pretitle">
                     Dashboard
+                    {{test}} and {{user.email}}
                 </div>
                 <h2 class="page-title">
-                    Categories
+                    Categories {{success}} {{#if success}}
+                    test success
+                    {{/if}}
+                    {{error}}
+                    {{#if error}}
+                    test error
+                    {{/if}}
                 </h2>
             </div>
             <!-- Page title actions -->

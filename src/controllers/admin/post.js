@@ -7,24 +7,24 @@ const config = {
 export const indexPost = (req,res) => {
     //res.render('admin/posts',{layout:'admin/index', title:'Quản lý bài viết'})
     config.params = {...req.query} || {page:1,size:10}
-    const user = req.user
+    
     axios.get('/post',config)
         .then( async response => {
           const dataPosts = response.data.response;
           console.log('Datapostss:',dataPosts);
-            res.render('admin/posts',{layout:'admin/index', title:'Quản lý post',user,dataPosts,query:config.params})
+            res.render('admin/posts',{layout:'admin/index', title:'Quản lý post',dataPosts,query:config.params})
         })
         .catch(error => {
             // Xử lý lỗi nếu có
             console.error(error);
-            res.render('admin/posts',{layout:'admin/index', title:'Quản lý post',user,query:config.params,error})
+            res.render('admin/posts',{layout:'admin/index', title:'Quản lý post',query:config.params,error})
             //res.render('admin/500',{layout:'error', title:'500'})
   });
 }
 export const createPost = (req,res) => {
   //res.render('admin/products',{layout:'admin/index', title:'Quản lý sản phẩm'})
   console.log("post... ");
-  const user = req.user
+  
   const uploadedImage = req.file
   const formData = { ...req.body,uploadedImage,id_user:user.id_user}
   console.log(req.file);
@@ -69,7 +69,7 @@ export const updatePost = (req,res) => {
 });
 }
 export const viewUpdate = (req,res) =>{
-  const user = req.user
+  
   const {id} = req.params
   axios.get(`/product/${id}`).then(async response =>{
     const product = response.data.response;
@@ -78,7 +78,7 @@ export const viewUpdate = (req,res) =>{
     const dataSubcates = cate.data.response
     const getImgs = await axios.get(`/product/imgs/${id_pd}`)
     const imgs = getImgs.data.response
-    res.render('admin/products/update',{layout:'admin/index', title:'Xem & sửa',user,product,imgs,dataSubcates})
+    res.render('admin/products/update',{layout:'admin/index', title:'Xem & sửa',product,imgs,dataSubcates})
   }).catch(error => {
     // Xử lý lỗi nếu có
     console.error(error);

@@ -2,11 +2,11 @@ require('dotenv').config()
 import axios from 'axios';
 axios.defaults.baseURL = process.env.API;
 export const indexPost = (req, res) => {
-    const user = req.user
+    
     axios.get('/post')
         .then(async response => {
             const dataPosts = response.data.response;
-            res.render('client/news', { layout: 'client/news', title: 'Tin tức', user, dataPosts })
+            res.render('client/news', { layout: 'client/news', title: 'Tin tức', dataPosts })
         })
         .catch(error => {
             // Xử lý lỗi nếu có
@@ -16,12 +16,12 @@ export const indexPost = (req, res) => {
         });
 }
 export const postDetail = (req, res) => {
-    const user = req.user
+    
     const { id } = req.params
     axios.get(`/post/${id}`)
         .then(async response => {
             const dataPost = response.data.response;
-            res.render('client/news-details', { layout: 'client/news-details', title: dataPost.title, user, dataPost })
+            res.render('client/news-details', { layout: 'client/news-details', title: dataPost.title, dataPost })
         })
         .catch(error => {
             // Xử lý lỗi nếu có
