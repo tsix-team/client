@@ -293,14 +293,14 @@
                         <div class="dropdown-menu-columns">
                             <div class="dropdown-menu-column">
                                 <a class="dropdown-item" href="{{ADMIN_URL}}/users">
-                                    Tất cả tài khoản
-                                </a>
-                                <a class="dropdown-item" href="{{ADMIN_URL}}/users">
-                                    Nhân viên
-                                </a>
-                                <a class="dropdown-item" href="{{ADMIN_URL}}/users">
                                     Khách hàng
                                 </a>
+                                {{#if (eq user.role 2)}}
+                                    <a class="dropdown-item" href="{{ADMIN_URL}}/employees">
+                                        Nhân viên
+                                    </a>
+                                {{/if}}
+                                
                             </div>
                         </div>
                     </div>

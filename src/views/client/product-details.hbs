@@ -23,15 +23,17 @@
                     <h1 class="title-details">{{dataProduct.name_pd}}</h1>
                     <span class="supplier">Nhà cung cấp: <span
                             class="supplier-weight">{{dataProduct.brand}}</span></span>
+                    
                     <div class="price-details">
                         <span class="price">{{formatNumber dataProduct.price}}<span>đ</span></span>
                     </div>
-
+                    <span class="supplier">Chất liệu: <span
+                            class="supplier-weight">{{dataProduct.material}}</span></span>
                     <div class="description-compact">
                         <p>{{dataProduct.description}}</p> <span class="seeMore"><a href="#linkin-description">Xem
                                 thêm nội dung</a></span>
                     </div>
-
+                    
                     <div class="notification">
                         <span>Cam kết 100% sản phẩm được đóng gói kĩ càng và được kiểm tra sản phẩm trước khi
                             nhận
@@ -40,29 +42,222 @@
 
                     <div class="size-product_details">
                         <div class="size">
-                            <span>SIZE</span><span style="font-style: italic;"> (Chọn kích thước phù hợp với nhu
-                                cầu sử dụng)</span>
+                            <span>Kích thước</span>
                         </div>
                         <div class="small">
                             <input type="radio" value="Nhỏ" id="size-m" name="">
-                            <label for="size-m">Nhỏ</label>
-                        </div>
-                        <div class="big">
-                            <input type="radio" value="To" id="size-b" name="">
-                            <label for="size-b">To</label>
+                            <label for="size-m">{{dataProduct.size}}</label>
                         </div>
                     </div>
-
+                    <div class="supplier">
+                        <span>Kho: </span><label for="size-m">{{dataProduct.inventory}}</label>
+                    </div>
                     <div class="details-btn">
                         <button class="buy_btn">Mua ngay</button>
-                        <button class="add_btn">thêm vào giỏ hàng</button>
+                        <button class="add_btn addToCart" data-id="{{dataProduct.slug}}">thêm vào giỏ hàng</button>
                     </div>
                 </div>
             </div>
+
             <div class="content-product_details">
                 <div class="description">
                     <h3 id="linkin-description">Mô tả sản phẩm</h3>
                     <p>{{dataProduct.description}}</p>
+                </div>
+                <div class="wrapper-comment">
+                    <div class="comment-contain">
+                        <h2 class="comment-title">Bình luận tại đây</h2>
+                        <!-- comment -->
+                        <div class="comment-inner">
+                            <div class="comment-form ">
+
+
+                                {{!-- <input type="hidden" name="slugProduct" value="<%= detailProducts.slugProduct %>"
+                                    id="slugProduct"> --}}
+                                <form action="{{ROOT_URL}}/comment" method="post">
+                                    <div class="form-comment">
+                                        <textarea name="message" name="content" cols="30" rows="8" class="form-control"
+                                            placeholder="Nhập nội dung bình luận của bạn"></textarea>
+                                    </div>
+
+                                    <div class="submit-btn">
+                                        <button type="submit" id="addComment" class="btn-comment">Bình luận</button>
+                                    </div>
+
+                                </form>
+                            </div>
+
+                            {{!-- Hiện ra khi Người dùng bình luận --}}
+                            <div class="comment-info">
+                                <div class="avatar">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png"
+                                        alt="">
+                                </div>
+                                <div class="content">
+                                    <div class="info-contain">
+                                        <h6 class="author">Long Thai
+                                        </h6>
+                                        <p class="date">(1/12/2023)</p>
+                                    </div>
+
+                                    <div class="text-comment">
+                                        Sản phẩm sử dụng rất chất lượng
+                                    </div>
+                                    {{!-- <input type="hidden" id="idComment_{{ comment._id }}"
+                                        value="{{ comment._id }}">
+                                    --}}
+                                    {{!-- <input class="button-ouline" id="editlistcomment_{{ comment._id }}"
+                                        name="editlistcomment" value="{{ comment.comment }}" /> --}}
+                                    {{!-- <div class="d-flex gap-2">
+
+                                        <button id="editComment_<%= comment._id %>" type="submit"
+                                            class=" text-info font-weight-400">Edit</button> |
+                                        <button id="deleteComment_<%= comment._id %>"
+                                            class="text-danger font-weight-400">Delete</button>
+
+                                    </div> --}}
+                                </div>
+                            </div>
+
+                            <div class="comment-info">
+                                <div class="avatar">
+                                    <img src="https://i.imgur.com/bbnrc1T.png" alt="">
+                                </div>
+                                <div class="content">
+                                    <div class="info-contain">
+                                        <h6 class="author">Long Thai
+                                        </h6>
+                                        <p class="date">(2/12/2023)</p>
+                                    </div>
+
+                                    <div class="text-comment">
+                                        Sản phẩm sử dụng rất chất lượng
+                                    </div>
+                                    {{!-- <input type="hidden" id="idComment_{{ comment._id }}"
+                                        value="{{ comment._id }}">
+                                    --}}
+                                    {{!-- <input class="button-ouline" id="editlistcomment_{{ comment._id }}"
+                                        name="editlistcomment" value="{{ comment.comment }}" /> --}}
+                                    {{!-- <div class="d-flex gap-2">
+
+                                        <button id="editComment_<%= comment._id %>" type="submit"
+                                            class=" text-info font-weight-400">Edit</button> |
+                                        <button id="deleteComment_<%= comment._id %>"
+                                            class="text-danger font-weight-400">Delete</button>
+
+                                    </div> --}}
+                                </div>
+                            </div>
+
+                            <div class="comment-info">
+                                <div class="avatar">
+                                    <img src="https://png.pngtree.com/png-vector/20190623/ourlarge/pngtree-accountavataruser--flat-color-icon--vector-icon-banner-templ-png-image_1491720.jpg"
+                                        alt="">
+                                </div>
+                                <div class="content">
+                                    <div class="info-contain">
+                                        <h6 class="author">Long Thai
+                                        </h6>
+                                        <p class="date">(3/12/2023)</p>
+                                    </div>
+
+                                    <div class="text-comment">
+                                        Sản phẩm sử dụng rất chất lượng
+                                    </div>
+                                    {{!-- <input type="hidden" id="idComment_{{ comment._id }}"
+                                        value="{{ comment._id }}">
+                                    --}}
+                                    {{!-- <input class="button-ouline" id="editlistcomment_{{ comment._id }}"
+                                        name="editlistcomment" value="{{ comment.comment }}" /> --}}
+                                    {{!-- <div class="d-flex gap-2">
+
+                                        <button id="editComment_<%= comment._id %>" type="submit"
+                                            class=" text-info font-weight-400">Edit</button> |
+                                        <button id="deleteComment_<%= comment._id %>"
+                                            class="text-danger font-weight-400">Delete</button>
+
+                                    </div> --}}
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <!-- edit comment -->
+                        {{!--
+                        <script>
+                            $(document).on("click", "#editComment_<%= comment._id %>", function () {
+                                $("#editlistcomment_<%= comment._id %>").removeClass('button-ouline');
+                                $(this).attr('id', 'updateComment_<%= comment._id %>').text('Update');
+                            });
+
+                            // update huy nè
+
+                            $(document).on("click", "#updateComment_<%= comment._id %>", function () {
+                                $.ajax({
+                                    type: "POST",
+                                    dataType: "JSON",
+                                    url: "/updateComment",
+                                    data: {
+                                        type: 'updateComment',
+                                        idEditComment: $("#idComment_<%= comment._id %>").val(),
+                                        editlistcomment: $("#editlistcomment_<%= comment._id %>").val(),
+                                    },
+                                    success: function (res) {
+                                        Swal.fire({
+                                            icon: res.status === true ? "success" : "error",
+                                            title: 'Thông Báo',
+                                            text: res.message
+                                        }).then((result) => {
+                                            if (res.status === true) {
+                                                window.location.href = "/detail/<%= detailProducts.slugProduct %>"
+                                            } else {
+                                                // huydev
+                                            }
+                                        });
+                                    },
+                                    error: function (xhr, status, error) {
+                                        console.error('edit lỗi', error);
+                                    },
+                                });
+                            });
+
+                            // delete huy nè
+
+                            $(document).on("click", "#deleteComment_<%= comment._id %>", function () {
+                                $.ajax({
+                                    type: "POST",
+                                    dataType: "JSON",
+                                    url: "/deleteComment",
+                                    data: {
+                                        type: 'deleteComment',
+                                        idDeleteComment: $("#idComment_<%= comment._id %>").val(),
+                                    },
+                                    success: function (res) {
+                                        Swal.fire({
+                                            icon: res.status === true ? "success" : "error",
+                                            title: 'Thông Báo',
+                                            text: res.message
+                                        }).then((result) => {
+                                            if (res.status === true) {
+                                                window.location.href = "/detail/<%= detailProducts.slugProduct %>"
+                                            } else {
+                                                // huydev
+                                            }
+                                        });
+                                    },
+                                    error: function (xhr, status, error) {
+                                        console.error('delete lỗi', error);
+                                    },
+                                });
+                            });
+                        </script> --}}
+
+
+
+
+                    </div>
+
+
                 </div>
                 <div class="warrantyPolicy">
                     <h3>Chính sách bảo hành</h3>
@@ -322,6 +517,7 @@
                     </div>
 
                 </div>
+
             </div>
         </div>
     </div>

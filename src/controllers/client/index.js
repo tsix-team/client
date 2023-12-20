@@ -2,9 +2,12 @@ require('dotenv').config()
 
 import axios from 'axios';
 axios.defaults.baseURL = process.env.API;
+const config = {
+    params: {},
+};
 export const home = (req, res) => {
-    
-    axios.get('/product')
+    config.params = {size:6}
+    axios.get('/product',config)
         .then(async response => {
             const dataProducts = response.data.response;
             res.render('client', { title: 'Tsix', dataProducts })

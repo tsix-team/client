@@ -1,7 +1,7 @@
 <header class="header">
     <div class="container-header">
         <div class="logo-header">
-            <img src="/images/logo-web.png" alt="logo-website">
+            <img src="/images/logo-web-client.png" alt="logo-website">
         </div>
         <div class="search">
             <form action="">
@@ -11,7 +11,7 @@
                 </div>
             </form>
         </div>
-        <div class="account "> {{test}}
+        <div class="account ">
             {{#if user}}
             <span>{{user.email}}</span>
             <a href="{{ROOT_URL}}/auth/logout">
@@ -180,12 +180,16 @@
                         console.log('data pd add to cart:', data);
                         toastr.success('Đã thêm vào giỏ hàng!');
                         console.log(data.data)
+                        //const dataProducts = data.data
                         let cart = localStorage.getItem("cart");
                         let products = [];
                         if (cart) {
                             products = JSON.parse(cart);
                         }
                         products.push(data.data);
+                        products.forEach(pd=>{
+                            pd.qt = 1
+                        })
                         localStorage.setItem("cart", JSON.stringify(products));
                         getCart2()
                         counterItem()

@@ -6,6 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{title}}</title>
   {{>admin/a_head}}
+  <style>
+    td.sort-name {
+      max-width: 200px; /* Điều chỉnh độ rộng tối đa của phần tử */
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  </style>
 </head>
 
 <body>
@@ -18,5 +26,4 @@
   </div>
   {{>admin/a_script}}
 </body>
-
 </html>

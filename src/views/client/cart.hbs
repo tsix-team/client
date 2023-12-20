@@ -39,29 +39,39 @@
                 <div class="cart-collaterals">
                     <p>Tổng tiền thanh toán: <span class="price">650.000</span></p>
                 </div>
-
+                {{#if user}}
                 <div class="cart-submit">
                     <button class="btn btn_buyCtn">Tiếp tục mua hàng</button>
-                    <a href="./checkout.html"><button class="btn btn_buyNow">Thanh toán ngay</button></a>
+                    <a href="{{ROOT_URL}}/checkout"><button class="btn btn_buyNow">Đặt hàng ngay</button></a>
                 </div>
+                {{else}}
+                <div class="cart-submit">
+                    <a href="{{ROOT_URL}}/checkout"><button class="btn btn_buyNow">Vui lòng đăng nhập để đặt
+                            hàng</button></a>
+                </div>
+                {{/if}}
+
             </div>
         </div>
     </div>
 </div>
 <script>
+
+
     let cartItems = [];
-    const getCart = function() {
+    const getCart = function () {
         cartItems = JSON.parse(localStorage.getItem('cart'))
+        console.table(cartItems)
     }
     $(document).ready(function () {
         const cartBody = $('.form-cart .cart-body');
         const totalPriceElement = $('.cart-collaterals .price');
 
         function renderCart() {
+            let totalPrice = 0;
             console.log('rendering')
             cartBody.empty()
             getCart()
-            let totalPrice = 0;
 
             $.each(cartItems, function (index, item) {
                 const newCartItem = `
@@ -73,11 +83,11 @@
                         </a>
                     </div>
                     <div class="a-center name" style="width: 33%">${item.name_pd}</div>
-                    <div class="a-center price" style="width: 15%">${item.price} <span>đ</span></div>
+                    <div class="a-center price" style="width: 15%">${item.price.toLocaleString('vi-VN')} <span>đ</span></div>
                     <div class="a-center quantity" style="width: 9%">
-                        <input type="number" value="1" maxlength="20" minlength="0" class="ipt">
+                        <input data-id="${item.id_pd}" type="number" value="${item.qt}" maxlength="20" minlength="0" class="ipt">
                     </div>
-                    <div class="a-center price none" style="width: 15%">${item.price} <span>đ</span></div>
+                    <div class="a-center price thanhtien none" style="width: 15%">${item.price.toLocaleString('vi-VN')} <span>đ</span></div>
                     <div class="a-center del" style="width: 6%;">
                         <button class="delete-btn" data-id="${index}">Xóa</button>
                     </div>
@@ -85,13 +95,49 @@
             `;
                 cartBody.append(newCartItem);
 
-                totalPrice += item.price;
-            });
-
+                totalPrice += item.price * item.qt;
+            })
+            //let products = [{ id: 1, name: 'a' }, { id: 2, name: 'b' }, { id: 3, name: 'c' }, { id: 4, name: 'd' }];
             totalPriceElement.text(totalPrice.toLocaleString() + ' đ');
         }
 
         renderCart();
+        function quantityChange() {
+
+            let inputsArray = [];
+
+            $('.ipt').each(function () {
+                let id = $(this).data('id'); // Lấy giá trị của data-id
+                let number = $(this).val(); // Lấy giá trị của input
+
+                inputsArray.push({ id: id, qt: +number });
+            });
+            console.log('inputsArray', inputsArray)
+            // Duyệt qua mảng products và inputsArray để cập nhật trường number
+            cartItems.forEach(product => {
+                let inputItem = inputsArray.find(item => item.id == product.id_pd);
+                if (inputItem) {
+                    product.qt = inputItem.qt;
+                }
+            });
+            localStorage.setItem('cart', JSON.stringify(cartItems));
+        }
+        $('.ipt').change(function (e) {
+            //update cartItems qt & tinh tong tien
+
+
+            console.log(e.target.parentElement.parentElement.getElementsByClassName('thanhtien').item(0))
+            quantityChange()
+            console.log('cartItems cartItems', cartItems); // Hiển thị mảng products với trường number mới
+            const idpd = e.target.getAttribute('data-id')
+            const thisPd = cartItems.find(item => item.id_pd == idpd)
+            const totalOne = (thisPd.price * thisPd.qt).toLocaleString('vi-VN')
+            e.target.parentElement.parentElement.getElementsByClassName('thanhtien').item(0).innerHTML = totalOne + 'đ'
+            let totalAmount = cartItems.reduce((total, product) => {
+                return total + (product.price * product.qt);
+            }, 0);
+            totalPriceElement.text(totalAmount.toLocaleString() + ' đ');
+        })
         $(document).on('click', '.delete-btn', function (e) {
             e.preventDefault()
             const index = $(this).data('id');
@@ -104,6 +150,18 @@
             cartItems = []
             localStorage.clear();
             renderCart()
+        });
+        //giới hạn số lượng
+        const inputs = document.querySelectorAll('.ipt');
+
+        inputs.forEach(input => {
+            input.addEventListener('input', function () {
+                if (this.value < 1) {
+                    this.value = 1;
+                } else if (this.value > 10) {
+                    this.value = 10;
+                }
+            });
         });
     });
 

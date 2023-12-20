@@ -90,7 +90,8 @@
                                     <td><input class="form-check-input m-0 align-middle" type="checkbox"
                                             aria-label="Select invoice"></td>
                                     <td class="sort-id"><span class="text-muted">{{this.id_post}}</span></td>
-                                    <td class="sort-name"><a href="#" class="text-reset" tabindex="-1">{{this.title}}</a>
+                                    <td class="sort-name"><a href="#" class="text-reset"
+                                            tabindex="-1">{{this.title}}</a>
                                     </td>
                                     <td class="sort-image">
                                         <span class="avatar"
@@ -190,7 +191,8 @@
 </div>
 <div class="modal modal-blur fade" id="modal-report" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
-        <form class="modal-content" method="post" action="" enctype="multipart/form-data">
+        <form class="modal-content" method="post" action="" enctype="multipart/form-data" id="formCreate">
+            
             <div class="modal-header">
                 <h5 class="modal-title">New Post</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -258,7 +260,7 @@
                 <a href="#" class="btn btn-link link-secondary" data-bs-dismiss="modal">
                     Cancel
                 </a>
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" class="btn btn-primary" id="createBtn">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
                         stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
                         stroke-linejoin="round">
@@ -269,6 +271,7 @@
                     Create
                 </button>
             </div>
+            <div class="progress" id="progress"></div>
         </form>
     </div>
 </div>
@@ -277,7 +280,7 @@
         const list = new List('table-default', {
             sortClass: 'table-sort',
             listClass: 'table-tbody',
-            valueNames: ['sort-id', 'sort-name', 'sort-image', 'sort-content', 'sort-user','sort-date'
+            valueNames: ['sort-id', 'sort-name', 'sort-image', 'sort-content', 'sort-user', 'sort-date'
             ]
         });
     })

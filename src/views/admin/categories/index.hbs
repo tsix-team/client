@@ -6,16 +6,8 @@
                 <!-- Page pre-title -->
                 <div class="page-pretitle">
                     Dashboard
-                    {{test}} and {{user.email}}
                 </div>
                 <h2 class="page-title">
-                    Categories {{success}} {{#if success}}
-                    test success
-                    {{/if}}
-                    {{error}}
-                    {{#if error}}
-                    test error
-                    {{/if}}
                 </h2>
             </div>
             <!-- Page title actions -->
@@ -56,7 +48,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">All</h3>
+                        <h3 class="card-title">Tất cả danh mục</h3>
                     </div>
                     <div class="card-body border-bottom py-3">
                         <div class="d-flex">
@@ -199,7 +191,7 @@
 </div>
 <div class="modal modal-blur fade" id="modal-report" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
-        <form class="modal-content" method="post" action="">
+        <form class="modal-content" method="post" action="" id="formCreate">
             <div class="modal-header">
                 <h5 class="modal-title">New Category</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -214,7 +206,7 @@
                 <a href="#" class="btn btn-link link-secondary" data-bs-dismiss="modal">
                     Cancel
                 </a>
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" class="btn btn-primary" id="createBtn">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
                         stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
                         stroke-linejoin="round">
@@ -225,6 +217,7 @@
                     Create
                 </button>
             </div>
+            <div class="progress" id="progress"></div>
         </form>
     </div>
 </div>

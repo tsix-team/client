@@ -14,18 +14,6 @@
             <!-- Page title actions -->
             <div class="col-auto ms-auto d-print-none">
                 <div class="btn-list">
-                    <a href="#" class="btn btn-primary d-none d-sm-inline-block" data-bs-toggle="modal"
-                        data-bs-target="#modal-report">
-                        <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
-                            stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                            stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M12 5l0 14" />
-                            <path d="M5 12l14 0" />
-                        </svg>
-                        Thêm đơn hàng
-                    </a>
                     <a href="#" class="btn btn-primary d-sm-none btn-icon" data-bs-toggle="modal"
                         data-bs-target="#modal-report" aria-label="Create new report">
                         <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
@@ -93,6 +81,7 @@
                                     <th><button class="table-sort" data-sort="sort-status">Trạng thái</button></th>
                                     <th><button class="table-sort" data-sort="sort-date">Thời gian</button></th>
                                     <th></th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody class="table-tbody">
@@ -106,7 +95,7 @@
                                     </td>
                                     <td class="sort-total">
                                         <span class="flag flag-country-us"></span>
-                                        {{this.total_amount}}
+                                        {{formatNumber this.total_amount}} đ
                                     </td>
                                     <td class="sort-phone">
                                         {{this.phone}}
@@ -114,62 +103,65 @@
                                     </td>
                                     <td class="sort-status">
                                         {{#if (eq this.status 0)}}
-                                        <span class="badge bg-black me-1"></span> Chưa sử lý
+                                        <span class="badge bg-red me-1"></span> Chưa sử lý
                                         {{else if (eq this.status 1)}}
                                         <span class="badge bg-success me-1"></span> Đã xác nhận
                                         {{else if (eq this.status 2)}}
-                                        <span class="badge bg-success me-1"></span> Đang giao
+                                        <span class="badge bg-blue me-1"></span> Đang giao
                                         {{else if (eq this.status -1)}}
-                                        <span class="badge bg-success me-1"></span> Đã bị hủy
+                                        <span class="badge bg-black me-1"></span> Đã bị hủy
+                                        {{else if (eq this.status 3)}}
+                                        <span class="badge bg-orange me-1"></span> Đã hoàn thành
                                         {{else}}
-                                        <span class="badge bg-success me-1"></span> Không rõ
+                                        <span class="badge bg-orange me-1"></span> Không rõ
                                         {{/if}}
                                     </td>
                                     <td class="sort-date">{{formatDate this.createdAt}}</td>
-                                    <td class="text-end">
+                                    {{#if (eq this.status 3)}} -
+                                    {{else}}
+                                       <td class="actions">
+                                        <span class="dropdown">
+                                            <button class="btn dropdown-toggle align-text-top"
+                                                data-bs-boundary="viewport" data-bs-toggle="dropdown">Sửa trạng
+                                                thái</button>
+                                            <div class="dropdown-menu dropdown-menu-end">
+                                                <a class="dropdown-item"
+                                                    href="{{ADMIN_URL}}/orders/quickUpdate/{{this.id_order}}?status=1">
+                                                    <i class="ti ti-check text-yellow mx-1"></i> Xác nhận
+                                                </a>
+                                                <a class="dropdown-item"
+                                                    href="{{ADMIN_URL}}/orders/quickUpdate/{{this.id_order}}?status=2">
+                                                    <i class="ti ti-truck-delivery text-blue mx-1"></i> Đang giao
+                                                </a>
+                                                <a class="dropdown-item"
+                                                    href="{{ADMIN_URL}}/orders/quickUpdate/{{this.id_order}}?status=-1">
+                                                    <i class="ti ti-circle-minus text-red mx-1"></i> Hủy đơn
+                                                </a>
+                                                <a class="dropdown-item"
+                                                    href="{{ADMIN_URL}}/orders/quickUpdate/{{this.id_order}}?status=3">
+                                                    <i class="ti ti-discount-check text-green mx-1"></i> Hoàn thành
+                                                </a>
+                                            </div>
+                                        </span>
+                                    </td>
+                                    {{/if}}
+                                    
+                                    <td>
                                         <span class="dropdown">
                                             <button class="btn dropdown-toggle align-text-top"
                                                 data-bs-boundary="viewport" data-bs-toggle="dropdown">Actions</button>
                                             <div class="dropdown-menu dropdown-menu-end">
                                                 <a class="dropdown-item"
-                                                    href="{{ADMIN_URL}}/users/ban/{{this.id_user}}">
-                                                    {{#if (eq this.status 0)}}
+                                                    href="{{ADMIN_URL}}/orders/view/{{this.id_order}}">
                                                     <svg xmlns="http://www.w3.org/2000/svg"
-                                                        class="icon icon-tabler icon-tabler-circle-minus" width="24"
-                                                        height="24" viewBox="0 0 24 24" stroke-width="2"
-                                                        stroke="currentColor" fill="none" stroke-linecap="round"
-                                                        stroke-linejoin="round">
+                                                        class="icon icon-tabler icon-tabler-eye" width="24" height="24"
+                                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                                        fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                        <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
-                                                        <path d="M9 12l6 0" />
-                                                    </svg> Vô hiệu hóa
-                                                    {{else}}
-                                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                                        class="icon icon-tabler icon-tabler-shield-minus" width="24"
-                                                        height="24" viewBox="0 0 24 24" stroke-width="2"
-                                                        stroke="currentColor" fill="none" stroke-linecap="round"
-                                                        stroke-linejoin="round">
-                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                        <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
                                                         <path
-                                                            d="M12.46 20.871c-.153 .046 -.306 .089 -.46 .129a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3a12 12 0 0 0 8.5 3a12 12 0 0 1 -.916 9.015" />
-                                                        <path d="M16 19h6" />
-                                                    </svg> Kích hoạt lại
-                                                    {{/if}}
-                                                </a>
-                                                <a class="dropdown-item" href="{{ADMIN_URL}}/users/update/{{this.id_user}}">
-                                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                                        class="icon icon-tabler icon-tabler-tools" width="24"
-                                                        height="24" viewBox="0 0 24 24" stroke-width="2"
-                                                        stroke="currentColor" fill="none" stroke-linecap="round"
-                                                        stroke-linejoin="round">
-                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                        <path d="M3 21h4l13 -13a1.5 1.5 0 0 0 -4 -4l-13 13v4"></path>
-                                                        <path d="M14.5 5.5l4 4"></path>
-                                                        <path d="M12 8l-5 -5l-4 4l5 5"></path>
-                                                        <path d="M7 8l-1.5 1.5"></path>
-                                                        <path d="M16 12l5 5l-4 4l-5 -5"></path>
-                                                        <path d="M16 17l-1.5 1.5"></path>
-                                                    </svg> Chỉnh sửa
+                                                            d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
+                                                    </svg> Xem chi tiết
                                                 </a>
                                             </div>
                                         </span>

@@ -50,11 +50,13 @@ export const createPd = (req,res) => {
       .then(response => {
           const data = response.data.response;
           console.log(data);
+          req.flash('success', 'Thêm sản phẩm thành công');
           res.redirect('/admin/products');
       })
       .catch(error => {
           // Xử lý lỗi nếu có
           console.error(error);
+          req.flash('error', 'Có lỗi xảy ra hoặc sản phẩm đã tồn tại!');
           res.render('admin/500',{layout:'error', title:'500'})
 });
 }
@@ -74,12 +76,14 @@ export const updatePd = (req,res) => {
       .then(response => {
           const data = response.data.response;
           console.log('res data update:',data);
+          req.flash('success', 'Đã cập nhật sản phẩm');
           res.redirect('/admin/products');
       })
       .catch(error => {
           // Xử lý lỗi nếu có
           console.error(error);
-          res.render('admin/500',{layout:'error', title:'500'})
+          req.flash('error', 'Có lỗi xảy ra');
+          res.redirect('/admin/products');
 });
 }
 export const viewUpdate = (req,res) =>{
@@ -103,10 +107,12 @@ export const viewUpdate = (req,res) =>{
 export const deletePd = (req,res) =>{
   const {id} = req.params
   axios.delete(`/product/${id}`).then(async response =>{
+    req.flash('success', 'Đã xóa sản phẩm');
     res.redirect('/admin/products');
   }).catch(error => {
     // Xử lý lỗi nếu có
     console.error(error);
+    req.flash('error', 'Có lỗi xảy ra');
     res.render('admin/products',{layout:'admin/index', title:'Quản lý sản phẩm',error})
     //res.render('admin/500',{layout:'error', title:'500'})
   })

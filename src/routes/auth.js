@@ -6,8 +6,8 @@ router.post('/login',authController.login)
 router.get('/login',(req,res)=>{
     res.render('admin/login',{ layout:'admin/login',title:'Login'})
 })
-router.get('/logout', (req, res) => {
-    res.clearCookie('tsixToken'); // Xóa token khỏi cookie
+router.get('/logout', async (req, res) => {
+    await res.clearCookie('tsixToken'); // Xóa token khỏi cookie
     res.redirect('/'); // Chuyển hướng người dùng đến trang login
   });
 export default router

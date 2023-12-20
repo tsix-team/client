@@ -17,6 +17,7 @@ router.get('/',indexController.home)
 
 //user
 router.get('/users',userController.indexUser)
+router.get('/employees',userController.employees)
 router.get('/users/update/:id',userController.viewUpdateUser)
 router.post('/users/update/:id',userController.updateUser)
 router.get('/users/ban/:id',userController.banUser)
@@ -49,10 +50,14 @@ router.get('/posts/d/:id', postController.deletePost)
 
 //orders
 router.get('/orders',orderController.indexOrder)
-router.get('/orders/update/:id',orderController.viewUpdateOrder)
-router.post('/orders/update/:id',orderController.updateOrder)
+router.get('/orders/view/:id',orderController.viewUpdateOrder)
+router.get('/orders/quickUpdate/:id',orderController.updateOrder)
+//router.post('/orders/view/:id',orderController.updateOrder)
 router.post('/orders',orderController.createOrder)
 //router.get('/orders/d/:id',orderController.deleteCate)
+
+//invoices
+router.get('/invoices',orderController.indexInvoice)
 
 // router.get('/posts/update/:id',pdController.viewUpdate)
 // router.post('/posts/update/:id',uploadCloud.fields([{ name: 'image' }, { name: 'images' }]), pdController.updatePd)

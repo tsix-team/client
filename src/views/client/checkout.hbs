@@ -1,78 +1,62 @@
 <div id="wap">
-    <div id="wap-content">
+    <form id="wap-content" method="post" action="">
         <div id="main">
 
             <div class="logo-left">
                 <h1 class="shop_name"><a href="">T-SIX FURNITURE</a></h1>
             </div>
 
+            <h2 class="section_title">Thông tin nhận hàng</h2>
             <div id="main-content">
                 <div class="col section">
-                    <h2 class="section_title">Thông tin nhận hàng</h2>
 
                     <div class="field">
                         <div class="field_input-wrap">
-                            <input type="text" class="field_input" placeholder="Họ và tên">
+                            <label for="">Họ tên</label>
+                            <input type="text" class="field_input" name="name" placeholder="Họ và tên" value="{{dataUser.name}}">
                         </div>
                     </div>
                     <div class="field">
                         <div class="field_input-wrap">
-                            <input type="text" class="field_input" placeholder="Email">
+                            <label for="">Email</label>
+                            <input type="text" class="field_input" placeholder="Email" value="{{dataUser.email}}">
                         </div>
                     </div>
                     <div class="field">
                         <div class="field_input-wrap">
-                            <input type="text" class="field_input" placeholder="Số điện thoại">
+                            <label for="">Sđt</label>
+                            <input type="text" class="field_input" placeholder="Số điện thoại" name="phone"
+                                value="{{dataUser.phone}}">
                         </div>
                     </div>
+                    <label for="">Địa chỉ nhận hàng</label>
                     <div class="field">
-                        <input type="text" class="field_input" placeholder="Thành phố">
+                        <textarea name="address" id="" cols="30" rows="10" placeholder="Thành phố, quận huyện, phường xã, số nhà, tên đường,..">{{dataUser.address}}</textarea>
                     </div>
-                    <div class="field">
-                        <input type="text" class="field_input" placeholder="Quận huyện">
-                    </div>
-
-                    <div class="field">
-                        <input type="text" class="field_input" placeholder="Phường xã">
-                    </div>
-
-                    <div class="field">
-                        <div class="field_input-wrap">
-                            <input type="text" class="field_input" placeholder="Số nhà, tên đường">
-                        </div>
-                    </div>
-
-
-                    <div class="field">
-                        <div class="field_input-wrap">
-                            <textarea name="" id="" cols="20" rows="3" style="padding: 10px;"
-                                placeholder="Ghi chú (tùy chọn)"></textarea>
-                        </div>
-                    </div>
-
-
                 </div>
 
 
                 <div class="col article ">
-                    <h2 class="article_title_ship">Vận chuyển</h2>
+                    <h2 class="article_title_ship">Hình thức & thanh toán</h2>
                     <div class="radio_input">
-                        <input checked type="radio" id="" disabled>
+                        <input checked type="radio" id="" name="payment" value="COD">
                         <label for="" class="radio_label">
-                            <span class="radio_label_primary">Giao hàng tận nơi</span>
-                            <span class="radio_label_price">35.000đ</span>
+                            <span class="radio_label_primary">Giao hàng tận nơi, thanh toán khi giao hàng (COD)</span>
                         </label>
                     </div>
-
-                    <h2 class="article_title_price">Thanh toán</h2>
                     <div class="radio_input">
-                        <input type="radio" id="thanhtoan">
-                        <label for="thanhtoan" class="radio_label">
-                            <span class="radio_label_primary">Thanh toán khi giao hàng (COD)</span>
-                            <span class="radio_label_price"><i class="fa-solid fa-money-bill"></i></span>
+                        <input type="radio" id="" name="payment" value="direct">
+                        <label for="" class="radio_label">
+                            <span class="radio_label_primary">Nhận & thanh toán tại cửa hàng</span>
                         </label>
                     </div>
-
+                    <div class="field">
+                        <label for="">Ghi chú đơn hàng</label>
+                        <div class="field_input-wrap">
+                            <textarea name="note" id="" cols="20" rows="3" style="padding: 10px;"
+                                placeholder="Ghi chú (tùy chọn)"></textarea>
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -81,7 +65,7 @@
 
         <div id="aside">
 
-            <h2 class="aside_title">Đơn hàng (<span>1</span> sản phẩm)</h2>
+            <h2 class="aside_title">Đơn hàng (<span id="count">1</span> sản phẩm)</h2>
 
             <div class="oder_sumary">
                 <table class="product-table">
@@ -102,7 +86,7 @@
                             </th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="cart-body">
                         <tr class="product">
                             <th class="product__image">
                                 <div class="product-thumbnail">
@@ -118,44 +102,6 @@
 
                             </th>
                             <td class="product__quantity visually-hidden"><em>Số lượng:</em> 112</td>
-                            <td class="product__price">
-                                570.000₫
-                            </td>
-                        </tr>
-                        <tr class="product">
-                            <th class="product__image">
-                                <div class="product-thumbnail">
-                                    <div class="product-thumbnail__wrapper">
-                                        <img src="./images/sp.jpg" width="80px" height="80px">
-                                    </div>
-                                </div>
-                            </th>
-                            <th class="product__description">
-                                <span class="product__description__name">
-                                    Ghế Luxury
-                                </span>
-
-                            </th>
-                            <td class="product__quantity visually-hidden"><em>Số lượng:</em> 112</td>
-                            <td class="product__price">
-                                570.000₫
-                            </td>
-                        </tr>
-                        <tr class="product">
-                            <th class="product__image">
-                                <div class="product-thumbnail">
-                                    <div class="product-thumbnail__wrapper">
-                                        <img src="./images/sp.jpg" width="80px" height="80px">
-                                    </div>
-                                </div>
-                            </th>
-                            <th class="product__description">
-                                <span class="product__description__name">
-                                    Ghế Luxury
-                                </span>
-
-                            </th>
-                            <td class="product__quantity visually"><em>x</em> 112</td>
                             <td class="product__price">
                                 570.000₫
                             </td>
@@ -180,31 +126,103 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th>Tạm tính</th>
-                            <td>500.000đ</td>
-                        </tr>
-                        <tr>
-                            <th>Phí vận chuyển</th>
-                            <td>40.000đ</td>
-                        </tr>
                     </tbody>
                     <tfoot class="total-price">
                         <tr>
                             <th>Tổng cộng</th>
-                            <td class="price">540.000đ</td>
+                            <td class="price" id="total">540.000đ</td>
                         </tr>
                     </tfoot>
                 </table>
-                <button class="btn-buy">ĐẶT HÀNG NGAY</button>
+                <button type="submit" class="btn-buy">ĐẶT HÀNG NGAY</button>
 
             </div>
 
             <div class="back">
-                <a href="./product.html" class="buy"><i class="fa-solid fa-arrow-left"></i> Mua thêm sản phẩm</a>
-                <a href="./index.html" class="backhome"><i class="fa-solid fa-arrow-left"></i> Home</a>
+                <a href="{{ROOT_URL}}/product" class="buy"><i class="fa-solid fa-arrow-left"></i> Mua thêm sản phẩm</a>
+                <a href="{{ROOT_URL}}" class="backhome"><i class="fa-solid fa-arrow-left"></i> Home</a>
             </div>
         </div>
 
-    </div>
+    </form>
 </div>
+<script>
+    let cartItems = [];
+    const getCart = function () {
+        cartItems = JSON.parse(localStorage.getItem('cart'))
+        
+    }
+    $(document).ready(function () {
+        const cartBody = $('.product');
+        const totalPriceElement = $('#total');
+        
+        
+        function renderCart() {
+            console.log('rendering')
+            cartBody.empty()
+            getCart()
+            let totalAmount = cartItems.reduce((total, product) => {
+                return total + (product.price * product.qt);
+            }, 0);
+            totalPriceElement.text(totalAmount.toLocaleString() + ' đ');
+            $('#count').text(cartItems.length)
+            $.each(cartItems, function (index, item) {
+                const newCartItem = `
+                <tr class="product">
+                            <th class="product__image">
+                                <div class="product-thumbnail">
+                                    <div class="product-thumbnail__wrapper">
+                                        <img src="${item.image}" width="80px" height="80px">
+                                    </div>
+                                </div>
+                            </th>
+                            <th class="product__description"> <em>(x${item.qt})</em>
+                                <span class="product__description__name">
+                                    ${item.name_pd}
+                                </span>
+
+                            </th>
+                            <td class="product__price"> 
+                                ${item.price.toLocaleString()} đ
+                            </td>
+                        </tr>
+            `;
+                cartBody.append(newCartItem);
+
+                //totalPrice += item.price;
+            });
+
+            // totalPriceElement.text(totalPrice.toLocaleString() + ' đ');
+        }
+
+        renderCart();
+    })
+    $('#wap-content').submit(function(e) {
+    e.preventDefault(); // Ngăn mặc định submit form
+
+    let formDataArray = $(this).serializeArray(); // Thu thập dữ liệu từ form
+    let formDataObject = {};
+    // Chuyển đổi mảng thành đối tượng JavaScript
+    $(formDataArray).each(function(index, obj){
+        formDataObject[obj.name] = obj.value;
+    });
+    const orderList = cartItems.map(({ id_pd, qt }) => ({ id_pd, qt }));
+    formDataObject.orderList = orderList
+    console.log(formDataObject)
+    // Yêu cầu AJAX POST
+    $.ajax({
+        url: `{{ROOT_URL}}/checkout`, // Thay 'url_của_bạn' bằng URL của bạn
+        type: 'POST',
+        data: formDataObject,
+        success: function(response) {
+            // Xử lý kết quả thành công
+            alert('Đặt hàng thành công')
+            window.location.href = `{{ROOT_URL}}`
+        },
+        error: function(xhr, status, error) {
+            // Xử lý khi có lỗi xảy ra
+            console.error('Lỗi yêu cầu:', error);
+        }
+    });
+});
+</script>

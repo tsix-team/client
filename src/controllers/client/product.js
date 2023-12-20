@@ -1,12 +1,15 @@
 require('dotenv').config()
 import axios from 'axios';
 axios.defaults.baseURL = process.env.API;
+const config = {
+    params: {},
+};
 import { getCate } from '../../services/axios';
 
 export const indexProduct = async (req, res) => {
     const bigCate = await getCate()
-    
-    axios.get('/product')
+    config.params = {size:10}
+    axios.get('/product',config)
         .then(async response => {
             const dataProducts = response.data.response;
             res.render('client/product', { layout: 'client/product', title: 'Sản phẩm', dataProducts, bigCate })

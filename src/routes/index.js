@@ -5,11 +5,10 @@ import {requireLogin,isLogged} from '../middlewares/auth'
 import { getCate } from '../services/axios';
 require('dotenv').config()
 const sessionData = async (req, res, next)=>{
-  res.locals.user = req.user || 'undefined'
+  res.locals.user = req.user || undefined
   res.locals.bigCate = await getCate()
   res.locals.success = req.flash('success')
   res.locals.error = req.flash('error')
-  res.locals.test = 'ágbjiasgj'
   next();
 }
 const initRoutes = (app) => {

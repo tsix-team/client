@@ -56,11 +56,13 @@ export const createCate = (req, res) => {
         .then(response => {
             const data = response.data.response;
             console.log(data);
+            req.flash('success', 'Thêm danh mục thành công');
             res.redirect('/admin/categories');
         })
         .catch(error => {
             // Xử lý lỗi nếu có
             console.error(error);
+            req.flash('error', 'Danh mục đã tồn tại');
             res.render('admin/500', { layout: 'error', title: '500' })
         });
 }
@@ -71,12 +73,12 @@ export const deleteCate = (req, res) => {
         .then(response => {
             const data = response.data?.response;
             console.log(data);
-            req.flash('success', 'da xoa');
+            req.flash('success', 'Đã xóa danh mục');
             res.redirect('/admin/categories');
         })
         .catch(error => {
             // Xử lý lỗi nếu có
-            req.flash('error', 'ko xoa dc');
+            req.flash('error', 'Không thể xóa danh mục đang chứa danh mục con');
             console.error(error);
             res.redirect('/admin/categories');
         });
@@ -88,11 +90,13 @@ export const updateCate = (req,res) => {
         .then(response => {
             const data = response.data.response;
             console.log('res data update:',data);
+            req.flash('success', 'Đã cập nhật danh mục');
             res.redirect('/admin/categories');
         })
         .catch(error => {
             // Xử lý lỗi nếu có
             console.error(error);
+            req.flash('error', 'Không thể sửa danh mục trùng tên');
             res.render('admin/500',{layout:'error', title:'500'})
   });
   }
@@ -179,11 +183,13 @@ export const createSubcate = (req, res) => {
         .then(response => {
             const data = response.data.response;
             console.log(data);
+            req.flash('success', 'Thêm danh mục con thành công');
             res.redirect('/admin/subcategories');
         })
         .catch(error => {
             // Xử lý lỗi nếu có
             console.error(error);
+            req.flash('error', 'Danh mục con đã tồn tại');
             res.render('admin/500', { layout: 'error', title: '500' })
         });
 }
@@ -194,11 +200,13 @@ export const deleteSubcate = (req, res) => {
         .then(response => {
             const data = response.data?.response;
             console.log(data);
+            req.flash('success', 'Đã xóa danh mục con');
             res.redirect('/admin/subcategories');
         })
         .catch(error => {
             // Xử lý lỗi nếu có
             console.error(error);
+            req.flash('error', 'Danh mục con này đang tồn tại sản phẩm');
             res.redirect('/admin/subcategories');
         });
 }

@@ -3,6 +3,8 @@ import * as indexController from '../controllers/client/index'
 import * as authController from '../controllers/client/auth'
 import * as pdController from '../controllers/client/product'
 import * as postController from '../controllers/client/post'
+import * as orderController from '../controllers/client/order'
+import {requireLoginClient} from '../middlewares/auth' 
 const router = express.Router();
 
 
@@ -41,9 +43,9 @@ router.get('/news',postController.indexPost)
 router.get('/post/:id',postController.postDetail)
 
 
-router.get('/checkout',(req,res)=>{
-    res.render('client/checkout',{layout:'client/checkout',title:'Checkout'})
-})
+router.get('/checkout', requireLoginClient,orderController.viewCheckout)
+router.post('/checkout', requireLoginClient,orderController.checkout)
+
 router.get('/about',(req,res)=>{
     res.render('client/about',{layout:'client/about',title:'About'})
 })

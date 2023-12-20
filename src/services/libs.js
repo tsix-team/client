@@ -5,7 +5,7 @@ axios.defaults.baseURL = process.env.API;
 
 export const ROOT_URL = process.env.CLIENT_URL
 export const ADMIN_URL = process.env.ADMIN_URL
- 
+
 
 export const formatDate = (dateStr) => {
     const dateObj = new Date(dateStr);
@@ -62,6 +62,30 @@ export const formatDate2 = (dateString) => {
 export const eq = (a, b) => a == b
 export const rounding = num => num.toFixed(1)
 
-export const formatNumber = (number) =>{
+export const formatNumber = (number) => {
     return number?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".").replace(/^(\d{1,3})(?=(\d{3})+(?:\.\d*)?$)/g, "$1,");
+}
+
+export const getStatus = (status) => {
+    let s
+    switch (status) {
+        case status: '1'
+            s = 'Đã xác nhận'
+            break
+        case status: '2'
+            s = 'Đang giao'
+            break
+        case status: '3'
+            s = 'Đã hoàn thành'
+            break
+        case status: '0'
+            s = 'Chưa xử lý'
+            break
+        case status: '-1'
+            s = 'Đã bị hủy'
+            break
+        default: s = "Không rõ"
+            break
+    }
+    return s
 }

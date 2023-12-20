@@ -28,3 +28,17 @@ export const isLogged = (req, res, next) => {
   }
   next();
 }
+export const requireLoginClient = (req, res, next) => {
+  const token = req.cookies?.tsixToken || null;
+  if (!token) {
+    return res.redirect('/login');
+  } else {
+    try {
+      const decoded = jwt.verify(token, process.env.SECRET_KEY);
+      req.user = decoded;
+      next();
+    } catch (err) {
+      res.status(400).send('Invalid token',);
+    }
+  }
+}

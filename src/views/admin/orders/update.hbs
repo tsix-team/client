@@ -49,9 +49,177 @@
             <div class="col-12">
                 <form class="card" method="post" action="">
                     <div class="card-body">
-                        <h3 class="card-title">Edit user</h3>
+                        <h3 class="card-title">Đơn hàng</h3>
+                        <div class="row row-cards mt-3 mb-4">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                class="icon icon-tabler icon-tabler-id" width="24" height="24"
+                                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                                stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <path
+                                                    d="M3 4m0 3a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v10a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3z" />
+                                                <path d="M9 10m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                                                <path d="M15 8l2 0" />
+                                                <path d="M15 12l2 0" />
+                                                <path d="M7 16l10 0" />
+                                            </svg>
+                                            Số đơn hàng
+                                        </label>
+                                        <input disabled type="text" class="form-control" name="name"
+                                            placeholder="unknow" value="{{dataOrder.id_order}}">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <div class="form-label">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                class="icon icon-tabler icon-tabler-status-change" width="24"
+                                                height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                                fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <path d="M6 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                                                <path d="M18 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                                                <path d="M6 12v-2a6 6 0 1 1 12 0v2" />
+                                                <path d="M15 9l3 3l3 -3" />
+                                            </svg> Trạng thái
+                                        </div>
+                                        <input disabled type="text" name="phone" class="form-control"
+                                            placeholder="unknow" value="{{#if (eq this.status 0)}}Chưa sử lý{{else if (eq dataOrder.status 1)}}Đã xác nhận{{else if (eq dataOrder.status 2)}}Đang giao{{else if (eq dataOrder.status -1)}}Đã bị hủy{{else if (eq dataOrder.status 3)}}Đã hoàn thành{{else}}Không rõ{{/if}}"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                class="icon icon-tabler icon-tabler-wallet" width="24" height="24"
+                                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                                stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <path
+                                                    d="M17 8v-3a1 1 0 0 0 -1 -1h-10a2 2 0 0 0 0 4h12a1 1 0 0 1 1 1v3m0 4v3a1 1 0 0 1 -1 1h-12a2 2 0 0 1 -2 -2v-12" />
+                                                <path d="M20 12v4h-4a2 2 0 0 1 0 -4h4" />
+                                            </svg> Hình thức thanh toán
+                                        </label>
+                                        <input disabled type="text" name="email" class="form-control"
+                                            placeholder="unknow" value="{{dataOrder.payment}}" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                class="icon icon-tabler icon-tabler-cash" width="24" height="24"
+                                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                                stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <path
+                                                    d="M7 9m0 2a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2z" />
+                                                <path d="M14 14m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                                                <path
+                                                    d="M17 9v-2a2 2 0 0 0 -2 -2h-10a2 2 0 0 0 -2 2v6a2 2 0 0 0 2 2h2" />
+                                            </svg> Tổng tiền
+                                        </label>
+                                        <input disabled type="text" name="total_amount" class="form-control text-green"
+                                            value="{{formatNumber dataOrder.total_amount}} đ" placeholder="unknow" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-lg-12">
+                                    <div>
+                                        <label class="form-label">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                class="icon icon-tabler icon-tabler-note" width="24" height="24"
+                                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                                stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <path d="M13 20l7 -7" />
+                                                <path
+                                                    d="M13 20v-6a1 1 0 0 1 1 -1h6v-7a2 2 0 0 0 -2 -2h-12a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7" />
+                                            </svg> Ghi chú</label>
+                                        <textarea class="form-control" name="note" rows="3"
+                                            placeholder="unknow">{{dataOrder.note}}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <table class="table card-table table-vcenter text-nowrap datatable">
+                                <thead>
+                                    <tr>
+                                        <th class="w-1">Mã
+                                            <!-- Download SVG icon from http://tabler-icons.io/i/chevron-up -->
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-sm icon-thick"
+                                                width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                                                stroke="currentColor" fill="none" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <path d="M6 15l6 -6l6 6" />
+                                            </svg>
+                                        </th>
+                                        <th><button class="table-sort">Sản phẩm</button></th>
+                                        <th><button class="table-sort">Đơn giá</button></th>
+                                        <th><button class="table-sort">Số lượng</button></th>
+                                        <th><button class="table-sort">Thành tiền</button></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody class="table-tbody">
+                                    {{#each dataOrder.listPdOrder}}
+                                    <tr>
+                                        <td class="sort-id"><span class="text-muted">{{this.id_pd}}</span></td>
+                                        <td data-label="Name">
+                                            <div class="d-flex py-1 align-items-center">
+                                                <span class="avatar me-2"
+                                                    style="background-image: url({{this.image}})"></span>
+                                                <div class="flex-fill">
+                                                    <div class="font-weight-medium">{{this.name_pd}}</div>
+                                                    <div class="text-muted"><a
+                                                            href="{{ADMIN_URL}}/products/update/{{this.id_pd}}"
+                                                            class="text-reset">Xem chi
+                                                            tiết</a></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="sort-price">{{formatNumber this.price}} đ</td>
+                                        <td class="sort-number">{{this.quantity}}</td>
+                                        <td class="sort-total">
+                                            <span class="flag flag-country-us"></span>
+                                            {{formatNumber this.totalThisPd}} đ
+                                        </td>
+                                    </tr>
+                                    {{/each}}
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h3 class="card-title">Thông tin khách hàng</h3>
                         <div class="row row-cards mt-3">
                             <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                class="icon icon-tabler icon-tabler-user-search" width="24" height="24"
+                                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                                stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+                                                <path d="M6 21v-2a4 4 0 0 1 4 -4h1.5" />
+                                                <path d="M18 18m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+                                                <path d="M20.2 20.2l1.8 1.8" />
+                                            </svg> Id user
+                                        </label>
+                                        <input disabled type="text" name="id_user" class="form-control"
+                                            value="{{dataOrder.id_user}}" placeholder="unknow" />
+                                    </div>
+                                </div>
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label class="form-label">
@@ -66,7 +234,27 @@
                                                 <path d="M20.732 12a2 2 0 0 0 -3.732 1v1a2 2 0 0 0 3.726 1.01"></path>
                                             </svg> Họ Tên
                                         </label>
-                                        <input type="text" class="form-control" name="name" placeholder="Full name" value="{{dataUser.name}}">
+                                        <input disabled type="text" class="form-control" name="name"
+                                            placeholder="unknow" value="{{dataOrder.name}}">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                class="icon icon-tabler icon-tabler-at" width="24" height="24"
+                                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                                stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                <path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
+                                                <path d="M16 12v1.5a2.5 2.5 0 0 0 5 0v-1.5a9 9 0 1 0 -5.5 8.28"></path>
+                                            </svg> Email
+                                        </label>
+                                        <input disabled type="text" name="email" class="form-control"
+                                            placeholder="unknow" value="{{dataOrder.email}}" />
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -82,48 +270,8 @@
                                                 </path>
                                             </svg> SĐT
                                         </div>
-                                        <input type="text" name="phone" class="form-control" placeholder="+84..." value="{{dataUser.phone}}"/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">
-                                            <svg xmlns="http://www.w3.org/2000/svg"
-                                                class="icon icon-tabler icon-tabler-at" width="24" height="24"
-                                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                                stroke-linecap="round" stroke-linejoin="round">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                <path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
-                                                <path d="M16 12v1.5a2.5 2.5 0 0 0 5 0v-1.5a9 9 0 1 0 -5.5 8.28"></path>
-                                            </svg> Email
-                                        </label>
-                                        <input type="text" name="email" class="form-control"
-                                            placeholder="Enter email" value="{{dataUser.email}}"/>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">
-                                            <svg xmlns="http://www.w3.org/2000/svg"
-                                                class="icon icon-tabler icon-tabler-password" width="24" height="24"
-                                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                                stroke-linecap="round" stroke-linejoin="round">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                <path d="M12 10v4"></path>
-                                                <path d="M10 13l4 -2"></path>
-                                                <path d="M10 11l4 2"></path>
-                                                <path d="M5 10v4"></path>
-                                                <path d="M3 13l4 -2"></path>
-                                                <path d="M3 11l4 2"></path>
-                                                <path d="M19 10v4"></path>
-                                                <path d="M17 13l4 -2"></path>
-                                                <path d="M17 11l4 2"></path>
-                                            </svg> Mật khẩu
-                                        </label>
-                                        <input type="password" name="password" class="form-control"
-                                            placeholder="Enter password" />
+                                        <input disabled type="text" name="phone" class="form-control"
+                                            placeholder="unknow" value="{{dataOrder.phone}}" />
                                     </div>
                                 </div>
                             </div>
@@ -144,36 +292,11 @@
                                                 <path d="M16 15l0 .01"></path>
                                             </svg> Địa chỉ</label>
                                         <textarea class="form-control" name="address" rows="3"
-                                            placeholder="Address...">{{dataUser.address}}</textarea>
+                                            placeholder="unknow">{{dataOrder.address}}</textarea>
                                     </div>
                                 </div>
                             </div>
-                            {{#if (eq user.role 2)}}
-                            <div class="row">
-                                <div class="mb-3">
-                                    <label class="form-label">
-                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                            class="icon icon-tabler icon-tabler-brand-auth0" width="24" height="24"
-                                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                            stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M12 14.5l-5.5 3.5l2 -6l-4.5 -4h6l2 -5l2 5h6l-4.5 4l2 6z" />
-                                            <path
-                                                d="M20.507 8.872l-2.01 -5.872h-12.994l-2.009 5.872c-1.242 3.593 -.135 7.094 3.249 9.407l5.257 3.721l5.257 -3.721c3.385 -2.313 4.49 -5.814 3.25 -9.407z" />
-                                        </svg> Vai trò
-                                    </label>
-                                    <select class="form-select" name="role">
-                                        <option value=0>Khách hàng</option>
-                                        <option value=1>Nhân viên</option>
-                                        <option value=2>Quản trị</option>
-                                    </select>
-                                </div>
-                            </div>
-                            {{/if}}
                         </div>
-                    </div>
-                    <div class="card-footer text-end">
-                        <button type="submit" class="btn btn-primary">Update</button>
                     </div>
                 </form>
             </div>
