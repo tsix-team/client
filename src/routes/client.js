@@ -4,6 +4,7 @@ import * as authController from '../controllers/client/auth'
 import * as pdController from '../controllers/client/product'
 import * as postController from '../controllers/client/post'
 import * as orderController from '../controllers/client/order'
+import * as userController from "../controllers/client/profile"
 import {requireLoginClient} from '../middlewares/auth' 
 const router = express.Router();
 
@@ -47,6 +48,13 @@ router.get('/checkout', requireLoginClient,orderController.viewCheckout)
 router.post('/checkout', requireLoginClient,orderController.checkout)
 
 router.get('/about',(req,res)=>{
-    res.render('client/about',{layout:'client/about',title:'About'})
+    res.render('client/about',{layout:'client/about',title:'Về chúng tôi'})
 })
+router.get('/policy',(req,res)=>{
+    res.render('client/policy',{layout:'client/policy',title:'Bảo hành'})
+})
+router.get("/profile", userController.getProfile)
+
+router.post("/profile/:id/update-profile", userController.updateProfile)
+
 export default router

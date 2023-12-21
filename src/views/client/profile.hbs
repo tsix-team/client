@@ -1,0 +1,49 @@
+<div id="wrapper">
+  <div class="profile-container">
+    <div class="profile-flex">
+      <div class="profile-picture">
+        <img src="/images/people.png" alt="" />
+      </div>
+
+      <div class="profile-name">
+        <h2><strong>Xin chào:</strong> {{user.name}}</h2>
+      </div>
+
+    </div>
+
+    <form method="POST" action="profile/{{user.id_user}}/update-profile">
+
+      <div class="profile-info">
+        <p><strong>Email:</strong><input
+            class="ip-pw"
+            type="text"
+            name="email"
+            value="{{user.email}}"
+          /></p>
+        <p><strong>Số điện thoại:</strong><input
+            class="ip-pw"
+            type="text"
+            name="phone"
+            value="{{user.phone}}"
+          /></p>
+        <p><strong>Địa chỉ:</strong><input
+            class="ip-pw"
+            type="text"
+            name="address"
+            value="{{user.address}}"
+          /></p>
+        <p><strong>Mật khẩu:</strong><input
+            class="ip-pw"
+            type="password"
+            name="password"
+            value="{{user.password}}"
+            placeholder="Nhập mật khẩu mới..."
+          /></p>
+        <button type="submit" class="btn-button">Cập nhật thông tin</button>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+<script src="/tsix-client/src/public/js/profile.js"></script>

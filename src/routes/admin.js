@@ -46,6 +46,8 @@ router.post('/subcategories/update/:id',cateController.updateSubcate)
 //posts
 router.get('/posts',postController.indexPost)
 router.post('/posts',uploadCloud.single('image'), postController.createPost)
+router.get('/posts/update/:id',postController.viewUpdate)
+router.post('/posts/update/:id',uploadCloud.single('image'),postController.updatePost)
 router.get('/posts/d/:id', postController.deletePost)
 
 //orders

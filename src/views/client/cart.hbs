@@ -4,7 +4,7 @@
             <div class="title-cart">
                 <h1>GIỎ HÀNG CỦA BẠN</h1>
             </div>
-            <div class="form-cart">
+            <div class="form-cart" id="form-cart">
                 <form action="">
                     <div class="cart-thead">
                         <div class="a-center id" style="width: 5%">STT</div>
@@ -66,14 +66,19 @@
     $(document).ready(function () {
         const cartBody = $('.form-cart .cart-body');
         const totalPriceElement = $('.cart-collaterals .price');
-
+        const formCart = $('#form-cart')
+        
         function renderCart() {
-            let totalPrice = 0;
-            console.log('rendering')
-            cartBody.empty()
             getCart()
-
-            $.each(cartItems, function (index, item) {
+            let totalPrice = 0;
+            console.log('rendering',cartItems)
+            cartBody.empty()
+            if(cartItems == null || cartItems == []){
+                console.log('emptyyy',cartItems)
+                formCart.empty()
+                formCart.html('<h2 style="text-align:center;">Giỏ hàng chưa có gì</h2>')
+            } else{
+                $.each(cartItems, function (index, item) {
                 const newCartItem = `
                 <div class="cart-body">
                     <div class="a-center id" style="width: 5%">${index + 1}</div>
@@ -99,6 +104,9 @@
             })
             //let products = [{ id: 1, name: 'a' }, { id: 2, name: 'b' }, { id: 3, name: 'c' }, { id: 4, name: 'd' }];
             totalPriceElement.text(totalPrice.toLocaleString() + ' đ');
+            }
+
+            
         }
 
         renderCart();

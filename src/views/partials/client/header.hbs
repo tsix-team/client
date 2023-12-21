@@ -10,13 +10,37 @@
                     <button><i class="fa fa-search" aria-hidden="true"></i></button>
                 </div>
             </form>
+            <div class="search_dropdown">
+                <ul>
+                    <li><a href="">Ghe luxury moi nhat</a></li>
+                    <li><a href="">Ban</a></li>
+                    <li><a href="">Ke</a></li>
+                </ul>
+            </div>
         </div>
         <div class="account ">
             {{#if user}}
-            <span>{{user.email}}</span>
+            {{!-- <span>{{user.email}}</span>
             <a href="{{ROOT_URL}}/auth/logout">
                 <small>Đăng xuất</small>
-            </a>
+            </a> --}}
+            <div class="user-menu">
+                <div class="user-info">
+                    <div class="user-icon">
+                        <!-- Đây có thể là hình ảnh hoặc icon của người dùng -->
+                        <i class="fa fa-user"></i>
+                    </div>
+                    <div class="user-name">
+                        <!-- Tên người dùng -->
+                        {{user.name}}
+                    </div>
+                </div>
+                <ul class="dropdown-menu">
+                    <!-- Các mục menu dropdown -->
+                    <li><a href="{{ROOT_URL}}/profile">Sửa thông tin</a></li>
+                    <li><a href="{{ROOT_URL}}/auth/logout">Đăng xuất</a></li>
+                </ul>
+            </div>
             {{else}}
             <a class="text_sign-up hover" href="{{ROOT_URL}}/register">
                 <span>Đăng ký</span>
@@ -26,8 +50,10 @@
             </a>
             {{/if}}
 
-            <span class="cart"><a href="{{ROOT_URL}}/cart"><span class="cart-num" id="cart-num"></span><i class="fa fa-cart-plus" aria-hidden="true"></i></a></span>
-        </div>  
+
+            <span class="cart"><a href="{{ROOT_URL}}/cart"><span class="cart-num" id="cart-num"></span><i
+                        class="fa fa-cart-plus" aria-hidden="true"></i></a></span>
+        </div>
     </div>
 </header>
 <nav class="menu">
@@ -51,7 +77,9 @@
                                     </div>
                                     <ul>
                                         {{#each cate.subCate}}
-                                        <li><a href="{{ROOT_URL}}/danh-muc/{{cate.slug}}/{{this.slug}}">{{this.name_subcate}}</a></li>
+                                        <li><a
+                                                href="{{ROOT_URL}}/danh-muc/{{cate.slug}}/{{this.slug}}">{{this.name_subcate}}</a>
+                                        </li>
                                         {{/each}}
                                     </ul>
                                 </li>
@@ -81,6 +109,9 @@
                     <li><a href="{{ROOT_URL}}/about">
                             <i class="fa-solid fa-users-rectangle"></i>
                             GIỚI THIỆU</a></li>
+                    <li><a href="{{ROOT_URL}}/policy">
+                            <i class="fa-solid fa-screwdriver-wrench"></i>
+                            BẢO HÀNH</a></li>
                     <li><a href="{{ROOT_URL}}/contact">
                             <i class="fa fa-phone-square" aria-hidden="true"></i>
                             LIÊN HỆ</a></li>
@@ -187,7 +218,7 @@
                             products = JSON.parse(cart);
                         }
                         products.push(data.data);
-                        products.forEach(pd=>{
+                        products.forEach(pd => {
                             pd.qt = 1
                         })
                         localStorage.setItem("cart", JSON.stringify(products));
@@ -200,6 +231,6 @@
                 });
             }
         });
-        
+
     });
 </script>

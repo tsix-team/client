@@ -158,9 +158,13 @@
         
         
         function renderCart() {
+            getCart()
+            if(cartItems == null || cartItems == []){
+                return window.location.href = `{{ROOT_URL}}`
+            }
+
             console.log('rendering')
             cartBody.empty()
-            getCart()
             let totalAmount = cartItems.reduce((total, product) => {
                 return total + (product.price * product.qt);
             }, 0);

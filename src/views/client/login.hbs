@@ -3,19 +3,23 @@
         <div class="formEnter">
             <div class="containerForm">
                 <h3>ĐĂNG NHẬP TÀI KHOẢN</h3>
-                <form action="" method="post">
-                    <div class="form-control ">
-                        <input id="email" name="email" type="email" placeholder="Email" value="{{formData.email}}">
-                        <span></span>
-                    </div>
-                    <div class="form-control">
-                        <input id="password" name="password" type="password" placeholder="Mật khẩu"  value="{{formData.password}}">
-                        <span></span>
-                        <i id="showPassword" class="fa fa-eye" aria-hidden="true"></i>
-                    </div>
-                    <div style="color: red; padding-top:10px;font-size:large">{{error}}</div>
-                    <button type="submit" name="submit" class="btnSubmit">Đăng nhập</button>
+                <form name="loginForm" onsubmit="return validateLoginForm()" method="post" action="">
+                        <div class="form-control ">
+                            <input id="email" name="email" type="email" placeholder="Email" value="{{formData.email}}">
+                            <span></span>
+                            <small class="error" id="emailError"></small>
+
+                        </div>
+                        <div class="form-control">
+                            <input id="password" name="password" type="password" placeholder="Mật khẩu" value="{{formData.password}}">
+                            <span></span>
+                            <i id="showPassword" class="fa fa-eye" aria-hidden="true"></i>
+                            <small class="error" id="passwordError"></small>
+                        </div>
+                        <div style="color: red; padding-top:10px;font-size:large">{{error}}</div>
+                        <button type="submit" class="btnSubmit">Đăng nhập</button>
                 </form>
+                
 
                 <div class="link">
                     <div class="comeHome">
@@ -39,3 +43,4 @@
         </div>
     </div>
 </div>
+<script src="/js/validateLogin.js"></script>

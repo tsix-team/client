@@ -388,3 +388,62 @@ body {
   opacity: 0.8;
   visibility: visible;
 }
+
+
+
+.user-menu {
+  position: relative;
+  display: inline-block;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.user-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background-color: #ccc; /* Màu sắc của icon/người dùng */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-name {
+  margin-left: 10px;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 25px;
+  right: 0;
+  background-color: #fff;
+  min-width: 120px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.dropdown-menu li {
+  padding: 10px;
+}
+
+.dropdown-menu a {
+  text-decoration: none;
+  color: #333; /* Màu sắc chữ của menu dropdown */
+  display: block;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f5f5f5; /* Màu nền khi hover */
+}
+.user-menu:hover .dropdown-menu {
+  display: block;
+}

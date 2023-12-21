@@ -1,97 +1,110 @@
-const form = document.querySelector("form");
-const username = document.getElementById("username");
-const email = document.getElementById("email");
-const password = document.getElementById("password");
-const confirmPassword = document.getElementById("confirmPassword");
 const showPassword = document.getElementById("showPassword");
 const showConfirmPassword = document.getElementById("showConfirmPassword");
+const registerForm = document.forms["registerForm"];
+const usernameInput = registerForm["username"];
+const emailInput = registerForm["email"];
+const passwordInput = registerForm["password"];
+const confirmPasswordInput = registerForm["confirmPassword"];
 
-form.addEventListener("submit", (e) => {
-  validateInputs();
-});
+const validateRegisterForm = () => {
+  clearErrorMessages();
 
-const setError = (element, message) => {
-  const inputControl = element.parentElement;
-  const errorDisplay = inputControl.querySelector(".error");
+  let username = usernameInput.value.trim();
+  let email = emailInput.value.trim();
+  let password = passwordInput.value;
+  let confirmPassword = confirmPasswordInput.value;
 
-  errorDisplay.innerText = message;
-  inputControl.classList.add("Error");
-  inputControl.classList.remove("Success");
+  let isValid = true;
+
+  if (isEmpty(username)) {
+    displayErrorMessage("Vui lòng nhập tên của bạn", "usernameError");
+    isValid = false;
+  } else if (username.length < 4) {
+    displayErrorMessage("Họ tên của bạn phải trên 4 kí tự", "usernameError");
+    isValid = false;
+  }
+
+  if (isEmpty(email)) {
+    displayErrorMessage("Vui lòng nhập email", "emailError");
+    isValid = false;
+  } else if (!isValidEmail(email)) {
+    displayErrorMessage("Email không đúng định dạng", "emailError");
+    isValid = false;
+  }
+
+  if (isEmpty(password)) {
+    displayErrorMessage("Vui lòng nhập mật khẩu", "passwordError");
+    isValid = false;
+  } else if (password.length < 6) {
+    displayErrorMessage("Mật khẩu phải có ít nhất 6 ký tự", "passwordError");
+    isValid = false;
+  }
+
+  if (isEmpty(confirmPassword)) {
+    displayErrorMessage("Vui lòng xác nhận mật khẩu", "confirmPasswordError");
+    isValid = false;
+  } else if (confirmPassword !== password) {
+    displayErrorMessage("Mật khẩu xác nhận không khớp", "confirmPasswordError");
+    isValid = false;
+  }
+
+  return isValid;
 };
 
-const setSuccess = (element) => {
-  const inputControl = element.parentElement;
-  const errorDisplay = inputControl.querySelector(".error");
-
-  errorDisplay.innerText = "";
-  inputControl.classList.remove("Error");
-  inputControl.classList.add("Success");
+const isValidEmail = (email) => {
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  return emailRegex.test(email);
 };
 
-const validateInputs = () => {
-  const usernameValue = username.value.trim();
-  const emailValue = email.value.trim();
-  const passwordValue = password.value.trim();
-  const confirmPasswordValue = confirmPassword.value.trim();
+const displayErrorMessage = (message, elementId) => {
+  let errorElement = document.getElementById(elementId);
+  errorElement.textContent = message;
+};
 
-  const regexMail = (email) => {
-    var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/; // Fixed email regex
-    return emailRegex.test(String(email).toLowerCase());
-  };
+const clearErrorMessage = (elementId) => {
+  let errorElement = document.getElementById(elementId);
+  errorElement.textContent = "";
+};
 
-  if (usernameValue === "") {
-    setError(username, "Vui lòng nhập họ và tên");
-  } else if (usernameValue.length < 6) {
-    setError(username, "Vui lòng nhập trên 6 kí tự");
-  } else if (usernameValue.length > 25) {
-    setError(username, "Vui lòng nhập dưới 25 kí");
-  } else {
-    setSuccess(username);
-  }
+const clearErrorMessages = () => {
+  clearErrorMessage("usernameError");
+  clearErrorMessage("emailError");
+  clearErrorMessage("passwordError");
+  clearErrorMessage("confirmPasswordError");
+};
 
-  if (emailValue === "") {
-    setError(email, "Email không được để trống");
-  } else if (!regexMail(emailValue)) { // Fixed email validation condition
-    setError(email, "Email không đúng định dạng");
-  } else {
-    setSuccess(email);
-  }
-
-  if (passwordValue === "") {
-    setError(password, "Vui lòng nhập password");
-  } else if (passwordValue.length < 6) {
-    setError(password, "Password phải trên 6 ký tự");
-  } else if (passwordValue.length > 20) {
-    setError(password, "Password phải dưới 20 ký tự");
-  } else {
-    setSuccess(password);
-  }
-
-  if (confirmPasswordValue === "") {
-    setError(confirmPassword, "Vui lòng nhập password");
-  } else if (confirmPasswordValue.length < 6) {
-    setError(confirmPassword, "Password phải trên 6 ký tự");
-  } else if (confirmPasswordValue.length > 20) {
-    setError(confirmPassword, "Password phải dưới 20 ký tự");
-  } else if (confirmPasswordValue !== passwordValue) {
-    setError(confirmPassword, "Password không trùng khớp");
-  } else {
-    setSuccess(confirmPassword);
-  }
+const isEmpty = (value) => {
+  return value.trim() === "";
 };
 
 showPassword.addEventListener("click", () => {
-  password.type = "text";
-
-  setTimeout(() => {
-    password.type = "password";
-  }, 1000);
+  togglePasswordVisibility(passwordInput);
 });
 
 showConfirmPassword.addEventListener("click", () => {
-  confirmPassword.type = "text";
+  togglePasswordVisibility(confirmPasswordInput);
+});
+
+passwordInput.addEventListener("input", () => {
+  clearErrorMessage("passwordError");
+});
+
+emailInput.addEventListener("blur", () => {
+  if (!isValidEmail(emailInput.value)) {
+    displayErrorMessage("Email không đúng định dạng", "emailError");
+  } else {
+    clearErrorMessage("emailError");
+  }
+});
+
+emailInput.addEventListener("input", () => {
+  clearErrorMessage("emailError");
+});
+
+const togglePasswordVisibility = (inputElement) => {
+  inputElement.type = inputElement.type === "password" ? "text" : "password";
 
   setTimeout(() => {
-    confirmPassword.type = "password";
-  }, 1000);
-});
+    inputElement.type = "password";
+  }, 800);
+};
