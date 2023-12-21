@@ -1,236 +1,245 @@
 <header class="header">
-    <div class="container-header">
-        <div class="logo-header">
-            <img src="/images/logo-web-client.png" alt="logo-website">
+  <div class="container-header">
+    <div class="logo-header">
+      <img src="/images/logo-web-client.png" alt="logo-website" />
+    </div>
+    <div class="search">
+      <form action="">
+        <div class="form-search">
+          <input type="search" placeholder="Nhập từ khóa tìm kiếm..." />
+          <button><i class="fa fa-search" aria-hidden="true"></i></button>
         </div>
-        <div class="search">
-            <form action="">
-                <div class="form-search">
-                    <input type="search" placeholder="Nhập từ khóa tìm kiếm...">
-                    <button><i class="fa fa-search" aria-hidden="true"></i></button>
-                </div>
-            </form>
-            <div class="search_dropdown">
-                <ul>
-                    <li><a href="">Ghe luxury moi nhat</a></li>
-                    <li><a href="">Ban</a></li>
-                    <li><a href="">Ke</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="account ">
-            {{#if user}}
-            {{!-- <span>{{user.email}}</span>
+      </form>
+      <div class="search_dropdown">
+        <ul>
+          <li><a href="">Ghe luxury moi nhat</a></li>
+          <li><a href="">Ban</a></li>
+          <li><a href="">Ke</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="account">
+      {{#if user}}
+        {{!-- <span>{{user.email}}</span>
             <a href="{{ROOT_URL}}/auth/logout">
                 <small>Đăng xuất</small>
             </a> --}}
-            <div class="user-menu">
-                <div class="user-info">
-                    <div class="user-icon">
-                        <!-- Đây có thể là hình ảnh hoặc icon của người dùng -->
-                        <i class="fa fa-user"></i>
-                    </div>
-                    <div class="user-name">
-                        <!-- Tên người dùng -->
-                        {{user.name}}
-                    </div>
-                </div>
-                <ul class="dropdown-menu">
-                    <!-- Các mục menu dropdown -->
-                    <li><a href="{{ROOT_URL}}/profile">Sửa thông tin</a></li>
-                    <li><a href="{{ROOT_URL}}/auth/logout">Đăng xuất</a></li>
-                </ul>
+        <div class="user-menu">
+          <div class="user-info">
+            <div class="user-icon">
+              <!-- Đây có thể là hình ảnh hoặc icon của người dùng -->
+              <i class="fa fa-user"></i>
             </div>
-            {{else}}
-            <a class="text_sign-up hover" href="{{ROOT_URL}}/register">
-                <span>Đăng ký</span>
-            </a>
-            <a class="text_sign-in hover" href="{{ROOT_URL}}/login">
-                <span>Đăng nhập</span>
-            </a>
-            {{/if}}
-
-
-            <span class="cart"><a href="{{ROOT_URL}}/cart"><span class="cart-num" id="cart-num"></span><i
-                        class="fa fa-cart-plus" aria-hidden="true"></i></a></span>
+            <div class="user-name">
+              <!-- Tên người dùng -->
+              {{user.name}}
+              <i class="fa-solid fa-caret-down"></i>
+            </div>
+          </div>
+          <ul class="dropdown-menu">
+            <!-- Các mục menu dropdown -->
+            <li><a href="{{ROOT_URL}}/profile">Thông tin</a></li>
+            <li><a href="{{ROOT_URL}}/auth/logout">Đăng xuất</a></li>
+          </ul>
         </div>
+      {{else}}
+        <a class="text_sign-up hover" href="{{ROOT_URL}}/register">
+          <span>Đăng ký</span>
+        </a>
+        <a class="text_sign-in hover" href="{{ROOT_URL}}/login">
+          <span>Đăng nhập</span>
+        </a>
+      {{/if}}
+
+      <span class="cart"><a href="{{ROOT_URL}}/cart"><span
+            class="cart-num"
+            id="cart-num"
+          ></span><i class="fa fa-cart-plus" aria-hidden="true"></i></a></span>
     </div>
+  </div>
 </header>
 <nav class="menu">
-    <div class="container-menu">
-        <!-- menu list-->
-        <div class="desk">
-            <div class="category-menu">
-                <div class="dropdown">
-                    <ul class="nested-dropdowns">
-                        <li>
-                            <div class="cate-text">
-                                <i class="fa fa-bar-chart" aria-hidden="true"></i>
-                                Danh mục
-                            </div>
-                            <ul class="dropdownCategory">
-                                {{#each bigCate as |cate|}}
-                                <li>
-                                    <div class="nested-dropdowns__item">
-                                        <i class="fa-solid fa-chevron-right"></i>
-                                        <a href="{{ROOT_URL}}/danh-muc/{{cate.slug}}">{{cate.name_cate}}</a>
-                                    </div>
-                                    <ul>
-                                        {{#each cate.subCate}}
-                                        <li><a
-                                                href="{{ROOT_URL}}/danh-muc/{{cate.slug}}/{{this.slug}}">{{this.name_subcate}}</a>
-                                        </li>
-                                        {{/each}}
-                                    </ul>
-                                </li>
-                                {{/each}}
-
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="menu-list">
-                <ui class="main-menu">
-                    <li><a class="active-menu" href="{{ROOT_URL}}">
-                            <i class="fa fa-home" aria-hidden="true"></i>
-                            TRANG CHỦ</a></li>
-                    <li>
-                        <div class="dropdown-navbar">
-                            <a href="{{ROOT_URL}}/product" class="dropa-navbar">
-                                <i class="fa-solid fa-couch"></i>
-                                SẢN PHẨM <i class="fas fa-chevron-down responesiveNone"></i></a>
-                        </div>
-                    </li>
-                    <li><a href="{{ROOT_URL}}/news">
-                            <i class="fas fa-newspaper"></i>
-                            TIN TỨC</a></li>
-                    <li><a href="{{ROOT_URL}}/about">
-                            <i class="fa-solid fa-users-rectangle"></i>
-                            GIỚI THIỆU</a></li>
-                    <li><a href="{{ROOT_URL}}/policy">
-                            <i class="fa-solid fa-screwdriver-wrench"></i>
-                            BẢO HÀNH</a></li>
-                    <li><a href="{{ROOT_URL}}/contact">
-                            <i class="fa fa-phone-square" aria-hidden="true"></i>
-                            LIÊN HỆ</a></li>
-                </ui>
-            </div>
-
-            <div class="hotline">
-                <span><i class="fa fa-phone" aria-hidden="true" class="icon-phone"></i>
-                    <span class="text">Hotline:</span> <span class="phone">0898877604</span></span>
-            </div>
-        </div>
-
-        <!-- icon navBars -->
-        <label for="toggle-responsive" class="toggle-menu">
-            <i class="fa-solid fa-bars"></i>
-        </label>
-        <!-- input hidden type check-box -->
-        <input hidden type="checkbox" class="input-responsive" class="" id="toggle-responsive">
-
-        <!-- overlay -->
-        <label for="toggle-responsive" class="overlay-menu"></label>
-
-        <!-- menu responsive -->
-        <div class="menu-responsive">
-
-            <div class="category-menu">
-                <div class="dropdown-responsive">
-                    <button onclick="category_responsive()" class="dropbtn-responsive">
-                        <i class="fa fa-bar-chart" aria-hidden="true"></i>
-                        Danh mục</button>
-                    <div id="myDropdown-responsive" class="dropdown-content-responsive">
-                        <a href="#"><i class="fa-solid fa-chevron-right"></i> Sofa</a>
-                        <a href="#"><i class="fa-solid fa-chevron-right"></i> Ghế</a>
-                        <a href="#"><i class="fa-solid fa-chevron-right"></i> Kệ sách</a>
-                        <a href="#"><i class="fa-solid fa-chevron-right"></i> Trang trí</a>
+  <div class="container-menu">
+    <!-- menu list-->
+    <div class="desk">
+      <div class="category-menu">
+        <div class="dropdown">
+          <ul class="nested-dropdowns">
+            <li>
+              <div class="cate-text">
+                <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                DANH MỤC SẢN PHẨM
+              </div>
+              <ul class="dropdownCategory">
+                {{#each bigCate as |cate|}}
+                  <li>
+                    <div class="nested-dropdowns__item">
+                      <i class="fa-solid fa-chevron-right"></i>
+                      <a
+                        href="{{ROOT_URL}}/danh-muc/{{cate.slug}}"
+                      >{{cate.name_cate}}</a>
                     </div>
-                </div>
-                <label for="toggle-responsive" class="close" id="">
-                    <i class="fa fa-times" aria-hidden="true"></i>
-                </label>
-            </div>
+                    <ul>
+                      {{#each cate.subCate}}
+                        <li><a
+                            href="{{ROOT_URL}}/danh-muc/{{cate.slug}}/{{this.slug}}"
+                          >{{this.name_subcate}}</a>
+                        </li>
+                      {{/each}}
+                    </ul>
+                  </li>
+                {{/each}}
 
-            <div class="menu-list-responsive">
-                <ul class="main-menu-responsive">
-                    <li><i class="fa fa-home" aria-hidden="true"></i><a class="active-menu" href="{{ROOT_URL}}">
-                            TRANG CHỦ</a></li>
-                    <li><i class="fa-solid fa-couch"></i><a href="{{ROOT_URL}}/product" class="dropa-navbar">
-                            SẢN PHẨM </a>
-                    </li>
-                    <li><i class="fas fa-newspaper"></i><a href="{{ROOT_URL}}/news">
-                            TIN TỨC</a></li>
-                    <li><i class="fa-solid fa-users-rectangle"></i><a href="{{ROOT_URL}}/about">
-                            GIỚI THIỆU</a></li>
-                    <li><i class="fa fa-phone-square" aria-hidden="true"></i><a href="{{ROOT_URL}}/contact">
-                            LIÊN HỆ</a></li>
-                </ul>
-            </div>
-
-            <div class="hotline-responsive">
-                <span><i class="fa fa-phone" aria-hidden="true" class="icon-phone"></i>
-                    <span class="text">Hotline:</span> <span class="phone">0898877604</span></span>
-            </div>
+              </ul>
+            </li>
+          </ul>
         </div>
+      </div>
 
+      <div class="menu-list">
+        <ui class="main-menu">
+          <li><a class="active-menu" href="{{ROOT_URL}}">
+              <i class="fa fa-home" aria-hidden="true"></i>
+              TRANG CHỦ</a></li>
+          <li>
+            <div class="dropdown-navbar">
+              <a href="{{ROOT_URL}}/product" class="dropa-navbar">
+                <i class="fa-solid fa-couch"></i>
+                SẢN PHẨM
+              </a>
+            </div>
+          </li>
+          <li><a href="{{ROOT_URL}}/news">
+              <i class="fas fa-newspaper"></i>
+              TIN TỨC</a></li>
+          <li><a href="{{ROOT_URL}}/about">
+              <i class="fa-solid fa-users-rectangle"></i>
+              GIỚI THIỆU</a></li>
+          <li><a href="{{ROOT_URL}}/policy">
+              <i class="fa-solid fa-screwdriver-wrench"></i>
+              BẢO HÀNH</a></li>
+          <li><a href="{{ROOT_URL}}/contact">
+              <i class="fa fa-phone-square" aria-hidden="true"></i>
+              LIÊN HỆ</a></li>
+        </ui>
+      </div>
+
+      <div class="hotline">
+        <span><i class="fa fa-phone" aria-hidden="true" class="icon-phone"></i>
+          <span class="text">Hotline:</span>
+          <span class="phone">0898877604</span></span>
+      </div>
     </div>
+
+    <!-- icon navBars -->
+    <label for="toggle-responsive" class="toggle-menu">
+      <i class="fa-solid fa-bars"></i>
+    </label>
+    <!-- input hidden type check-box -->
+    <input
+      hidden
+      type="checkbox"
+      class="input-responsive"
+      class=""
+      id="toggle-responsive"
+    />
+
+    <!-- overlay -->
+    <label for="toggle-responsive" class="overlay-menu"></label>
+
+    <!-- menu responsive -->
+    <div class="menu-responsive">
+
+      <div class="category-menu">
+        <div class="dropdown">
+          <ul class="nested-dropdowns">
+            <li>
+              <div class="cate-text">
+                <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                DANH MỤC SẢN PHẨM
+              </div>
+              <ul class="dropdownCategory">
+                {{#each bigCate as |cate|}}
+                  <li>
+                    <div class="nested-dropdowns__item">
+                      <i class="fa-solid fa-chevron-right"></i>
+                      <a
+                        href="{{ROOT_URL}}/danh-muc/{{cate.slug}}"
+                      >{{cate.name_cate}}</a>
+                    </div>
+                    <ul>
+                      {{#each cate.subCate}}
+                        <li><a
+                            href="{{ROOT_URL}}/danh-muc/{{cate.slug}}/{{this.slug}}"
+                          >{{this.name_subcate}}</a>
+                        </li>
+                      {{/each}}
+                    </ul>
+                  </li>
+                {{/each}}
+
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <label for="toggle-responsive" class="close" id="">
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </label>
+      </div>
+
+      <div class="menu-list-responsive">
+        <ul class="main-menu-responsive">
+          <li><i class="fa fa-home" aria-hidden="true"></i><a
+              class="active-menu"
+              href="{{ROOT_URL}}"
+            >
+              TRANG CHỦ</a></li>
+          <li><i class="fa-solid fa-couch"></i><a
+              href="{{ROOT_URL}}/product"
+              class="dropa-navbar"
+            >
+              SẢN PHẨM
+            </a>
+          </li>
+          <li><i class="fas fa-newspaper"></i><a href="{{ROOT_URL}}/news">
+              TIN TỨC</a></li>
+          <li><i class="fa-solid fa-users-rectangle"></i><a
+              href="{{ROOT_URL}}/about"
+            >
+              GIỚI THIỆU</a></li>
+          <li><i class="fa fa-phone-square" aria-hidden="true"></i><a
+              href="{{ROOT_URL}}/contact"
+            >
+              LIÊN HỆ</a></li>
+        </ul>
+      </div>
+
+      <div class="hotline-responsive">
+        <span><i class="fa fa-phone" aria-hidden="true" class="icon-phone"></i>
+          <span class="text">Hotline:</span>
+          <span class="phone">0898877604</span></span>
+      </div>
+    </div>
+
+  </div>
 </nav>
 <script>
-    let cartData = localStorage.getItem('cart') || []
-    let countItems = 0
-
-    function getCart2() {
-        cartData = localStorage.getItem('cart')
-    }
-    console.log('cartData:', cartData)
-    $(document).ready(function () {
-        function counterItem() {
-            const items = JSON.parse(localStorage.getItem('cart'))
-            console.log('Itemmmmmmmmmmmm', items)
-            countItems = items?.length
-            if (countItems > 0) $('#cart-num').html(`${countItems}`)
-            else $('#cart-num').hide()
-        }
-        counterItem()
-        $('.addToCart').click(function (e) {
-            e.preventDefault();
-            const slug = $(this).attr('data-id')
-            console.log('slug:', slug)
-            if (cartData.includes(`"slug":"${slug}"`)) {
-                toastr.success('Sản phẩm đã tồn tại trong giỏ hàng!');
-                return
-            } else {
-                $.ajax({
-                    type: 'POST',
-                    url: `{{ROOT_URL}}/add-to-cart/${slug}`,
-                    contentType: 'application/json',
-                    success: function (data) {
-                        console.log('data pd add to cart:', data);
-                        toastr.success('Đã thêm vào giỏ hàng!');
-                        console.log(data.data)
-                        //const dataProducts = data.data
-                        let cart = localStorage.getItem("cart");
-                        let products = [];
-                        if (cart) {
-                            products = JSON.parse(cart);
-                        }
-                        products.push(data.data);
-                        products.forEach(pd => {
-                            pd.qt = 1
-                        })
-                        localStorage.setItem("cart", JSON.stringify(products));
-                        getCart2()
-                        counterItem()
-                    },
-                    error: function (error) {
-                        console.error('Lỗi:', error);
-                    }
-                });
-            }
-        });
-
-    });
+  let cartData = localStorage.getItem('cart') || [] let countItems = 0 function
+  getCart2() { cartData = localStorage.getItem('cart') }
+  console.log('cartData:', cartData) $(document).ready(function () { function
+  counterItem() { const items = JSON.parse(localStorage.getItem('cart'))
+  console.log('Itemmmmmmmmmmmm', items) countItems = items?.length if
+  (countItems > 0) $('#cart-num').html(`${countItems}`) else
+  $('#cart-num').hide() } counterItem() $('.addToCart').click(function (e) {
+  e.preventDefault(); const slug = $(this).attr('data-id') console.log('slug:',
+  slug) if (cartData.includes(`"slug":"${slug}"`)) { toastr.success('Sản phẩm đã
+  tồn tại trong giỏ hàng!'); return } else { $.ajax({ type: 'POST', url: `{{ROOT_URL}}/add-to-cart/${slug}`,
+  contentType: 'application/json', success: function (data) { console.log('data
+  pd add to cart:', data); toastr.success('Đã thêm vào giỏ hàng!');
+  console.log(data.data) //const dataProducts = data.data let cart =
+  localStorage.getItem("cart"); let products = []; if (cart) { products =
+  JSON.parse(cart); } products.push(data.data); products.forEach(pd => { pd.qt =
+  1 }) localStorage.setItem("cart", JSON.stringify(products)); getCart2()
+  counterItem() }, error: function (error) { console.error('Lỗi:', error); } });
+  } }); });
 </script>
