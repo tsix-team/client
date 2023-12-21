@@ -62,6 +62,10 @@
   font-weight: 800;
 }
 
+.box-image-show:hover .overlay-image-show {
+  opacity: 100;
+}
+
 /* end image-show */
 
 /* ----------------  PRODUCT -------------------- */
@@ -236,9 +240,6 @@
   transition-delay: 0.2s;
   cursor: pointer;
 }
-.box-category-image .image img:hover {
-  rotate: y 180deg;
-}
 
 /* end category-image */
 
@@ -273,7 +274,7 @@
 .news-box .image-box img {
   object-fit: cover;
   width: 100%;
-  max-height: 250px;
+  max-height: 189px;
   transition: all 1s ease;
   cursor: pointer;
 }
@@ -291,7 +292,7 @@
   font-size: 1.6rem;
   font-weight: 600;
   padding-right: 20px;
-  max-height: 2.5rem;
+  /* max-height: 2.5rem; */
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;

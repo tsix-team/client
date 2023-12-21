@@ -157,15 +157,14 @@ body {
 }
 .cart .cart-num {
   position: absolute;
-  padding-top: 2px;
-  width: 18px;
-  height: 18px;
+  width: 15px;
+  height: 15px;
   background-color: #dfeeec;
   border-radius: 50%;
   color: black;
   right: 5px;
   font-weight: bolder;
-  bottom: 20px;
+  bottom: 26px;
   text-align: center;
   z-index: 1;
   font-size: 1.2rem;
@@ -213,6 +212,7 @@ body {
   padding: 8px 0;
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
+  z-index: 1000;
 }
 .nested-dropdowns__item {
   width: 250px;
@@ -389,8 +389,6 @@ body {
   visibility: visible;
 }
 
-
-
 .user-menu {
   position: relative;
   display: inline-block;
@@ -403,8 +401,8 @@ body {
 }
 
 .user-icon {
-  width: 26px;
-  height: 26px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   background-color: #ccc; /* Màu sắc của icon/người dùng */
   display: flex;
@@ -414,6 +412,9 @@ body {
 
 .user-name {
   margin-left: 10px;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  font-weight: 500;
 }
 
 .dropdown-menu {
