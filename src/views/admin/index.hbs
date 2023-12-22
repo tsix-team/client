@@ -46,7 +46,7 @@
                                     Trang quản trị dành cho T-SIX FURNITURE
                                 </div>
                                 <div class="mt-3">
-                                    <a href="#" class="btn btn-primary" target="_blank" rel="noopener">View T-Six
+                                    <a href="{{ROOT_URL}}" class="btn btn-primary" target="_blank" rel="noopener">View T-Six
                                         Shop</a>
                                 </div>
                             </div>
@@ -100,7 +100,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex align-items-center">
-                            <div class="subheader">Revenue</div>
+                            <div class="subheader">Tổng doanh thu</div>
                             <div class="ms-auto lh-1">
                                 <div class="dropdown">
                                     <a class="dropdown-toggle text-muted" href="#" data-bs-toggle="dropdown"
@@ -114,7 +114,7 @@
                             </div>
                         </div>
                         <div class="d-flex align-items-baseline">
-                            <div class="h1 mb-0 me-2">$4,300</div>
+                            <div class="h1 mb-0 me-2">{{formatNumber revenue.total}} đ</div>
                             <div class="me-auto">
                                 <span class="text-green d-inline-flex align-items-center lh-1">
                                     8% <!-- Download SVG icon from http://tabler-icons.io/i/trending-up -->
@@ -171,7 +171,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex align-items-center">
-                            <div class="subheader">Active users</div>
+                            <div class="subheader">Tài khoản khách hàng</div>
                             <div class="ms-auto lh-1">
                                 <div class="dropdown">
                                     <a class="dropdown-toggle text-muted" href="#" data-bs-toggle="dropdown"
@@ -185,7 +185,7 @@
                             </div>
                         </div>
                         <div class="d-flex align-items-baseline">
-                            <div class="h1 mb-3 me-2">2,986</div>
+                            <div class="h1 mb-3 me-2">{{total_user.count}}</div>
                             <div class="me-auto">
                                 <span class="text-green d-inline-flex align-items-center lh-1">
                                     4% <!-- Download SVG icon from http://tabler-icons.io/i/trending-up -->
@@ -224,10 +224,10 @@
                                     </div>
                                     <div class="col">
                                         <div class="font-weight-medium">
-                                            132 Sales
+                                            {{revenue.count}} đơn hàng hoàn thành
                                         </div>
                                         <div class="text-muted">
-                                            12 waiting payments
+                                            {{order0.count}} đơn hàng chưa xác nhận
                                         </div>
                                     </div>
                                 </div>
@@ -254,10 +254,10 @@
                                     </div>
                                     <div class="col">
                                         <div class="font-weight-medium">
-                                            78 Orders
+                                            {{order1.count}} Đã xác nhận
                                         </div>
                                         <div class="text-muted">
-                                            32 shipped
+                                            {{order2.count}} Đang giao
                                         </div>
                                     </div>
                                 </div>

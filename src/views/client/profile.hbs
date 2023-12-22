@@ -6,38 +6,43 @@
       </div>
 
       <div class="profile-name">
-        <h2><strong>Xin chào:</strong> {{user.name}}</h2>
+        <h2><strong>Xin chào:</strong> {{dataUser.name}}</h2>
       </div>
 
     </div>
 
-    <form method="POST" action="profile/{{user.id_user}}/update-profile">
+    <form method="POST" action="profile/{{dataUser.id_user}}/update-profile">
 
       <div class="profile-info">
+        <p><strong>Họ tên:</strong><input
+            class="ip-pw"
+            type="text"
+            name="name"
+            value="{{dataUser.name}}"
+          /></p>
         <p><strong>Email:</strong><input
             class="ip-pw"
             type="text"
             name="email"
-            value="{{user.email}}"
+            value="{{dataUser.email}}"
           /></p>
         <p><strong>Số điện thoại:</strong><input
             class="ip-pw"
             type="text"
             name="phone"
-            value="{{user.phone}}"
+            value="{{dataUser.phone}}"
           /></p>
         <p><strong>Địa chỉ:</strong><input
             class="ip-pw"
             type="text"
             name="address"
-            value="{{user.address}}"
+            value="{{dataUser.address}}"
           /></p>
         <p><strong>Mật khẩu:</strong><input
             class="ip-pw"
             type="password"
             name="password"
-            value="{{user.password}}"
-            placeholder="Nhập mật khẩu mới..."
+            placeholder="Nhập mật khẩu mới...(tùy chọn)"
           /></p>
         <button type="submit" class="btn-button">Cập nhật thông tin</button>
       </div>

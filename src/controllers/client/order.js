@@ -23,12 +23,13 @@ export const checkout = (req, res) => {
     axios.post(`/order`,dataForm)
         .then(async response => {
             const dataRES = response.data.response;
+            req.flash('success', 'Đặt hàng thành công!');
             res.send(dataRES)
-            //res.render('client/news-details', { layout: 'client/news-details', title: dataPost.title, dataPost })
         })
         .catch(error => {
             // Xử lý lỗi nếu có
             console.error(error);
+            req.flash('error', 'Có lỗi xảy ra!');
             // res.render('client/product', { title: 'Sản phẩm', user, error })
             res.render('admin/500', { layout: 'error', title: '500' })
         });

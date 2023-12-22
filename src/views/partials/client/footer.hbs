@@ -73,3 +73,10 @@
 
 <!-- button back-to-top -->
 <button id="button"><i class="fa-solid fa-arrow-up"></i></button>
+<script>
+      //thông báo
+    const s = `{{success}}`
+    const e = `{{error}}`
+    if (s) toastr.success(s);
+    if (e) toastr.error(e);
+</script>

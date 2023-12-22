@@ -53,7 +53,7 @@
                         <span>Kho: </span><label for="size-m">{{dataProduct.inventory}}</label>
                     </div>
                     <div class="details-btn">
-                        <button class="buy_btn">Mua ngay</button>
+                        <button class="buy_btn" data-id="{{dataProduct.slug}}">Mua ngay</button>
                         <button class="add_btn addToCart" data-id="{{dataProduct.slug}}">thêm vào giỏ hàng</button>
                     </div>
                 </div>
@@ -71,12 +71,10 @@
                         <div class="comment-inner">
                             <div class="comment-form ">
 
-
-                                {{!-- <input type="hidden" name="slugProduct" value="<%= detailProducts.slugProduct %>"
-                                    id="slugProduct"> --}}
-                                <form action="{{ROOT_URL}}/comment" method="post">
+                                {{#if user}}
+                                   <form action="" method="post">
                                     <div class="form-comment">
-                                        <textarea name="message" name="content" cols="30" rows="8" class="form-control"
+                                        <textarea name="content" cols="30" rows="8" class="form-control"
                                             placeholder="Nhập nội dung bình luận của bạn"></textarea>
                                     </div>
 
@@ -85,9 +83,14 @@
                                     </div>
 
                                 </form>
+                                {{else}}
+                                   <h2>Vui lòng <a style="color: orange;" href="{{ROOT_URL}}/login">đăng nhập</a> để bình luận</h2>
+                                {{/if}}
+                                
                             </div>
 
                             {{!-- Hiện ra khi Người dùng bình luận --}}
+                            {{#each cmts}}
                             <div class="comment-info">
                                 <div class="avatar">
                                     <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png"
@@ -95,162 +98,21 @@
                                 </div>
                                 <div class="content">
                                     <div class="info-contain">
-                                        <h6 class="author">Long Thai
+                                        <h6 class="author">{{this.name}}
                                         </h6>
-                                        <p class="date">(1/12/2023)</p>
+                                        <p class="date">({{formatDate this.createdAt}})</p>
                                     </div>
 
                                     <div class="text-comment">
-                                        Sản phẩm sử dụng rất chất lượng
+                                        {{this.content}}
                                     </div>
-                                    {{!-- <input type="hidden" id="idComment_{{ comment._id }}"
-                                        value="{{ comment._id }}">
-                                    --}}
-                                    {{!-- <input class="button-ouline" id="editlistcomment_{{ comment._id }}"
-                                        name="editlistcomment" value="{{ comment.comment }}" /> --}}
-                                    {{!-- <div class="d-flex gap-2">
-
-                                        <button id="editComment_<%= comment._id %>" type="submit"
-                                            class=" text-info font-weight-400">Edit</button> |
-                                        <button id="deleteComment_<%= comment._id %>"
-                                            class="text-danger font-weight-400">Delete</button>
-
-                                    </div> --}}
                                 </div>
                             </div>
-
-                            <div class="comment-info">
-                                <div class="avatar">
-                                    <img src="https://i.imgur.com/bbnrc1T.png" alt="">
-                                </div>
-                                <div class="content">
-                                    <div class="info-contain">
-                                        <h6 class="author">Long Thai
-                                        </h6>
-                                        <p class="date">(2/12/2023)</p>
-                                    </div>
-
-                                    <div class="text-comment">
-                                        Sản phẩm sử dụng rất chất lượng
-                                    </div>
-                                    {{!-- <input type="hidden" id="idComment_{{ comment._id }}"
-                                        value="{{ comment._id }}">
-                                    --}}
-                                    {{!-- <input class="button-ouline" id="editlistcomment_{{ comment._id }}"
-                                        name="editlistcomment" value="{{ comment.comment }}" /> --}}
-                                    {{!-- <div class="d-flex gap-2">
-
-                                        <button id="editComment_<%= comment._id %>" type="submit"
-                                            class=" text-info font-weight-400">Edit</button> |
-                                        <button id="deleteComment_<%= comment._id %>"
-                                            class="text-danger font-weight-400">Delete</button>
-
-                                    </div> --}}
-                                </div>
-                            </div>
-
-                            <div class="comment-info">
-                                <div class="avatar">
-                                    <img src="https://png.pngtree.com/png-vector/20190623/ourlarge/pngtree-accountavataruser--flat-color-icon--vector-icon-banner-templ-png-image_1491720.jpg"
-                                        alt="">
-                                </div>
-                                <div class="content">
-                                    <div class="info-contain">
-                                        <h6 class="author">Long Thai
-                                        </h6>
-                                        <p class="date">(3/12/2023)</p>
-                                    </div>
-
-                                    <div class="text-comment">
-                                        Sản phẩm sử dụng rất chất lượng
-                                    </div>
-                                    {{!-- <input type="hidden" id="idComment_{{ comment._id }}"
-                                        value="{{ comment._id }}">
-                                    --}}
-                                    {{!-- <input class="button-ouline" id="editlistcomment_{{ comment._id }}"
-                                        name="editlistcomment" value="{{ comment.comment }}" /> --}}
-                                    {{!-- <div class="d-flex gap-2">
-
-                                        <button id="editComment_<%= comment._id %>" type="submit"
-                                            class=" text-info font-weight-400">Edit</button> |
-                                        <button id="deleteComment_<%= comment._id %>"
-                                            class="text-danger font-weight-400">Delete</button>
-
-                                    </div> --}}
-                                </div>
-                            </div>
+                            {{/each}}
+                            
 
 
                         </div>
-                        <!-- edit comment -->
-                        {{!--
-                        <script>
-                            $(document).on("click", "#editComment_<%= comment._id %>", function () {
-                                $("#editlistcomment_<%= comment._id %>").removeClass('button-ouline');
-                                $(this).attr('id', 'updateComment_<%= comment._id %>').text('Update');
-                            });
-
-                            // update huy nè
-
-                            $(document).on("click", "#updateComment_<%= comment._id %>", function () {
-                                $.ajax({
-                                    type: "POST",
-                                    dataType: "JSON",
-                                    url: "/updateComment",
-                                    data: {
-                                        type: 'updateComment',
-                                        idEditComment: $("#idComment_<%= comment._id %>").val(),
-                                        editlistcomment: $("#editlistcomment_<%= comment._id %>").val(),
-                                    },
-                                    success: function (res) {
-                                        Swal.fire({
-                                            icon: res.status === true ? "success" : "error",
-                                            title: 'Thông Báo',
-                                            text: res.message
-                                        }).then((result) => {
-                                            if (res.status === true) {
-                                                window.location.href = "/detail/<%= detailProducts.slugProduct %>"
-                                            } else {
-                                                // huydev
-                                            }
-                                        });
-                                    },
-                                    error: function (xhr, status, error) {
-                                        console.error('edit lỗi', error);
-                                    },
-                                });
-                            });
-
-                            // delete huy nè
-
-                            $(document).on("click", "#deleteComment_<%= comment._id %>", function () {
-                                $.ajax({
-                                    type: "POST",
-                                    dataType: "JSON",
-                                    url: "/deleteComment",
-                                    data: {
-                                        type: 'deleteComment',
-                                        idDeleteComment: $("#idComment_<%= comment._id %>").val(),
-                                    },
-                                    success: function (res) {
-                                        Swal.fire({
-                                            icon: res.status === true ? "success" : "error",
-                                            title: 'Thông Báo',
-                                            text: res.message
-                                        }).then((result) => {
-                                            if (res.status === true) {
-                                                window.location.href = "/detail/<%= detailProducts.slugProduct %>"
-                                            } else {
-                                                // huydev
-                                            }
-                                        });
-                                    },
-                                    error: function (xhr, status, error) {
-                                        console.error('delete lỗi', error);
-                                    },
-                                });
-                            });
-                        </script> --}}
 
 
 
@@ -345,10 +207,11 @@
                     <h3>Sản phẩm liên quan</h3>
                 </div>
                 <div class="product-new-listing">
+                    {{#each pds2}}
                     <div class="box">
                         <div class="image-box">
                             <div class="image">
-                                <img src="./images/product-image (1).jpg" alt="New-Product">
+                                <img src="{{this.image}}" alt="New-Product">
                             </div>
                             <div class="overlay-btn">
                                 <a href>
@@ -356,165 +219,19 @@
                                         <i class="fa fa-eye" aria-hidden="true"></i>
                                     </button>
                                 </a>
-                                <a href>
-                                    <button class="btn">
-                                        <i class="fa fa-cart-plus" aria-hidden="true"></i>
-                                    </button>
-                                </a>
                             </div>
                         </div>
                         <div class="text-box">
-                            <a href="">
-                                <h2 class="item">Kệ Sách</h2>
+                            <a href="{{ROOT_URL}}/product-details/{{this.slug}}">
+                                <h2 class="item">{{this.name_pd}}</h2>
                             </a>
-                            <a href="">
-                                <h3 class="price-prd">500.000<span>₫</span></h3>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="box">
-                        <div class="image-box">
-                            <div class="image">
-                                <img src="./images/product-image-3.jpg" alt>
-                            </div>
-                            <div class="overlay-btn">
-                                <a href>
-                                    <button class="btn">
-                                        <i class="fa fa-eye" aria-hidden="true"></i>
-                                    </button>
-                                </a>
-                                <a href>
-                                    <button class="btn">
-                                        <i class="fa fa-cart-plus" aria-hidden="true"></i>
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="text-box">
-                            <a href="">
-                                <h2 class="item">Đồng hồ Luxury</h2>
-                            </a>
-                            <a href="">
-                                <h3 class="price-prd">1.200.000<span>₫</span></h3>
+                            <a href="{{ROOT_URL}}/product-details/{{this.slug}}">
+                                <h3 class="price-prd">{{formatNumber this.price}}<span>₫</span></h3>
                             </a>
                         </div>
                     </div>
-                    <div class="box">
-                        <div class="image-box">
-                            <div class="image">
-                                <img src="./images/product-image-2.jpg" alt>
-                            </div>
-                            <div class="overlay-btn">
-                                <a href>
-                                    <button class="btn">
-                                        <i class="fa fa-eye" aria-hidden="true"></i>
-                                    </button>
-                                </a>
-                                <a href>
-                                    <button class="btn">
-                                        <i class="fa fa-cart-plus" aria-hidden="true"></i>
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="text-box">
-                            <a href="">
-                                <h2 class="item">Giường ngủ</h2>
-                            </a>
-                            <a href="">
-                            </a>
-                            <a href="">
-                                <h3 class="price-prd">4.200.000<span>₫</span></h3>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="box">
-                        <div class="image-box">
-                            <div class="image">
-                                <img src="./images/product-image (4).jpg" alt>
-                            </div>
-                            <div class="overlay-btn">
-                                <a href>
-                                    <button class="btn">
-                                        <i class="fa fa-eye" aria-hidden="true"></i>
-                                    </button>
-                                </a>
-                                <a href>
-                                    <button class="btn">
-                                        <i class="fa fa-cart-plus" aria-hidden="true"></i>
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="text-box">
-                            <a href="">
-                                <h2 class="item">Ghế Luxury</h2>
-                            </a>
-                            <a href="">
-                            </a>
-                            <a href="">
-                                <h3 class="price-prd">820.000<span>₫</span></h3>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="box">
-                        <div class="image-box">
-                            <div class="image">
-                                <img src="./images/product-image (2).jpg" alt>
-                            </div>
-                            <div class="overlay-btn">
-                                <a href>
-                                    <button class="btn">
-                                        <i class="fa fa-eye" aria-hidden="true"></i>
-                                    </button>
-                                </a>
-                                <a href>
-                                    <button class="btn">
-                                        <i class="fa fa-cart-plus" aria-hidden="true"></i>
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="text-box">
-                            <a href="">
-                                <h2 class="item">Đồng hồ Luxury</h2>
-                            </a>
-                            <a href="">
-                            </a>
-                            <a href="">
-                                <h3 class="price-prd">2.500.000<span>₫</span></h3>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="box">
-                        <div class="image-box">
-                            <div class="image">
-                                <img src="./images/product-image (5).jpg" alt>
-                            </div>
-                            <div class="overlay-btn">
-                                <a href>
-                                    <button class="btn">
-                                        <i class="fa fa-eye" aria-hidden="true"></i>
-                                    </button>
-                                </a>
-                                <a href>
-                                    <button class="btn">
-                                        <i class="fa fa-cart-plus" aria-hidden="true"></i>
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="text-box">
-                            <a href="">
-                                <h2 class="item">Đồng hồ Luxury</h2>
-                            </a>
-                            <a href="">
-                            </a>
-                            <a href="">
-                                <h3 class="price-prd">2.500.000<span>₫</span></h3>
-                            </a>
-                        </div>
-                    </div>
+                    {{/each}}
+                    
 
                 </div>
 

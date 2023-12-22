@@ -86,10 +86,12 @@ export const viewUpdate = (req,res) =>{
 export const deletePost = (req,res) =>{
   const {id} = req.params
   axios.delete(`/post/${id}`).then(async response =>{
+    req.flash('success', 'Đã xóa bài viết!');
     res.redirect('/admin/posts');
   }).catch(error => {
     // Xử lý lỗi nếu có
     console.error(error);
+    req.flash('error', 'Có lỗi xảy ra!');
     res.render('admin/posts',{layout:'admin/index', title:'Quản lý bài viết',error})
     //res.render('admin/500',{layout:'error', title:'500'})
   })

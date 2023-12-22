@@ -103,7 +103,7 @@
                                         {{this.name_subcate}}
                                     </td>
                                     <td class="sort-price">
-                                        {{this.price}}
+                                        {{formatNumber this.price}}
                                     </td>
                                     <td class="sort-brand">
                                         {{this.brand}}
@@ -219,7 +219,7 @@
                                 <path d="M20.732 12a2 2 0 0 0 -3.732 1v1a2 2 0 0 0 3.726 1.01"></path>
                             </svg> Tên
                         </label>
-                        <input type="text" class="form-control" name="name_pd" placeholder="Your product name">
+                        <input type="text" class="form-control" name="name_pd" placeholder="Your product name" required>
                     </div>
                     <div class="col-lg-6">
                         <div class="mb-3">
@@ -316,7 +316,7 @@
                                     <path d="M4.6 17l14.8 0"></path>
                                 </svg> Chất liệu
                             </div>
-                            <input type="text" class="form-control" value="0" name="material" />
+                            <input type="text" class="form-control" value="" name="material" />
                         </div>
                     </div>
                     <div class="col-lg-4">
@@ -334,7 +334,7 @@
                                     <path d="M17 12v3h-3"></path>
                                 </svg> Kích thước
                             </div>
-                            <input type="text" class="form-control" value="0" name="size" />
+                            <input type="text" class="form-control" value="" name="size" />
                         </div>
                     </div>
                 </div>
@@ -374,7 +374,7 @@
                                     </path>
                                 </svg> Tồn kho
                             </div>
-                            <input type="number" class="form-control" value="0" name="inventory" />
+                            <input type="number" class="form-control" value="1" name="inventory" />
                         </div>
                     </div>
                 </div>

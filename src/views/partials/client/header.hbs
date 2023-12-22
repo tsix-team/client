@@ -4,17 +4,15 @@
             <img src="/images/logo-web-client.png" alt="logo-website">
         </div>
         <div class="search">
-            <form action="">
+            <form action="/search" method="post">
                 <div class="form-search">
-                    <input type="search" placeholder="Nhập từ khóa tìm kiếm...">
-                    <button><i class="fa fa-search" aria-hidden="true"></i></button>
+                    <input id="searchInput" type="search" name="k" placeholder="Nhập từ khóa tìm kiếm...">
+                    <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                 </div>
             </form>
             <div class="search_dropdown">
-                <ul>
-                    <li><a href="">Ghe luxury moi nhat</a></li>
-                    <li><a href="">Ban</a></li>
-                    <li><a href="">Ke</a></li>
+                <ul id="searchResults">
+                    
                 </ul>
             </div>
         </div>
@@ -66,7 +64,7 @@
                         <li>
                             <div class="cate-text">
                                 <i class="fa fa-bar-chart" aria-hidden="true"></i>
-                                Danh mục
+                                DANH MỤC
                             </div>
                             <ul class="dropdownCategory">
                                 {{#each bigCate as |cate|}}
@@ -100,7 +98,7 @@
                         <div class="dropdown-navbar">
                             <a href="{{ROOT_URL}}/product" class="dropa-navbar">
                                 <i class="fa-solid fa-couch"></i>
-                                SẢN PHẨM <i class="fas fa-chevron-down responesiveNone"></i></a>
+                                SẢN PHẨM</a>
                         </div>
                     </li>
                     <li><a href="{{ROOT_URL}}/news">
@@ -135,46 +133,78 @@
         <label for="toggle-responsive" class="overlay-menu"></label>
 
         <!-- menu responsive -->
-        <div class="menu-responsive">
+    <div class="menu-responsive">
 
-            <div class="category-menu">
-                <div class="dropdown-responsive">
-                    <button onclick="category_responsive()" class="dropbtn-responsive">
-                        <i class="fa fa-bar-chart" aria-hidden="true"></i>
-                        Danh mục</button>
-                    <div id="myDropdown-responsive" class="dropdown-content-responsive">
-                        <a href="#"><i class="fa-solid fa-chevron-right"></i> Sofa</a>
-                        <a href="#"><i class="fa-solid fa-chevron-right"></i> Ghế</a>
-                        <a href="#"><i class="fa-solid fa-chevron-right"></i> Kệ sách</a>
-                        <a href="#"><i class="fa-solid fa-chevron-right"></i> Trang trí</a>
+      <div class="category-menu">
+        <div class="dropdown">
+          <ul class="nested-dropdowns">
+            <li>
+              <div class="cate-text">
+                <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                DANH MỤC
+              </div>
+              <ul class="dropdownCategory">
+                {{#each bigCate as |cate|}}
+                  <li>
+                    <div class="nested-dropdowns__item">
+                      <i class="fa-solid fa-chevron-right"></i>
+                      <a
+                        href="{{ROOT_URL}}/danh-muc/{{cate.slug}}"
+                      >{{cate.name_cate}}</a>
                     </div>
-                </div>
-                <label for="toggle-responsive" class="close" id="">
-                    <i class="fa fa-times" aria-hidden="true"></i>
-                </label>
-            </div>
+                    <ul>
+                      {{#each cate.subCate}}
+                        <li><a
+                            href="{{ROOT_URL}}/danh-muc/{{cate.slug}}/{{this.slug}}"
+                          >{{this.name_subcate}}</a>
+                        </li>
+                      {{/each}}
+                    </ul>
+                  </li>
+                {{/each}}
 
-            <div class="menu-list-responsive">
-                <ul class="main-menu-responsive">
-                    <li><i class="fa fa-home" aria-hidden="true"></i><a class="active-menu" href="{{ROOT_URL}}">
-                            TRANG CHỦ</a></li>
-                    <li><i class="fa-solid fa-couch"></i><a href="{{ROOT_URL}}/product" class="dropa-navbar">
-                            SẢN PHẨM </a>
-                    </li>
-                    <li><i class="fas fa-newspaper"></i><a href="{{ROOT_URL}}/news">
-                            TIN TỨC</a></li>
-                    <li><i class="fa-solid fa-users-rectangle"></i><a href="{{ROOT_URL}}/about">
-                            GIỚI THIỆU</a></li>
-                    <li><i class="fa fa-phone-square" aria-hidden="true"></i><a href="{{ROOT_URL}}/contact">
-                            LIÊN HỆ</a></li>
-                </ul>
-            </div>
-
-            <div class="hotline-responsive">
-                <span><i class="fa fa-phone" aria-hidden="true" class="icon-phone"></i>
-                    <span class="text">Hotline:</span> <span class="phone">0898877604</span></span>
-            </div>
+              </ul>
+            </li>
+          </ul>
         </div>
+        <label for="toggle-responsive" class="close" id="">
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </label>
+      </div>
+
+      <div class="menu-list-responsive">
+        <ul class="main-menu-responsive">
+          <li><i class="fa fa-home" aria-hidden="true"></i><a
+              class="active-menu"
+              href="{{ROOT_URL}}"
+            >
+              TRANG CHỦ</a></li>
+          <li><a
+              href="{{ROOT_URL}}/product"
+              class="dropa-navbar"
+            >
+              SẢN PHẨM
+            </a>
+          </li>
+          <li><i class="fas fa-newspaper"></i><a href="{{ROOT_URL}}/news">
+              TIN TỨC</a></li>
+          <li><i class="fa-solid fa-users-rectangle"></i><a
+              href="{{ROOT_URL}}/about"
+            >
+              GIỚI THIỆU</a></li>
+          <li><i class="fa fa-phone-square" aria-hidden="true"></i><a
+              href="{{ROOT_URL}}/contact"
+            >
+              LIÊN HỆ</a></li>
+        </ul>
+      </div>
+
+      <div class="hotline-responsive">
+        <span><i class="fa fa-phone" aria-hidden="true" class="icon-phone"></i>
+          <span class="text">Hotline:</span>
+          <span class="phone">0898877604</span></span>
+      </div>
+    </div>
 
     </div>
 </nav>
@@ -185,7 +215,6 @@
     function getCart2() {
         cartData = localStorage.getItem('cart')
     }
-    console.log('cartData:', cartData)
     $(document).ready(function () {
         function counterItem() {
             const items = JSON.parse(localStorage.getItem('cart'))
@@ -229,6 +258,73 @@
                         console.error('Lỗi:', error);
                     }
                 });
+            }
+        });
+        //buy
+        $('.buy_btn').click(function (e) {
+            console.log('data pd add to cart:');
+            e.preventDefault();
+            const slug = $(this).attr('data-id')
+            console.log('slug:', slug)
+            if (cartData.includes(`"slug":"${slug}"`)) {
+                window.location.href = `{{ROOT_URL}}/cart`
+                return
+            } else {
+                $.ajax({
+                    type: 'POST',
+                    url: `{{ROOT_URL}}/add-to-cart/${slug}`,
+                    contentType: 'application/json',
+                    success: function (data) {
+                        console.log('data pd add to cart:', data);
+                        toastr.success('Đã thêm vào giỏ hàng!');
+                        console.log(data.data)
+                        //const dataProducts = data.data
+                        let cart = localStorage.getItem("cart");
+                        let products = [];
+                        if (cart) {
+                            products = JSON.parse(cart);
+                        }
+                        products.push(data.data);
+                        products.forEach(pd => {
+                            pd.qt = 1
+                        })
+                        localStorage.setItem("cart", JSON.stringify(products));
+                        getCart2()
+                        counterItem()
+                        window.location.href = `{{ROOT_URL}}/cart`
+                    },
+                    error: function (error) {
+                        console.error('Lỗi:', error);
+                    }
+                });
+            }
+        });
+        //live search
+        $('#searchInput').on('input', function() {
+            var query = $(this).val().trim();
+
+            // Gửi request AJAX khi người dùng nhập thông tin vào ô tìm kiếm
+            if (query !== '') {
+            $('#searchResults').empty()
+                $.ajax({
+                    url: `{{ROOT_URL}}/search?k=${query}`, // Thay đổi đường dẫn đến endpoint của bạn
+                    method: 'GET', // Hoặc 'POST' tùy thuộc vào cách bạn xử lý
+                    success: function(response) {
+                        $('#searchResults').empty()
+                        console.log('response k',response,query)
+                        // Xử lý kết quả trả về từ server và hiển thị trong #searchResults
+                        $.each(response, function (index,item){
+                            const result = `<li><a href="{{ROOT_URL}}/product-details/${item.slug}">${item.name_pd}</a></li>`
+                            $('#searchResults').append(result)
+                        })
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
+                        // Xử lý lỗi nếu có
+                    }
+                });
+            } else {
+                $('#searchResults').empty(); // Nếu ô tìm kiếm trống, xóa kết quả hiển thị
             }
         });
 

@@ -97,10 +97,10 @@
                                         <span class="avatar"
                                             style="background-image: url({{this.image}});--tblr-avatar-size: 4.5rem;"></span>
                                     </td>
-                                    <td class="sort-user">{{this.id_user}}</td>
                                     <td class="sort-content">
                                         {{this.content}}
                                     </td>
+                                    <td class="sort-user">{{this.id_user}}</td>
                                     </td>
                                     <td class="sort-date">{{formatDate this.createdAt}}</td>
                                     <td class="text-end">
@@ -109,7 +109,7 @@
                                                 data-bs-boundary="viewport" data-bs-toggle="dropdown">Actions</button>
                                             <div class="dropdown-menu dropdown-menu-end">
                                                 <a class="dropdown-item"
-                                                    href="{{ADMIN_URL}}/posts/update/{{this.posts}}">
+                                                    href="{{ADMIN_URL}}/posts/update/{{this.id_post}}">
                                                     <svg xmlns="http://www.w3.org/2000/svg"
                                                         class="icon icon-tabler icon-tabler-zoom-scan" width="24"
                                                         height="24" viewBox="0 0 24 24" stroke-width="2"

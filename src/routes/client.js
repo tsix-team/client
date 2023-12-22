@@ -57,4 +57,11 @@ router.get("/profile", userController.getProfile)
 
 router.post("/profile/:id/update-profile", userController.updateProfile)
 
+router.post("/search", pdController.searchPd)
+
+router.get("/search", pdController.liveSearch)
+
+router.post("/product-details/:slug", pdController.comment)
+
+
 export default router

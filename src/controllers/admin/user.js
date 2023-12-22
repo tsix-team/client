@@ -6,7 +6,7 @@ const config = {
 };
 export const indexUser = (req, res) => {
 
-    config.params = { ...req.query, page: 1, size: 20 }
+    config.params = {page: 1, size: 20, ...req.query, role:0}
     axios.get('/user', config)
         .then(response => {
             const data = response.data.response;
@@ -44,13 +44,17 @@ export const createUser = (req, res) => {
         .then(response => {
             const data = response.data.response;
             console.log(data);
-            req.flash('success', 'Đã thêm tài khoản');
+            if (response.data.err == 0) {
+                req.flash('success', 'Đã thêm tài khoản');
+            } else{
+                req.flash('error', `Có lỗi xảy ra! ${response.data.msg}`);
+            }
             res.redirect('/admin/users');
         })
         .catch(error => {
             // Xử lý lỗi nếu có
             console.error(error);
-            req.flash('error', 'Tài khoản đã tồn tại');
+            req.flash('error', `Có lỗi xảy ra! ${error.response.data.msg}`);
             res.redirect('/admin/users');
         });
 }

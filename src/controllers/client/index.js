@@ -6,11 +6,13 @@ const config = {
     params: {},
 };
 export const home = (req, res) => {
-    config.params = {size:6}
+    config.params = {size:12}
     axios.get('/product',config)
         .then(async response => {
             const dataProducts = response.data.response;
-            res.render('client', { title: 'Tsix', dataProducts })
+            const posts = await axios.get('/post?size=4')
+            const dataPosts = posts.data.response
+            res.render('client', { title: 'Tsix', dataProducts,dataPosts })
         })
         .catch(error => {
             // Xử lý lỗi nếu có

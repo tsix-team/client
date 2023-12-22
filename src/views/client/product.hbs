@@ -32,13 +32,6 @@
                                 </ul>
                             </li>
                             {{/each}}
-                            <li class="main-category">Clothing
-                                <ul class="sub-categories">
-                                    <li class="sub-category">Men's</li>
-                                    <li class="sub-category">Women's</li>
-                                    <li class="sub-category">Kids'</li>
-                                </ul>
-                            </li>
                         </ul>
                     </div>
                 </div>
@@ -60,7 +53,11 @@
             </div>
             <div class="product__right">
                 <div class="product-new-title">
-                    <h1>🎉 TẤT CẢ SẢN PHẨM 🎇</h1>
+                    <h1> {{#if k}}
+                        Kết quả tìm kiếm cho "{{k}}"
+                    {{else}}
+                     🎉 TẤT CẢ SẢN PHẨM 🎇  </h1>
+                    {{/if}}
                 </div>
                 <div class="product-new-listing">
                     {{#each dataProducts}}

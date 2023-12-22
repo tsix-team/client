@@ -1,9 +1,12 @@
 require('dotenv').config()
 import axios from 'axios';
 axios.defaults.baseURL = process.env.API;
+const config = {
+    params: {},
+};
 export const indexPost = (req, res) => {
-    
-    axios.get('/post')
+    config.params = {size:12}
+    axios.get('/post',config)
         .then(async response => {
             const dataPosts = response.data.response;
             res.render('client/news', { layout: 'client/news', title: 'Tin tức', dataPosts })

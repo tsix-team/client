@@ -251,6 +251,7 @@ body {
   left: 0;
   position: absolute;
   top: 100%;
+  z-index: 4;
 }
 
 .nested-dropdowns ul ul {
@@ -389,8 +390,6 @@ body {
   visibility: visible;
 }
 
-
-
 .user-menu {
   position: relative;
   display: inline-block;
@@ -403,8 +402,8 @@ body {
 }
 
 .user-icon {
-  width: 26px;
-  height: 26px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   background-color: #ccc; /* Màu sắc của icon/người dùng */
   display: flex;
@@ -414,6 +413,9 @@ body {
 
 .user-name {
   margin-left: 10px;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  font-weight: 500;
 }
 
 .dropdown-menu {

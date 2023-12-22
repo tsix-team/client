@@ -6,6 +6,7 @@ import * as userController from '../controllers/admin/user'
 import * as pdController from '../controllers/admin/product'
 import * as orderController from '../controllers/admin/order'
 import * as cateController from '../controllers/admin/category'
+import * as cmtController from '../controllers/admin/comment'
 const router = express.Router();
 
 router.get('/',indexController.home)
@@ -61,9 +62,9 @@ router.post('/orders',orderController.createOrder)
 //invoices
 router.get('/invoices',orderController.indexInvoice)
 
-// router.get('/posts/update/:id',pdController.viewUpdate)
-// router.post('/posts/update/:id',uploadCloud.fields([{ name: 'image' }, { name: 'images' }]), pdController.updatePd)
-// router.get('/posts/d/:id',pdController.deletePd)
+//cmt
+router.get('/comments',cmtController.indexComment)
+router.get('/comments/d/:id',cmtController.deleteCmt)
 
 // router.get('/login',(req,res)=>{
 //     res.render('login',{title:'Login page'})

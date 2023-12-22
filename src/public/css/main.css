@@ -61,6 +61,9 @@
   font-size: 1.8rem;
   font-weight: 800;
 }
+.box-image-show:hover .overlay-image-show  {
+  opacity: 100;
+}
 
 /* end image-show */
 
@@ -94,7 +97,8 @@
 .product-new-listing,
 .product-hot-listing {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 6px;
   flex-wrap: wrap;
 }
 
@@ -291,7 +295,6 @@
   font-size: 1.6rem;
   font-weight: 600;
   padding-right: 20px;
-  max-height: 2.5rem;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;

@@ -1,0 +1,154 @@
+<!-- Page header -->
+<div class="page-header d-print-none">
+    <div class="container-xl">
+        <div class="row g-2 align-items-center">
+            <div class="col">
+                <!-- Page pre-title -->
+                <div class="page-pretitle">
+                    Dashboard
+                </div>
+                <h2 class="page-title">
+                    Comments
+                </h2>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page body -->
+<div class="page-body">
+    <div class="container-xl">
+        <div class="row row-deck row-cards">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Tất cả bình luận</h3>
+                    </div>
+
+                    <div id="table-default" class="table-responsive">
+                        <div class="card-body border-bottom py-3">
+                            <div class="d-flex">
+                                <div class="text-muted">
+                                    Show
+                                    <div class="mx-2 d-inline-block">
+                                        <input type="text" class="form-control form-control-sm" value="8" size="3"
+                                            aria-label="Invoices count">
+                                    </div>
+                                    entries
+                                </div>
+                                <div class="ms-auto text-muted">
+                                    Search:
+                                    <div class="ms-2 d-inline-block">
+                                        <input type="text" class="search form-control form-control-sm"
+                                            aria-label="Search invoice">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="table card-table table-vcenter text-nowrap datatable">
+                            <thead>
+                                <tr>
+                                    <th class="w-1"><input class="form-check-input m-0 align-middle" type="checkbox"
+                                            aria-label="Select all invoices" disabled></th>
+                                    <th class="w-1">ID.
+                                        <!-- Download SVG icon from http://tabler-icons.io/i/chevron-up -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-sm icon-thick"
+                                            width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                                            stroke="currentColor" fill="none" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path d="M6 15l6 -6l6 6" />
+                                        </svg>
+                                    </th>
+                                    <th><button class="table-sort" data-sort="sort-name">Id_user</button></th>
+                                    <th><button class="table-sort" data-sort="sort-id">Id_product</button></th>
+                                    <th><button class="table-sort" data-sort="sort-content">Nội dung</button></th>
+                                    <th><button class="table-sort" data-sort="sort-date">Ngày tạo</button></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-tbody">
+                                {{#each data}}
+                                {{this.dataValues}}
+                                <tr>
+                                    <td><input class="form-check-input m-0 align-middle" type="checkbox"
+                                            aria-label="Select invoice"></td>
+                                    <td class="sort-id"><span class="text-muted">{{this.id_cmt}}</span></td>
+                                    <td class="sort-name"><a href="{{ADMIN_URL}}/users/update/{{this.id_user}}" class="text-reset"
+                                            tabindex="-1">{{this.id_user}}</a>
+                                    </td>
+                                    <td class="sort-id">
+                                        <a href="{{ADMIN_URL}}/products/update/{{this.id_pd}}" class="text-reset"
+                                            tabindex="-1">{{this.id_pd}}</a>
+                                    </td>
+                                    <td class="sort-content">
+                                        {{this.content}}
+                                    </td>
+                                    <td class="sort-date">{{formatDate this.createdAt}}</td>
+                                    <td class="text-end">
+                                        <span class="dropdown">
+                                            <button class="btn dropdown-toggle align-text-top"
+                                                data-bs-boundary="viewport" data-bs-toggle="dropdown">Actions</button>
+                                            <div class="dropdown-menu dropdown-menu-end">
+                                                <a class="dropdown-item" href="{{ADMIN_URL}}/comments/d/{{this.id_cmt}}">
+                                                     Xóa
+                                                </a>
+                                            </div>
+                                        </span>
+                                    </td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card-footer d-flex align-items-center">
+                        <p class="m-0 text-muted">Showing <span>1</span> to <span>8</span> of <span>16</span>
+                            entries</p>
+                        <ul class="pagination m-0 ms-auto">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                                    <!-- Download SVG icon from http://tabler-icons.io/i/chevron-left -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <path d="M15 6l-6 6l6 6" />
+                                    </svg>
+                                    prev
+                                </a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">4</a></li>
+                            <li class="page-item"><a class="page-link" href="#">5</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">
+                                    next <!-- Download SVG icon from http://tabler-icons.io/i/chevron-right -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <path d="M9 6l6 6l-6 6" />
+                                    </svg>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const list = new List('table-default', {
+            sortClass: 'table-sort',
+            listClass: 'table-tbody',
+            valueNames: ['sort-id', 'sort-name', 'sort-email', 'sort-phone', 'sort-role', 'sort-status',
+                'sort-date'
+            ]
+        });
+    })
+</script>
